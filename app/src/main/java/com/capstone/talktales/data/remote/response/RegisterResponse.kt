@@ -1,5 +1,5 @@
 package com.capstone.talktales.data.remote.response
 
-class LoginResponse {
+class RegisterResponse {
     // Todo: match API spec
 }

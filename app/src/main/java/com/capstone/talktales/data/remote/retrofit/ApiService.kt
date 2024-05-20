@@ -1,8 +1,10 @@
 package com.capstone.talktales.data.remote.retrofit
 
 import com.capstone.talktales.data.remote.response.BaseResponse
+import com.capstone.talktales.data.remote.response.CheckAudioResponse
 import com.capstone.talktales.data.remote.response.DetailStoryResponse
 import com.capstone.talktales.data.remote.response.LoginResponse
+import com.capstone.talktales.data.remote.response.RegisterResponse
 import com.capstone.talktales.data.remote.response.StoriesResponse
 import com.mustafayigit.mockresponseinterceptor.Mock
 import okhttp3.MultipartBody
@@ -17,6 +19,9 @@ import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface ApiService {
+
+    // Todo: Implement real API Spec
+
     @POST("/login")
     @Mock
     suspend fun login(
@@ -32,7 +37,7 @@ interface ApiService {
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("password") password: String
-    ): BaseResponse
+    ): RegisterResponse
 
     @GET("/stories")
     @Mock
@@ -49,7 +54,9 @@ interface ApiService {
     @Mock
     suspend fun checkUserAudio(
         @Part file: MultipartBody.Part,
-    ): BaseResponse
+
+        // Todo: add additional parameter
+    ): CheckAudioResponse
 
 
 }

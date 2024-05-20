@@ -10,8 +10,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
 
-    fun getApiService(context: Context): ApiService{
+    fun getApiService(context: Context, token: String): ApiService{
 
+        // Todo: get user token for Header Interceptor
+
+       // Todo: move to buildConfig
         val BASE_URL = "https://localhost/"
 
         val loggingInterceptor = HttpLoggingInterceptor()
@@ -22,15 +25,19 @@ object ApiConfig {
 
 
         // mock API Response
+        // Todo: Remove when Real-API implemented
         val mockInterceptor = MockResponseInterceptor.Builder(context.assets)
             .isGlobalMockingEnabled { true }
             .build()
 
 
+        // Todo: add header Interceptor for Authentication
+
+
 
         val client  = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(mockInterceptor)
+            .addInterceptor(mockInterceptor)         // Todo: Remove when Real-API implemented
             .build()
 
         val retrofit = Retrofit.Builder()

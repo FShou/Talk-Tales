@@ -48,7 +48,14 @@ dependencies {
     implementation(libs.logging.interceptor)
     implementation(libs.mockresponseinterceptor)
 
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
+
     implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.activity.ktx)
 
