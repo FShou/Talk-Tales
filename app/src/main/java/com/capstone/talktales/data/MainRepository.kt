@@ -35,7 +35,7 @@ class MainRepository(
      * Bungkus api call pake LiveData & ResponseResult
      * pake nya kaya gini :
      * ```
-     * liveData.observe(this, Observer { result ->
+     * liveData.observe(this) { result ->
      *       when(result) {
      *           is ResponseResult.Loading -> {
      *               // Show loading spinner

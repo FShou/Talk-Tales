@@ -1,8 +1,10 @@
 package com.capstone.talktales.data.remote.retrofit
 
 import android.content.Context
-import androidx.media3.common.BuildConfig
+import android.util.Log
+import com.capstone.talktales.BuildConfig
 import com.mustafayigit.mockresponseinterceptor.MockResponseInterceptor
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -10,18 +12,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
 
-    fun getApiService(context: Context, token: String): ApiService{
-
-        // Todo: get user token for Header Interceptor
-
-       // Todo: move to buildConfig
-        val BASE_URL = "https://localhost/"
+    fun getApiService(context: Context, token: String): ApiService {
 
         val loggingInterceptor = HttpLoggingInterceptor()
 
-        if (BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG)
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC)
-        } else loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE)
+        else
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE)
 
 
         // mock API Response
@@ -31,17 +29,22 @@ object ApiConfig {
             .build()
 
 
-        // Todo: add header Interceptor for Authentication
+        val authInterceptor = Interceptor { chain ->
+            val req = chain.request()
+            val requestHeaders = req.newBuilder()
+                .addHeader("Authorization", "Bearer $token")
+                .build()
+            chain.proceed(requestHeaders)
+        }
 
-
-
-        val client  = OkHttpClient.Builder()
+        val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(authInterceptor)
             .addInterceptor(mockInterceptor)         // Todo: Remove when Real-API implemented
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
