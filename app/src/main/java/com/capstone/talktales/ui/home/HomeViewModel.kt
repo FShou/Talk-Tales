@@ -1,9 +1,11 @@
 package com.capstone.talktales.ui.home
 
 import androidx.lifecycle.ViewModel
-import com.capstone.talktales.data.MainRepository
+import androidx.lifecycle.viewModelScope
+import com.capstone.talktales.data.repo.UserRepository
+import kotlinx.coroutines.launch
 
-class HomeViewModel(private val mainRepository: MainRepository): ViewModel() {
+class HomeViewModel(private val userRepository: UserRepository): ViewModel() {
 
-    fun getStories() = mainRepository.getStories()
+    fun getStories() = userRepository.getStories()
 }

@@ -22,6 +22,7 @@ interface ApiService {
 
     // Todo: Implement real API Spec
 
+    @FormUrlEncoded
     @POST("/login")
     @Mock
     suspend fun login(

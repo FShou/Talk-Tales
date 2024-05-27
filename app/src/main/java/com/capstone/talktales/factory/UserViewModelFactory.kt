@@ -6,19 +6,19 @@ import com.capstone.talktales.di.Injection
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.capstone.talktales.data.MainRepository
+import com.capstone.talktales.data.repo.UserRepository
 import com.capstone.talktales.ui.home.HomeViewModel
 
 
-class ViewModelFactory private constructor(
-    private val mainRepository: MainRepository
+class UserViewModelFactory private constructor(
+    private val userRepository: UserRepository
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         when {
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> return HomeViewModel(
-                mainRepository
+                userRepository
             ) as T
         }
 
@@ -27,10 +27,10 @@ class ViewModelFactory private constructor(
 
     companion object {
         @Volatile
-        private var instance: ViewModelFactory? = null
-        fun getInstance(context: Context): ViewModelFactory =
+        private var instance: UserViewModelFactory? = null
+        fun getInstance(context: Context): UserViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(Injection.provideRepository(context))
+                instance ?: UserViewModelFactory(Injection.provideUserRepository(context))
             }.also { instance = it }
     }
 }
