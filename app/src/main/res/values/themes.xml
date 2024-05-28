@@ -3,6 +3,25 @@
     <style name="Base.Theme.TalkTales" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<!--        <item name="colorSurface">@color/white_50</item>-->
+<!--        <item name="colorContainer">@color/white_50</item>-->
+    </style>
+
+    <style name="Widget.App.Toolbar.Default" parent="Widget.MaterialComponents.Toolbar.Primary">
+        <item name="titleTextAppearance">@style/TextAppearance.AppBar.Default.Title</item>
+        <item name="titleTextColor">@color/black </item>
+        <item name="elevationOverlayEnabled">true</item>
+        <item name="elevationOverlayColor">@color/black</item>
+        <item name="elevation">4dp</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:popupElevation">4dp</item>
+    </style>
+
+    <style name="TextAppearance.AppBar.Default.Title" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/ubuntu_mono_bold</item>
+        <item name="android:fontFamily">@font/ubuntu_mono_bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="titleTextColor">@color/black </item>
     </style>
 
     <style name="Theme.TalkTales" parent="Base.Theme.TalkTales" />

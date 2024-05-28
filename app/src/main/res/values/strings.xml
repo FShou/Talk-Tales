@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">TalkTales</string>
+
+    <string name="logo_text">Talk<font fgcolor="#FF7300">Tales</font></string>
+
+<!--    Home-->
+    <string name="recommendation">Recommendation</string>
+    <string name="story_tales">Story Tales</string>
+    <string name="tutorial">Tutorial</string>
+
 </resources>
