@@ -1,16 +1,14 @@
 package com.capstone.talktales.ui.home
 
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.constraintlayout.helper.widget.Carousel
 import coil.load
-
 import androidx.recyclerview.widget.RecyclerView
 import coil.transform.RoundedCornersTransformation
 import com.capstone.talktales.databinding.CarouselItemBinding
-import java.net.URI
+import com.capstone.talktales.ui.story.StoryActivity
 
 class CarouselAdapter(private val items: List<Uri>) :
     RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
@@ -18,8 +16,12 @@ class CarouselAdapter(private val items: List<Uri>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(uri: Uri) {
             binding.carouselImageView.load(uri) {
-                crossfade(true)
-                transformations(RoundedCornersTransformation(20f))
+                transformations(RoundedCornersTransformation(16f))
+            }
+            binding.root.setOnClickListener {
+                binding.root.context.startActivity(
+                    Intent(binding.root.context, StoryActivity::class.java)
+                )
             }
         }
     }

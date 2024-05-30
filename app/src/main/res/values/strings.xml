@@ -7,5 +7,7 @@
     <string name="recommendation">Recommendation</string>
     <string name="story_tales">Story Tales</string>
     <string name="tutorial">Tutorial</string>
+    <string name="next">Next</string>
+    <string name="profile_picture">Profile Picture</string>
 
 </resources>

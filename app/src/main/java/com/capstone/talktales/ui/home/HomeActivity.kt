@@ -2,17 +2,27 @@ package com.capstone.talktales.ui.home
 
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.viewpager2.widget.ViewPager2
+import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.capstone.talktales.R
 import com.capstone.talktales.data.remote.response.ResponseResult
 import com.capstone.talktales.data.remote.response.StoriesResponse
+import com.capstone.talktales.data.remote.response.Story
 import com.capstone.talktales.databinding.ActivityHomeBinding
 import com.capstone.talktales.factory.UserViewModelFactory
+import com.capstone.talktales.ui.utils.BorderedCircleCropTransformation
+import com.capstone.talktales.ui.utils.applyMarginAndScalePageTransformer
+import com.capstone.talktales.ui.utils.dpToPx
+import com.capstone.talktales.ui.utils.onPageSelected
+import com.capstone.talktales.ui.utils.setCurrentItemWithSmoothScroll
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -29,40 +39,61 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private var pageChangeJob: Job? = null
+    private lateinit var profilePicture: ImageView
 
+    val imgUri =
+        Uri.parse("android.resource://com.capstone.talktales/drawable/banner_timun") // Todo: Get from api
 
-    // Todo: Get Real Uri
-    val imgUri = Uri.parse("android.resource://com.capstone.talktales/drawable/timun_mas")
-    val carouselList = listOf(
-        imgUri,
-        imgUri,
-        imgUri
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupView()
+        setSupportActionBar(binding.toolBar)
 
-        viewModel.getStories().observe(this) {
-            when (it) {
-                is ResponseResult.Error -> hanzdleStoryError(it.msg)
-                is ResponseResult.Loading -> handleStoryLoading()
-                is ResponseResult.Success -> handleStorySuccess(it.data)
+        viewModel
+            .getStories()
+            .observe(this) { handleStoriesResponse(it) }
+
+        binding.tutorialBanner
+            .load(imgUri) {
+            // todo: get proper img
+            transformations(
+                RoundedCornersTransformation(16f)
+            )
+        }
+
+    }
+
+    private fun handleStoriesResponse(responseResult: ResponseResult<StoriesResponse>) {
+        when (responseResult) {
+            is ResponseResult.Error -> handleStoryError(responseResult.msg)
+            is ResponseResult.Loading -> handleStoryLoading()
+            is ResponseResult.Success -> {
+                handleStorySuccess(responseResult.data)
             }
         }
+    }
 
-        // TODO: move this after get API
-        with(binding.carousel) {
-            adapter = CarouselAdapter(carouselList)
-            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                    restartPageChangeCoroutine()
-                }
-            })
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.home, menu)
+
+        val menuItem = menu.findItem(R.id.profilePic)
+
+        profilePicture = menuItem.actionView as ImageView
+        profilePicture.load(imgUri) {
+            transformations(
+                BorderedCircleCropTransformation(
+                    dpToPx(this@HomeActivity, 2),
+                    resources.getColor(R.color.orange)
+                )
+            )
         }
-        TabLayoutMediator(binding.tabLayout, binding.carousel) { _, _ -> }.attach()
 
+        profilePicture.setOnClickListener {
+            // TODO: Intent to detail User
+        }
+
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onDestroy() {
@@ -78,7 +109,8 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        restartPageChangeCoroutine()
+        if (binding.carousel.adapter != null)
+            restartPageChangeCoroutine()
     }
 
     private fun restartPageChangeCoroutine() {
@@ -92,7 +124,7 @@ class HomeActivity : AppCompatActivity() {
     private fun slideToNextPage() {
         with(binding.carousel) {
             val nextItem = (currentItem + 1) % adapter!!.itemCount
-            setCurrentItemWithCustomDuration(nextItem, SLIDE_DURATION)
+            setCurrentItemWithSmoothScroll(nextItem)
         }
     }
 
@@ -108,25 +140,46 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-//        binding these nuts
-
     }
 
+
     private fun handleStorySuccess(data: StoriesResponse) {
-//        TODO("Not yet implemented")
+        // todo: hide loading
+        // Todo: hide error
+
+        showStories(data.listStory)
+        // Todo: get from real API Endpoint
+        val imgList = data.listStory
+            .map { Uri.parse(it.imgUrl) }
+
+        showCarousel(imgList)
+    }
+
+    private fun showCarousel(imgList: List<Uri>) {
+        with(binding.carousel) {
+            adapter = CarouselAdapter(imgList)
+            onPageSelected { restartPageChangeCoroutine() }
+            applyMarginAndScalePageTransformer()
+            TabLayoutMediator(binding.tabLayout, binding.carousel) { _, _ -> }.attach()
+        }
+    }
+
+    private fun showStories(listStory: List<Story>) {
+        with(binding.rvStory) {
+            layoutManager = LinearLayoutManager(this@HomeActivity)
+            adapter = StoryAdapter(listStory)
+        }
     }
 
     private fun handleStoryLoading() {
 //        TODO("Not yet implemented")
     }
 
-    private fun hanzdleStoryError(msg: String) {
+    private fun handleStoryError(msg: String) {
 //        TODO("Not yet implemented")
     }
 
     companion object {
-        private const val SLIDE_DELAY = 3000L
-        private const val SLIDE_DURATION = 400
+        private const val SLIDE_DELAY = 2000L
     }
 }
