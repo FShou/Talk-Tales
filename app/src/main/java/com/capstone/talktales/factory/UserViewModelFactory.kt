@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.talktales.data.repo.UserRepository
 import com.capstone.talktales.ui.home.HomeViewModel
+import com.capstone.talktales.ui.userdetail.UserDetailActivity
+import com.capstone.talktales.ui.userdetail.UserDetailViewModel
 
 
 class UserViewModelFactory private constructor(
@@ -18,6 +20,10 @@ class UserViewModelFactory private constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         when {
             modelClass.isAssignableFrom(HomeViewModel::class.java) -> return HomeViewModel(
+                userRepository
+            ) as T
+
+            modelClass.isAssignableFrom(UserDetailActivity::class.java) -> return UserDetailViewModel(
                 userRepository
             ) as T
         }

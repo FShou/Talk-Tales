@@ -1,8 +1,10 @@
 package com.capstone.talktales.ui.home
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -18,6 +20,7 @@ import com.capstone.talktales.data.remote.response.StoriesResponse
 import com.capstone.talktales.data.remote.response.Story
 import com.capstone.talktales.databinding.ActivityHomeBinding
 import com.capstone.talktales.factory.UserViewModelFactory
+import com.capstone.talktales.ui.userdetail.UserDetailActivity
 import com.capstone.talktales.ui.utils.BorderedCircleCropTransformation
 import com.capstone.talktales.ui.utils.applyMarginAndScalePageTransformer
 import com.capstone.talktales.ui.utils.dpToPx
@@ -91,10 +94,13 @@ class HomeActivity : AppCompatActivity() {
 
         profilePicture.setOnClickListener {
             // TODO: Intent to detail User
+            startActivity(Intent(this, UserDetailActivity::class.java))
         }
 
         return super.onCreateOptionsMenu(menu)
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()

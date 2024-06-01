@@ -3,11 +3,15 @@
 
     <string name="logo_text">Talk<font fgcolor="#FF7300">Tales</font></string>
 
-<!--    Home-->
+    <!--    Home-->
     <string name="recommendation">Recommendation</string>
     <string name="story_tales">Story Tales</string>
     <string name="tutorial">Tutorial</string>
     <string name="next">Next</string>
     <string name="profile_picture">Profile Picture</string>
+    <string name="logout">Logout</string>
+    <string name="user_email">user_email@email.com</string>
+    <string name="username">Username</string>
+    <string name="user">User</string>
 
 </resources>

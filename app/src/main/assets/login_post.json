@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "message": "Account created",
+  "data": {
+    "token": "aVbs33AAhsh",
+    "user": {
+      "name": "TalkTalse",
+      "email": "TalkTales@mail.com"
+    }
+  }
+}
