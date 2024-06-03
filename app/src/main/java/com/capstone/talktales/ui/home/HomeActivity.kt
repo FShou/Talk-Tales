@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -26,6 +27,7 @@ import com.capstone.talktales.ui.utils.applyMarginAndScalePageTransformer
 import com.capstone.talktales.ui.utils.dpToPx
 import com.capstone.talktales.ui.utils.onPageSelected
 import com.capstone.talktales.ui.utils.setCurrentItemWithSmoothScroll
+import com.capstone.talktales.ui.utils.startShimmer
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -59,11 +61,11 @@ class HomeActivity : AppCompatActivity() {
 
         binding.tutorialBanner
             .load(imgUri) {
-            // todo: get proper img
-            transformations(
-                RoundedCornersTransformation(16f)
-            )
-        }
+                // todo: get proper img
+                transformations(
+                    RoundedCornersTransformation(16f)
+                )
+            }
 
     }
 
@@ -99,7 +101,6 @@ class HomeActivity : AppCompatActivity() {
 
         return super.onCreateOptionsMenu(menu)
     }
-
 
 
     override fun onDestroy() {
@@ -150,19 +151,46 @@ class HomeActivity : AppCompatActivity() {
 
 
     private fun handleStorySuccess(data: StoriesResponse) {
-        // todo: hide loading
+        showStorySkeleton(false)
+        showCarouselSkeleton(false)
+
         // Todo: hide error
 
         showStories(data.listStory)
+
         // Todo: get from real API Endpoint
         val imgList = data.listStory
             .map { Uri.parse(it.imgUrl) }
 
+        // Todo: move this to proper API call
         showCarousel(imgList)
+    }
+
+    private fun showCarouselSkeleton(isShow: Boolean) {
+        if (isShow) {
+            binding.carouselSkeleton.startShimmer()
+            binding.carouselSkeleton.visibility = View.VISIBLE
+        } else {
+            binding.carouselSkeleton.clearAnimation()
+            binding.carouselSkeleton.visibility = View.GONE
+        }
+    }
+
+    private fun showStorySkeleton(isShow: Boolean) {
+        if (isShow) {
+            binding.storySkeleton.startShimmer()
+            binding.storySkeleton.visibility = View.VISIBLE
+
+        } else {
+            binding.storySkeleton.clearAnimation()
+            binding.storySkeleton.visibility = View.GONE
+        }
+
     }
 
     private fun showCarousel(imgList: List<Uri>) {
         with(binding.carousel) {
+            visibility = View.VISIBLE
             adapter = CarouselAdapter(imgList)
             onPageSelected { restartPageChangeCoroutine() }
             applyMarginAndScalePageTransformer()
@@ -172,13 +200,15 @@ class HomeActivity : AppCompatActivity() {
 
     private fun showStories(listStory: List<Story>) {
         with(binding.rvStory) {
+            visibility = View.VISIBLE
             layoutManager = LinearLayoutManager(this@HomeActivity)
             adapter = StoryAdapter(listStory)
         }
     }
 
     private fun handleStoryLoading() {
-//        TODO("Not yet implemented")
+        showStorySkeleton(true)
+        showCarouselSkeleton(true)
     }
 
     private fun handleStoryError(msg: String) {
