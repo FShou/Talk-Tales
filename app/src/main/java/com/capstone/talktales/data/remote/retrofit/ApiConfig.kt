@@ -1,7 +1,6 @@
 package com.capstone.talktales.data.remote.retrofit
 
 import android.content.Context
-import android.util.Log
 import com.capstone.talktales.BuildConfig
 import com.mustafayigit.mockresponseinterceptor.MockResponseInterceptor
 import okhttp3.Interceptor
@@ -17,7 +16,7 @@ object ApiConfig {
         val loggingInterceptor = HttpLoggingInterceptor()
 
         if (BuildConfig.DEBUG)
-            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC)
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         else
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE)
 

@@ -1,0 +1,106 @@
+{
+  "success": true,
+  "message": "success get story id: 2",
+  "data": {
+    "id": 2,
+    "title": "BAWANG MERAH & BAWANG PUTIH",
+    "synopsis": "Alur cerita Bawang Merah dan Bawang Putih dimulai dengan mengisahkan kehidupan seorang janda yang memiliki dua putri cantik bernama Bawang Merah dan Bawang Putih. Diceritakan bahwa ibu kandung Bawang Putih telah lama meninggal dunia.",
+    "thumbnail_url": "https://porto.sman1tjbarat.sch.id/img/banner_BawangMP_1000px.svg",
+    "city": "Riau",
+    "conversation_count": 0,
+    "created_at": "2024-06-04T12:50:39.893Z",
+    "updated_at": "2024-06-04T12:50:39.893Z",
+    "Glosarium": [
+      {
+        "id": 1,
+        "word": "A",
+        "explanation": "Anak Tiri: Anak dari pasangan suami istri yang bukan berasal dari mereka berdua (anak dari pernikahan sebelumnya).",
+        "story_id": 2
+      },
+      {
+        "id": 2,
+        "word": "B",
+        "explanation": "Bawang Merah: Tokoh antagonis cerita, saudara tiri bawang putih.",
+        "story_id": 2
+      },
+      {
+        "id": 3,
+        "word": "B",
+        "explanation": "Bencana: Kejadian yang membawa penderitaan atau kerugian.",
+        "story_id": 2
+      },
+      {
+        "id": 4,
+        "word": "C",
+        "explanation": "Cantik: Rupawan, menarik.",
+        "story_id": 2
+      },
+      {
+        "id": 5,
+        "word": "D",
+        "explanation": "Derita: Penderitaan, kesusahan.",
+        "story_id": 2
+      },
+      {
+        "id": 6,
+        "word": "F",
+        "explanation": "Fitnah: Menuduh sesuatu yang buruk kepada orang lain padahal tidak benar.",
+        "story_id": 2
+      },
+      {
+        "id": 7,
+        "word": "H",
+        "explanation": "Hutan: Lahan yang luas yang ditumbuhi pepohonan dan tanaman lebat.",
+        "story_id": 2
+      },
+      {
+        "id": 8,
+        "word": "I",
+        "explanation": "Istana: Tempat tinggal raja dan keluarga kerajaan.",
+        "story_id": 2
+      },
+      {
+        "id": 9,
+        "word": "K",
+        "explanation": "Kaya: Memiliki banyak harta benda.",
+        "story_id": 2
+      },
+      {
+        "id": 10,
+        "word": "K",
+        "explanation": "Kesombongan: Sifat yang merasa lebih tinggi dari orang lain.",
+        "story_id": 2
+      },
+      {
+        "id": 11,
+        "word": "M",
+        "explanation": "Mahkota: Hiasan kepala yang dikenakan oleh raja atau ratu.",
+        "story_id": 2
+      },
+      {
+        "id": 12,
+        "word": "P",
+        "explanation": "Pangeran: Anak laki-laki raja atau bangsawan.",
+        "story_id": 2
+      },
+      {
+        "id": 13,
+        "word": "U",
+        "explanation": "Uang: Alat tukar resmi yang digunakan untuk membeli barang atau jasa.",
+        "story_id": 2
+      },
+      {
+        "id": 14,
+        "word": "W",
+        "explanation": "Warisan: Harta benda yang diwariskan dari orang tua kepada anaknya.",
+        "story_id": 2
+      },
+      {
+        "id": 15,
+        "word": "Z",
+        "explanation": "Zalim: Sifat yang suka berbuat sewenang-wenang dan tidak adil.",
+        "story_id": 2
+      }
+    ]
+  }
+}

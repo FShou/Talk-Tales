@@ -40,11 +40,11 @@ interface ApiService {
         @Field("password") password: String
     ): RegisterResponse
 
-    @GET("/stories")
+    @GET("/story")
     @Mock
     suspend fun getStories(): StoriesResponse
 
-    @GET("/stories/{id}")
+    @GET("/story/{id}")
     @Mock
     suspend fun getStoryDetail(
         @Path("id") id: String

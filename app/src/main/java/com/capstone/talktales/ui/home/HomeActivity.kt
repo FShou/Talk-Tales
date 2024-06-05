@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -18,7 +17,7 @@ import coil.transform.RoundedCornersTransformation
 import com.capstone.talktales.R
 import com.capstone.talktales.data.remote.response.ResponseResult
 import com.capstone.talktales.data.remote.response.StoriesResponse
-import com.capstone.talktales.data.remote.response.Story
+import com.capstone.talktales.data.model.Story
 import com.capstone.talktales.databinding.ActivityHomeBinding
 import com.capstone.talktales.factory.UserViewModelFactory
 import com.capstone.talktales.ui.userdetail.UserDetailActivity
@@ -73,9 +72,7 @@ class HomeActivity : AppCompatActivity() {
         when (responseResult) {
             is ResponseResult.Error -> handleStoryError(responseResult.msg)
             is ResponseResult.Loading -> handleStoryLoading()
-            is ResponseResult.Success -> {
-                handleStorySuccess(responseResult.data)
-            }
+            is ResponseResult.Success -> { handleStorySuccess(responseResult.data) }
         }
     }
 
@@ -153,7 +150,6 @@ class HomeActivity : AppCompatActivity() {
     private fun handleStorySuccess(data: StoriesResponse) {
         showStorySkeleton(false)
         showCarouselSkeleton(false)
-
         // Todo: hide error
 
         showStories(data.listStory)

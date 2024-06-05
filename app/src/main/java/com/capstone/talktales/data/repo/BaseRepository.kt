@@ -30,16 +30,15 @@ abstract class BaseRepository {
      */
      protected inline fun <T> callApiWrapped(crossinline apiCall: suspend () -> T) = liveData<ResponseResult<T>> {
         emit(ResponseResult.Loading)
-        delay(3000) // Todo: Remove this on Prod
         try {
             val response = apiCall()
             emit(ResponseResult.Success(response))
         } catch (e: Exception) {
+            Log.e("REPO", e.toString())
             e.message
                 ?.let { ResponseResult.Error(it) }
                 ?.let {
                     emit(it)
-                    Log.e("REPO", it.msg)
                 }
         }
     }

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.capstone.talktales.data.remote.response.Story
+import com.capstone.talktales.data.model.Story
 import com.capstone.talktales.databinding.StoryItemLayoutBinding
 import com.capstone.talktales.ui.storydetail.StoryDetailActivity
 
