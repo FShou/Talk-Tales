@@ -24,7 +24,7 @@
             android:name=".ui.splash.SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.story.StoryActivity"
+            android:name=".ui.storydetail.StoryDetailActivity"
             android:exported="false" />
         <activity
             android:name=".ui.home.HomeActivity"

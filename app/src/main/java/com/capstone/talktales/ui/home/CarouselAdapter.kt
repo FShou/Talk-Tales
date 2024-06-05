@@ -8,7 +8,7 @@ import coil.load
 import androidx.recyclerview.widget.RecyclerView
 import coil.transform.RoundedCornersTransformation
 import com.capstone.talktales.databinding.CarouselItemBinding
-import com.capstone.talktales.ui.story.StoryActivity
+import com.capstone.talktales.ui.storydetail.StoryDetailActivity
 
 class CarouselAdapter(private val items: List<Uri>) :
     RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
@@ -20,7 +20,7 @@ class CarouselAdapter(private val items: List<Uri>) :
             }
             binding.root.setOnClickListener {
                 binding.root.context.startActivity(
-                    Intent(binding.root.context, StoryActivity::class.java)
+                    Intent(binding.root.context, StoryDetailActivity::class.java)
                 )
             }
         }

@@ -9,7 +9,7 @@ import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.capstone.talktales.data.remote.response.Story
 import com.capstone.talktales.databinding.StoryItemLayoutBinding
-import com.capstone.talktales.ui.story.StoryActivity
+import com.capstone.talktales.ui.storydetail.StoryDetailActivity
 
 class StoryAdapter(private val stories: List<Story>) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
     class ViewHolder(private val binding: StoryItemLayoutBinding) :
@@ -20,7 +20,7 @@ class StoryAdapter(private val stories: List<Story>) : RecyclerView.Adapter<Stor
             binding.apply {
                 root.setOnClickListener {
                     root.context.startActivity(
-                        Intent(binding.root.context, StoryActivity::class.java)
+                        Intent(binding.root.context, StoryDetailActivity::class.java)
                     )
                 }
 
