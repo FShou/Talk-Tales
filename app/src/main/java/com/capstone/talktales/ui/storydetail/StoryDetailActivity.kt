@@ -1,12 +1,12 @@
 package com.capstone.talktales.ui.storydetail
 
 import android.os.Bundle
-import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import coil.load
 import com.capstone.talktales.R
 import com.capstone.talktales.data.model.Story
 import com.capstone.talktales.data.remote.response.DetailStoryResponse
@@ -33,28 +33,16 @@ class StoryDetailActivity : AppCompatActivity() {
             insets
         }
 
-//        binding.storyBanner.load(story.imgUrl)
-//        binding.title.text = story.title
-//        binding.province.text = story.city
-
         storyId = intent.getStringExtra(EXTRA_STORY_ID).toString()
 
         viewModel.getStoryDetail(storyId).observe(this) {
             handleStoryDetail(it)
         }
 
-
-//        binding.toolBar.setNavigationOnClickListener {
-//            // Todo: Show Exit Alert
-//            finish()
-//        }
-
-        this.onBackPressedDispatcher.addCallback {
-            // Todo: Show Exit Alert
-
-            finish()
-
+        viewModel.pageTitle.observe(this) {
+            binding.pageTitle.text = it
         }
+
     }
 
     private fun handleStoryDetail(result: ResponseResult<DetailStoryResponse>) {
@@ -76,8 +64,17 @@ class StoryDetailActivity : AppCompatActivity() {
        // todo: hide loading
         // Todo: hide error
         showGlossary(data.story)
+        showTitleAndThumbnail(data.story)
 
 
+    }
+
+    private fun showTitleAndThumbnail(story: Story) {
+        with(binding){
+            storyBanner.load(story.imgUrl)
+            title.text = story.title
+            province.text = story.city
+        }
     }
 
     private fun showGlossary(story: Story) {

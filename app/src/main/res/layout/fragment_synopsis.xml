@@ -4,17 +4,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.storydetail.GlossaryFragment">
+    tools:context=".ui.storydetail.SynopsisFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvGlossarium"
+    <ScrollView
+        android:id="@+id/synopsisLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:scrollbars="vertical"
         app:layout_constraintBottom_toTopOf="@+id/btnNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvSynopsis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Synopsis"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:justificationMode="inter_word"
+            app:layout_constraintBottom_toTopOf="@+id/btnNext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="o" />
+
+    </ScrollView>
+
 
 
     <Button
@@ -24,11 +41,11 @@
         android:layout_marginVertical="20dp"
         android:backgroundTint="@color/orange"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Next"
+        android:text="Start"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@id/rvGlossarium"
+        app:layout_constraintTop_toBottomOf="@id/synopsisLayout"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

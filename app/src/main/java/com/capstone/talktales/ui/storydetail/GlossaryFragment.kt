@@ -6,9 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.capstone.talktales.R
 import com.capstone.talktales.data.model.Story
-import com.capstone.talktales.data.model.StoryItem
 import com.capstone.talktales.databinding.FragmentGlossaryBinding
 
 
@@ -16,6 +17,8 @@ class GlossaryFragment : Fragment() {
 
     private var _binding: FragmentGlossaryBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by activityViewModels<StoryDetailViewModel>()
+
 
     private lateinit var story: Story
 
@@ -52,11 +55,19 @@ class GlossaryFragment : Fragment() {
         }
 
         binding.btnNext.setOnClickListener {
-            parentFragmentManager // Todo :
+            val synopsisFragment = SynopsisFragment.newInstance(story.synopsis)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.content,synopsisFragment)
+                .addToBackStack(null)
+                .commit()
         }
 
+        // TODO: add spacer
+    }
 
-
+    override fun onResume() {
+        super.onResume()
+        viewModel.setPageTitle("Glossary")
     }
 
     override fun onDestroy() {
