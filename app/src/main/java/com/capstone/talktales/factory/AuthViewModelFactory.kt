@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.capstone.talktales.data.repo.AuthRepository
 import com.capstone.talktales.di.Injection
 import com.capstone.talktales.ui.login.LoginViewModel
+import com.capstone.talktales.ui.register.RegisterViewModel
 import com.capstone.talktales.ui.splash.SplashViewModel
 
 class AuthViewModelFactory private constructor(
@@ -19,6 +20,10 @@ private val authRepository: AuthRepository
             ) as T
 
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> return LoginViewModel(
+                authRepository
+            ) as T
+
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> return RegisterViewModel(
                 authRepository
             ) as T
         }
