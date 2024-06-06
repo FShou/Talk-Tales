@@ -1,11 +1,11 @@
 package com.capstone.talktales.ui.home
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +18,7 @@ import com.capstone.talktales.R
 import com.capstone.talktales.data.remote.response.ResponseResult
 import com.capstone.talktales.data.remote.response.StoriesResponse
 import com.capstone.talktales.data.model.Story
+import com.capstone.talktales.data.model.Tutorial
 import com.capstone.talktales.databinding.ActivityHomeBinding
 import com.capstone.talktales.factory.UserViewModelFactory
 import com.capstone.talktales.ui.userdetail.UserDetailActivity
@@ -45,8 +46,6 @@ class HomeActivity : AppCompatActivity() {
     private var pageChangeJob: Job? = null
     private lateinit var profilePicture: ImageView
 
-    val imgUri =
-        Uri.parse("android.resource://com.capstone.talktales/drawable/banner_timun") // Todo: Get from api
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +58,7 @@ class HomeActivity : AppCompatActivity() {
             .observe(this) { handleStoriesResponse(it) }
 
         binding.tutorialBanner
-            .load(imgUri) {
-                // todo: get proper img
+            .load(Tutorial.IMG_URI) {
                 transformations(
                     RoundedCornersTransformation(16f)
                 )
@@ -82,7 +80,7 @@ class HomeActivity : AppCompatActivity() {
         val menuItem = menu.findItem(R.id.profilePic)
 
         profilePicture = menuItem.actionView as ImageView
-        profilePicture.load(imgUri) {
+        profilePicture.load(Tutorial.IMG_URI) {// TOdo: Get User Avatar
             transformations(
                 BorderedCircleCropTransformation(
                     dpToPx(this@HomeActivity, 2),
@@ -92,7 +90,6 @@ class HomeActivity : AppCompatActivity() {
         }
 
         profilePicture.setOnClickListener {
-            // TODO: Intent to detail User
             startActivity(Intent(this, UserDetailActivity::class.java))
         }
 
@@ -154,12 +151,12 @@ class HomeActivity : AppCompatActivity() {
 
         showStories(data.listStory)
 
-        // Todo: get from real API Endpoint
-        val imgList = data.listStory
-            .map { Uri.parse(it.imgUrl) }
-
+        val carouselContent: ArrayList<Any> = arrayListOf(
+            *data.listStory.toTypedArray(),
+            Tutorial.IMG_URI
+        )
         // Todo: move this to proper API call
-        showCarousel(imgList)
+        showCarousel(carouselContent)
     }
 
     private fun showCarouselSkeleton(isShow: Boolean) {
@@ -184,10 +181,10 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    private fun showCarousel(imgList: List<Uri>) {
+    private fun showCarousel(carouselContent: List<Any>) {
         with(binding.carousel) {
             visibility = View.VISIBLE
-            adapter = CarouselAdapter(imgList)
+            adapter = CarouselAdapter(carouselContent)
             onPageSelected { restartPageChangeCoroutine() }
             applyMarginAndScalePageTransformer()
             TabLayoutMediator(binding.tabLayout, binding.carousel) { _, _ -> }.attach()
@@ -209,6 +206,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun handleStoryError(msg: String) {
 //        TODO("Not yet implemented")
+        Toast.makeText(this@HomeActivity, msg, Toast.LENGTH_LONG).show()
     }
 
     companion object {
