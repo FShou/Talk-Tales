@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
-import com.capstone.talktales.data.model.Story
+import com.capstone.talktales.data.model.StoryItem
 import com.capstone.talktales.databinding.StoryItemLayoutBinding
 import com.capstone.talktales.ui.storydetail.StoryDetailActivity
 
-class StoryAdapter(private val stories: List<Story>) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
+class StoryAdapter(private val stories: List<StoryItem>) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
     class ViewHolder(private val binding: StoryItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(data: Story) {
+        fun bind(data: StoryItem) {
             val imgUri = Uri.parse(data.imgUrl)
             binding.apply {
                 root.setOnClickListener {

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import coil.load
 import androidx.recyclerview.widget.RecyclerView
 import coil.transform.RoundedCornersTransformation
-import com.capstone.talktales.data.model.Story
+import com.capstone.talktales.data.model.StoryItem
 import com.capstone.talktales.databinding.CarouselItemBinding
 import com.capstone.talktales.ui.storydetail.StoryDetailActivity
 
@@ -16,7 +16,7 @@ class CarouselAdapter(private val items: List<Any>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(carouselContent: Any) {
             when (carouselContent) {
-                is Story -> {
+                is StoryItem -> {
                     binding.carouselImageView.load(carouselContent.imgUrl) {
                         transformations(RoundedCornersTransformation(16f))
                     }

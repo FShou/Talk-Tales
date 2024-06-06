@@ -1,7 +1,5 @@
 package com.capstone.talktales.ui.storydetail
 
-import android.nfc.NfcAdapter.EXTRA_ID
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.activity.enableEdgeToEdge
@@ -9,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import coil.load
 import com.capstone.talktales.R
 import com.capstone.talktales.data.model.Story
 import com.capstone.talktales.data.remote.response.DetailStoryResponse
@@ -78,8 +75,17 @@ class StoryDetailActivity : AppCompatActivity() {
     private fun handleStoryDetailSuccess(data: DetailStoryResponse) {
        // todo: hide loading
         // Todo: hide error
+        showGlossary(data.story)
 
 
+    }
+
+    private fun showGlossary(story: Story) {
+        val glossaryFragment = GlossaryFragment.newInstance(story)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.content, glossaryFragment)
+            .commit()
     }
 
     companion object {

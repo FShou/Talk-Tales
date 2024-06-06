@@ -69,29 +69,18 @@
                 app:layout_constraintStart_toEndOf="@+id/country"
                 app:layout_constraintTop_toTopOf="@id/country" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvGlossarium"
+            <FrameLayout
+                android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/btnNext"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/country" />
+                app:layout_constraintTop_toBottomOf="@+id/country"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                />
 
 
-            <Button
-                android:id="@+id/btnNext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp"
-                android:backgroundTint="@color/orange"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Next"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintTop_toBottomOf="@id/rvGlossarium"
-                app:layout_constraintBottom_toBottomOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

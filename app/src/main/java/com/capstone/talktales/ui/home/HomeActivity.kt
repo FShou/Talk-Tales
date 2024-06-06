@@ -17,7 +17,7 @@ import coil.transform.RoundedCornersTransformation
 import com.capstone.talktales.R
 import com.capstone.talktales.data.remote.response.ResponseResult
 import com.capstone.talktales.data.remote.response.StoriesResponse
-import com.capstone.talktales.data.model.Story
+import com.capstone.talktales.data.model.StoryItem
 import com.capstone.talktales.data.model.Tutorial
 import com.capstone.talktales.databinding.ActivityHomeBinding
 import com.capstone.talktales.factory.UserViewModelFactory
@@ -149,10 +149,10 @@ class HomeActivity : AppCompatActivity() {
         showCarouselSkeleton(false)
         // Todo: hide error
 
-        showStories(data.listStory)
+        showStories(data.listStoryItem)
 
         val carouselContent: ArrayList<Any> = arrayListOf(
-            *data.listStory.toTypedArray(),
+            *data.listStoryItem.toTypedArray(),
             Tutorial.IMG_URI
         )
         // Todo: move this to proper API call
@@ -191,11 +191,11 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun showStories(listStory: List<Story>) {
+    private fun showStories(listStoryItem: List<StoryItem>) {
         with(binding.rvStory) {
             visibility = View.VISIBLE
             layoutManager = LinearLayoutManager(this@HomeActivity)
-            adapter = StoryAdapter(listStory)
+            adapter = StoryAdapter(listStoryItem)
         }
     }
 
