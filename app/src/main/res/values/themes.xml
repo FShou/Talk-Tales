@@ -7,6 +7,10 @@
 <!--        <item name="colorContainer">@color/white_50</item>-->
     </style>
 
+    <style name="EditTextStyle">
+        <item name="colorControlActivated">@color/orange_200</item>
+    </style>
+
     <style name="Widget.App.Toolbar.Default" parent="Widget.MaterialComponents.Toolbar.Primary">
         <item name="titleTextAppearance">@style/TextAppearance.AppBar.Default.Title</item>
         <item name="titleTextColor">@color/black </item>

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.TalkTales"
         tools:targetApi="31">
         <activity
+            android:name=".ui.register.RegisterActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.userdetail.UserDetailActivity"
             android:exported="false" />
         <activity
@@ -22,19 +25,19 @@
             android:exported="false" />
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.storydetail.StoryDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.home.HomeActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.storydetail.StoryDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:exported="false"/>
     </application>
 
 </manifest>

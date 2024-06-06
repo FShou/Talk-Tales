@@ -11,6 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
 
+    //pastiin buat auth
     fun getApiService(context: Context, token: String): ApiService {
 
         val loggingInterceptor = HttpLoggingInterceptor()

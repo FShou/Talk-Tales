@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.register.RegisterActivity">
 
     <!--Backgroud Login-->
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/bg_login"
+        android:src="@drawable/bg_register"
         android:scaleType="centerCrop"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +20,7 @@
 
     <!-- LinearLayout for centering content -->
     <LinearLayout
-        android:id="@+id/loginform"
+        android:id="@+id/registerform"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -32,10 +32,10 @@
 
         <!-- Logo Image -->
         <ImageView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="195dp"
+            android:layout_height="85dp"
             android:contentDescription="@string/logo"
-            android:src="@drawable/talktales"
+            android:src="@drawable/talktales_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -47,6 +47,7 @@
             android:layout_marginTop="10dp">
 
             <TextView
+                android:id="@+id/Login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -56,7 +57,6 @@
                 android:layout_marginEnd="100dp"/>
 
             <TextView
-                android:id="@+id/register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -68,11 +68,29 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/login_bar"
+            android:src="@drawable/signup_bar"
             android:layout_marginTop="5dp"/>
 
         <TextView
-            android:id="@+id/tvEmail"
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/Username"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="114dp"/>
+
+        <com.capstone.talktales.ui.customview.EditText
+            android:id="@+id/edRegisterName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="3dp"
+            android:hint="@string/Username"/>
+
+        <TextView
+            android:id="@id/tvEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
@@ -83,7 +101,7 @@
             android:layout_marginRight="130dp"/>
 
         <com.capstone.talktales.ui.customview.EditText
-            android:id="@+id/edLoginEmail"
+            android:id="@+id/edRegisterEmail"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="3dp"
@@ -98,27 +116,46 @@
             android:text="@string/Password"
             android:fontFamily="@font/poppins_regular"
             android:textSize="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginRight="114dp"/>
 
         <com.capstone.talktales.ui.customview.EditText
-            android:id="@+id/edLoginPassword"
+            android:id="@+id/edRegisterPassword"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="3dp"
-            android:hint="@string/passwordHint"
+            android:hint="@string/Password"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/tvConfirmPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/Confirm_Password"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="80dp"/>
+
+        <com.capstone.talktales.ui.customview.EditText
+            android:id="@+id/inputConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="3dp"
+            android:hint="@string/Confirm_Password"
             android:inputType="textPassword"/>
 
         <Button
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:textColor="@color/white"
             android:backgroundTint="@color/orange"
-            android:fontFamily="@font/poppins_medium"
-            android:text="@string/Login_2"
-            android:textSize="18sp" />
+            android:text="@string/Register_2"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_medium"/>
 
     </LinearLayout>
 
@@ -149,18 +186,19 @@
         android:contentDescription="@string/success_animation" />
 
     <TextView
-        android:id="@+id/loginSucces"
+        android:id="@+id/registerSuccess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/logged_in_nsuccesfully"
+        android:text="@string/registered_succesfully"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkAnim" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
