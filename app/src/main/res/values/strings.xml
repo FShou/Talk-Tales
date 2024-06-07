@@ -25,4 +25,27 @@
     <string name="explanation">Explanation</string>
     <string name="province">Province</string>
 
+    <!--  login & register bar  -->
+    <string name="logo">TalkTales</string>
+    <string name="Login">Login</string>
+    <string name="Register">Signup</string>
+
+    <!--  isi login regis  -->
+    <string name="Username">Username</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="Confirm_Password">Confirm Password</string>
+
+    <string name="success_animation">Success Animation</string>
+    <string name="logged_in_nsuccesfully">Logged in\nSuccessfully</string>
+    <string name="registered_succesfully">Registered Successfully</string>
+
+    <string name="emailFormatError">Incorrect Email</string>
+    <string name="passwordHint">Password</string>
+    <string name="passwordLengthError">Min. 8 characters</string>
+    <string name="EmptyError">This Cannot be empty</string>
+
+    <!--  Button  -->
+    <string name="Login_2">LOGIN</string>
+    <string name="Register_2">SIGNUP</string>
 </resources>
