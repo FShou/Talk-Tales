@@ -13,5 +13,9 @@
     <string name="user_email">user_email@email.com</string>
     <string name="username">Username</string>
     <string name="user">User</string>
+    <string name="glossarium">Glossarium</string>
+    <string name="indonesia">Indonesia</string>
+    <string name="error_message">Error Message</string>
+    <string name="retry">Retry</string>
 
 </resources>
