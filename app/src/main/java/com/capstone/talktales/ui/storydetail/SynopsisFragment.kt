@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.capstone.talktales.R
 import com.capstone.talktales.databinding.FragmentSynopsisBinding
 import com.capstone.talktales.ui.conversation.ConversationActivity
 
@@ -45,7 +46,7 @@ class SynopsisFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.setPageTitle("Synopsis")
+        viewModel.setPageTitle(getString(R.string.synopsis))
 
     }
 

@@ -13,9 +13,16 @@
     <string name="user_email">user_email@email.com</string>
     <string name="username">Username</string>
     <string name="user">User</string>
-    <string name="glossarium">Glossarium</string>
+
+<!--    Story Detail-->
+    <string name="glossary">Glossary</string>
     <string name="indonesia">Indonesia</string>
     <string name="error_message">Error Message</string>
     <string name="retry">Retry</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="start">Start</string>
+    <string name="word">Word</string>
+    <string name="explanation">Explanation</string>
+    <string name="province">Province</string>
 
 </resources>

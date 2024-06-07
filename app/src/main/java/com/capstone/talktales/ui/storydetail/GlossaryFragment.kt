@@ -61,7 +61,7 @@ class GlossaryFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.setPageTitle("Glossary")
+        viewModel.setPageTitle(getString(R.string.glossary))
     }
 
     override fun onDestroy() {

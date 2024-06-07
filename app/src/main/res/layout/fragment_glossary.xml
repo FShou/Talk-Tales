@@ -24,7 +24,7 @@
         android:layout_marginVertical="20dp"
         android:backgroundTint="@color/orange"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Next"
+        android:text="@string/next"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="15sp"
