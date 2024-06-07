@@ -10,19 +10,30 @@
 
     <ImageView
         android:id="@+id/storyBanner"
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/banner_bawang"
         tools:src="@drawable/banner_bawang" />
+    <View
+        android:id="@+id/storyBannerSkeleton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/bg_skeleton"
+        />
 
     <com.google.android.material.card.MaterialCardView
         style="@style/CardViewTopRadius"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="-70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/storyBanner">
 
@@ -32,16 +43,23 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginTop="12dp"
             >
-
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Tittle"
                 android:textColor="@color/black"
                 android:textAllCaps="true"
                 android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/titleSkeleton"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_skeleton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -52,9 +70,10 @@
                 style="@style/Widget.App.Chip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Indonesia"
+                android:text="@string/indonesia"
                 android:layout_marginTop="-8dp"
                 android:clickable="false"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -64,34 +83,55 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:text="Province"
+                android:text="@string/province"
+                android:visibility="gone"
                 android:clickable="false"
                 app:layout_constraintStart_toEndOf="@+id/country"
                 app:layout_constraintTop_toTopOf="@id/country" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvGlossarium"
+            <View
+                android:id="@+id/countrySkeleton"
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:text="@string/indonesia"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_skeleton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleSkeleton" />
+
+            <View
+                android:id="@+id/provinceSkeleton"
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/bg_skeleton"
+                app:layout_constraintStart_toEndOf="@+id/countrySkeleton"
+                app:layout_constraintTop_toTopOf="@id/countrySkeleton" />
+
+            <FrameLayout
+                android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/btnNext"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/country" />
+                app:layout_constraintTop_toBottomOf="@+id/country"
+                app:layout_constraintBottom_toBottomOf="parent"
 
+                />
 
-            <Button
-                android:id="@+id/btnNext"
+            <View
+                android:id="@+id/contentSkeleton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="20dp"
-                android:backgroundTint="@color/orange"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Next"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintTop_toBottomOf="@id/rvGlossarium"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_skeleton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/countrySkeleton"
+                />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -102,25 +142,61 @@
         android:layout_width="43dp"
         android:layout_height="43dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/pageTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:backgroundTint="@color/orange"
         android:enabled="false"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Glossarium"
+        android:text="@string/glossary"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:id="@+id/errorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="24dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        android:translationZ="999dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/error_message"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            />
+
+        <Button
+            android:id="@+id/btnRetry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/retry"
+            android:backgroundTint="@color/orange"
+            android:fontFamily="@font/poppins_semibold"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

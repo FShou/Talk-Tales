@@ -4,101 +4,120 @@
   "data": {
     "id": 2,
     "title": "BAWANG MERAH & BAWANG PUTIH",
-    "synopsis": "Alur cerita Bawang Merah dan Bawang Putih dimulai dengan mengisahkan kehidupan seorang janda yang memiliki dua putri cantik bernama Bawang Merah dan Bawang Putih. Diceritakan bahwa ibu kandung Bawang Putih telah lama meninggal dunia.",
-    "thumbnail_url": "https://porto.sman1tjbarat.sch.id/img/banner_BawangMP_1000px.svg",
+    "synopsis": "\r\nDalam balutan kisah \"Bawang Merah Bawang Putih,\" terjalin cerita tentang dua saudara perempuan yang memiliki sifat kontras. Bawang Merah, si kakak, digambarkan sebagai sosok yang malas, pemalas, dan iri hati. Sebaliknya, Bawang Putih, sang adik, dikenal dengan sifatnya yang baik hati, pekerja keras, dan selalu ceria.\r\n\r\nKisah dimulai dengan kehidupan mereka bersama sang ayah setelah kepergian ibu kandung Bawang Putih. Tak lama kemudian, ayah mereka menikah lagi dengan seorang janda yang memiliki anak perempuan bernama Bawang Merah.\r\n\r\nSejak saat itu, kehidupan Bawang Putih berubah drastis. Ibu tiri dan Bawang Merah kerap berlaku semena-mena. Bawang Putih dibebani dengan segala pekerjaan rumah tangga, sementara Bawang Merah dimanja dan dibela.\r\n\r\nSuatu hari, ketika Bawang Putih sedang mencuci pakaian di sungai, sarung kesayangan ibu tiri hanyut terbawa arus. Bawang Putih pun sedih dan ketakutan karena ia pasti dimarahi. Tiba-tiba, muncul seekor ikan lele yang menawarkan bantuan.\r\n\r\nIkan lele tersebut meminta Bawang Putih untuk menenun kain sutra yang indah sebagai gantinya. Bawang Putih dengan senang hati menyanggupi permintaan itu. Ia pun bersungguh-sungguh menenun kain sutra yang luar biasa indahnya.\r\n\r\nSetelah kain sutra selesai, ikan lele memberikan Bawang Putih sebuah biji labu ajaib. Ia berpesan agar Bawang Putih menanam biji tersebut dan kelakuar akan tumbuh pohon labu yang berisi emas dan permata.\r\n\r\nDi sisi lain, Bawang Merah yang mengetahui kisah tersebut menjadi iri hati. Ia pun pergi ke sungai dan berbohong kepada ikan lele. Ia berpura-pura kehilangan sesuatu dan meminta ikan lele memberinya ganti berupa kain sutra.\r\n\r\nNamun, Bawang Merah yang malas dan tidak terampil menenun, hanya bisa menghasilkan kain sutra yang kasar dan jelek. Ikan lele pun kecewa dan tidak memberikan Bawang Merah apapun.\r\n\r\nBawang Merah yang kesal nekat mencuri biji labu milik Bawang Putih. Ia menanamnya dan berharap mendapatkan emas dan permata. Namun, saat labu tersebut dibuka, isinya hanyalah terasi dan bawang merah, sesuai dengan sifat buruknya.\r\n\r\nSementara itu, pohon labu milik Bawang Putih tumbuh subur dan berbuah labu yang berisi emas dan permata. Kehidupan Bawang Putih pun berubah menjadi lebih bahagia dan sejahtera.",
+    "thumbnail_url": "https://porto.sman1tjbarat.sch.id/img/bawang/banner_HOME_bawang_fix%202.png",
+    "prolog_image_url": "https://porto.sman1tjbarat.sch.id/img/bawang/banner_prolog_BawangMBP_1000px%201.png",
     "city": "Riau",
     "conversation_count": 0,
-    "created_at": "2024-06-04T12:50:39.893Z",
-    "updated_at": "2024-06-04T12:50:39.893Z",
+    "created_at": "2024-06-05T04:47:31.310Z",
+    "updated_at": "2024-06-05T04:47:31.310Z",
     "Glosarium": [
       {
-        "id": 1,
+        "id": 17,
         "word": "A",
-        "explanation": "Anak Tiri: Anak dari pasangan suami istri yang bukan berasal dari mereka berdua (anak dari pernikahan sebelumnya).",
+        "explanation": "Ayah: Orang tua laki-laki. (Ayah Bawang Putih dan Bawang Merah menikah lagi dengan ibu tiri mereka)",
         "story_id": 2
       },
       {
-        "id": 2,
+        "id": 19,
+        "word": "A",
+        "explanation": "Adik: Saudara perempuan yang lebih muda. (Bawang Putih adalah adik dari Bawang Merah)",
+        "story_id": 2
+      },
+      {
+        "id": 20,
+        "word": "A",
+        "explanation": "Anak Tiri: Anak dari pasangan suami/istri sebelumnya. (Bawang Merah adalah anak tiri dari ayah Bawang Putih)",
+        "story_id": 2
+      },
+      {
+        "id": 21,
         "word": "B",
-        "explanation": "Bawang Merah: Tokoh antagonis cerita, saudara tiri bawang putih.",
+        "explanation": "Bawang Merah: Kakak perempuan yang memiliki sifat buruk seperti malas, pembohong, dan iri hati.",
         "story_id": 2
       },
       {
-        "id": 3,
+        "id": 22,
         "word": "B",
-        "explanation": "Bencana: Kejadian yang membawa penderitaan atau kerugian.",
+        "explanation": "Bawang Putih: Adik perempuan yang memiliki sifat baik hati, pekerja keras, dan selalu ceria.",
         "story_id": 2
       },
       {
-        "id": 4,
-        "word": "C",
-        "explanation": "Cantik: Rupawan, menarik.",
+        "id": 23,
+        "word": "B",
+        "explanation": "Batik: Kain tradisional Indonesia dengan motif khusus. (Dalam beberapa versi cerita, Bawang Putih bisa membuat batik yang indah)",
         "story_id": 2
       },
       {
-        "id": 5,
-        "word": "D",
-        "explanation": "Derita: Penderitaan, kesusahan.",
-        "story_id": 2
-      },
-      {
-        "id": 6,
-        "word": "F",
-        "explanation": "Fitnah: Menuduh sesuatu yang buruk kepada orang lain padahal tidak benar.",
-        "story_id": 2
-      },
-      {
-        "id": 7,
-        "word": "H",
-        "explanation": "Hutan: Lahan yang luas yang ditumbuhi pepohonan dan tanaman lebat.",
-        "story_id": 2
-      },
-      {
-        "id": 8,
+        "id": 24,
         "word": "I",
-        "explanation": "Istana: Tempat tinggal raja dan keluarga kerajaan.",
+        "explanation": "Ibu Tiri: Istri baru ayah setelah ibu kandung meninggal. (Ibu tiri Bawang Putih dan Bawang Merah memperlakukan Bawang Putih dengan tidak baik)",
         "story_id": 2
       },
       {
-        "id": 9,
+        "id": 25,
         "word": "K",
-        "explanation": "Kaya: Memiliki banyak harta benda.",
+        "explanation": "Kain Sutra: Kain yang terbuat dari benang kepompong ulat sutra, terkenal halus dan mewah. (Bawang Putih menenun kain sutra yang indah untuk ikan lele)",
         "story_id": 2
       },
       {
-        "id": 10,
+        "id": 26,
         "word": "K",
-        "explanation": "Kesombongan: Sifat yang merasa lebih tinggi dari orang lain.",
+        "explanation": "Keberuntungan: Keadaan yang menguntungkan. (Bawang Putih mendapatkan keberuntungan berupa labu berisi emas dan permata)",
         "story_id": 2
       },
       {
-        "id": 11,
+        "id": 27,
+        "word": "K",
+        "explanation": "Kemalasan: Keadaan yang tidak menguntungkan. (Bawang Merah mendapatkan kemalasan berupa labu berisi terasi dan bawang merah)",
+        "story_id": 2
+      },
+      {
+        "id": 28,
+        "word": "L",
+        "explanation": "Labu Ajaib: Labu yang tumbuh dari biji dan berisi sesuatu yang luar biasa. (Labu ajaib milik Bawang Putih berisi emas dan permata)",
+        "story_id": 2
+      },
+      {
+        "id": 29,
         "word": "M",
-        "explanation": "Mahkota: Hiasan kepala yang dikenakan oleh raja atau ratu.",
+        "explanation": "Mencuri: Mengambil barang milik orang lain tanpa izin. (Bawang Merah mencuri biji labu milik Bawang Putih)",
         "story_id": 2
       },
       {
-        "id": 12,
-        "word": "P",
-        "explanation": "Pangeran: Anak laki-laki raja atau bangsawan.",
+        "id": 30,
+        "word": "M",
+        "explanation": "Mencuci: Membersihkan pakaian atau barang lain dengan air dan sabun. (Bawang Putih sedang mencuci pakaian di sungai saat sarung ibu tiri hanyut)",
         "story_id": 2
       },
       {
-        "id": 13,
-        "word": "U",
-        "explanation": "Uang: Alat tukar resmi yang digunakan untuk membeli barang atau jasa.",
+        "id": 31,
+        "word": "M",
+        "explanation": "Membual: Berbicara tentang kelebihan diri sendiri secara berlebihan. (Dalam beberapa versi cerita, Bawang Merah suka membual)",
         "story_id": 2
       },
       {
-        "id": 14,
+        "id": 32,
+        "word": "S",
+        "explanation": "Sarung: Kain panjang yang dililitkan di pinggang sebagai pakaian. (Sarung ibu tiri hanyut terbawa arus sungai)",
+        "story_id": 2
+      },
+      {
+        "id": 33,
+        "word": "S",
+        "explanation": "Sungai: Aliran air tawar yang mengalir menuju laut atau danau. (Bawang Putih sedang mencuci pakaian di sungai)",
+        "story_id": 2
+      },
+      {
+        "id": 34,
+        "word": "T",
+        "explanation": "Terasi: Bumbu dapur yang terbuat dari udang atau ikan yang difermentasi. (Labu milik Bawang Merah hanya berisi terasi dan bawang merah)",
+        "story_id": 2
+      },
+      {
+        "id": 35,
         "word": "W",
-        "explanation": "Warisan: Harta benda yang diwariskan dari orang tua kepada anaknya.",
-        "story_id": 2
-      },
-      {
-        "id": 15,
-        "word": "Z",
-        "explanation": "Zalim: Sifat yang suka berbuat sewenang-wenang dan tidak adil.",
+        "explanation": "Warisan: Harta benda yang diwariskan kepada orang lain. (Dalam beberapa versi cerita, Bawang Putih mendapatkan warisan berupa sawah dan kebun)",
         "story_id": 2
       }
     ]

@@ -4,195 +4,25 @@
   "data": [
     {
       "id": 1,
-      "title": "TIMUN EMAS & BUTO IJO",
-      "synopsis": "Cerita ini bermula dari Mbak Sirni yang merupakan seorang janda dan sedang menginginkan seorang anak supaya dapat membantunya bekerja. Suatu hari, ia didatangi raksasa yang akan memberinya anak. Syaratnya, saat anak tersebut berumur 17 tahun harus diserahkan kembali padanya untuk disantap.\r\nMbok Sirni Setuju. Raksasa memberi biji mentimun agar ditanam dan dirawat. Setelah dua minggu, salah satu dari mentimun yang ditanam tersebut berbuah paling besar dan berkilau keemasan.\r\nLalu, Mbok Sirni membelah timun tersebut dengan hati-hati. Tanpa diduga, isi mentimun itu adalah seorang bayi cantik yang diberi nama Timun Mas. Waktu berlalu, Timun Mas tumbuh menjadi gadis nan jelita. Suatu hari datang raksasa untuk menagih janjinya. Mbok Sirni amat takut kehilangan Timun Mas, ia mengulur janji supaya raksasa datang dua tahun lagi.",
-      "thumbnail_url": "https://porto.sman1tjbarat.sch.id/img/banner_TimunM_1000px.svg",
+      "title": "Timun Mas & Buto Ijo",
+      "synopsis": "Di sebuah desa kecil, hiduplah seorang janda tua bernama Mbok Sirni. Kehidupannya terasa hampa dan kesepian tanpa seorang anak. Suatu hari, saat Mbok Sirni berdoa di hutan, ia bertemu raksasa mengerikan bernama Buto Ijo.\r\n\r\nMendengar doa Mbok Sirni, Buto Ijo menawarkannya seorang anak perempuan cantik dari dalam sebuah timun mas. Dengan hati gembira, Mbok Sirni menerima tawaran itu. Timun Mas tumbuh menjadi gadis yang cerdas dan cantik. Namun, kebahagiaan Mbok Sirni tidak berlangsung lama.\r\n\r\nSaat Timun Mas berusia 17 tahun, Buto Ijo datang untuk menagih janji. Mbok Sirni yang sedih dan tidak ingin kehilangan Timun Mas, memberikannya empat bungkusan berisi benda ajaib sebagai bekal untuk melarikan diri.\r\n\r\nTimun Mas pun dikejar Buto Ijo yang marah. Satu per satu, Timun Mas menggunakan bungkusan ajaibnya untuk menghentikan Buto Ijo. Pertama, ia menaburkan isi bungkusan berisi biji mentimun yang berubah menjadi hutan lebat. Buto Ijo terjebak di dalamnya, namun berhasil keluar dengan menebangnya.\r\n\r\nKedua, Timun Mas melemparkan isi bungkusan berisi garam yang berubah menjadi lautan luas. Buto Ijo yang tidak bisa berenang, hampir tenggelam. Namun, ia berhasil berenang ke tepi laut.\r\n\r\nKetiga, Timun Mas melemparkan isi bungkusan berisi cabai rawit yang berubah menjadi api yang membakar. Buto Ijo terpanggang, namun ia masih bisa bertahan.\r\n\r\nPada akhirnya, Timun Mas menggunakan isi bungkusan terakhirnya yang berisi terasi. Terasi berubah menjadi lautan lumpur panas yang menenggelamkan Buto Ijo. Timun Mas berhasil selamat dan kembali ke rumah bersama Mbok Sirni. Mereka hidup bahagia selamanya.",
+      "thumbnail_url": "https://porto.sman1tjbarat.sch.id/img/timunmas/banner_HOME_timun_fix.png",
+      "prolog_image_url": "https://porto.sman1tjbarat.sch.id/img/timunmas/banner_prolog_TimunM_1000px%201.png",
       "city": "Central Java",
       "conversation_count": 0,
-      "created_at": "2024-06-04T12:42:31.275Z",
-      "updated_at": "2024-06-04T12:42:31.275Z",
-      "Glosarium": [
-        {
-          "id": 16,
-          "word": "A",
-          "explanation": "Anak Durhaka: Anak yang tidak hormat dan tidak patuh kepada orang tua",
-          "story_id": 1
-        },
-        {
-          "id": 17,
-          "word": "B",
-          "explanation": "Buto Ijo: Raksasa berwarna hijau, tokoh antagonis.",
-          "story_id": 1
-        },
-        {
-          "id": 18,
-          "word": "D",
-          "explanation": "Dewa: Makhluk halus yang memiliki kekuatan supranatural.",
-          "story_id": 1
-        },
-        {
-          "id": 19,
-          "word": "I",
-          "explanation": "Istri: Pasangan hidup perempuan yang sah menurut hukum.",
-          "story_id": 1
-        },
-        {
-          "id": 20,
-          "word": "J",
-          "explanation": "Janda: Wanita yang suaminya telah meninggal dunia.",
-          "story_id": 1
-        },
-        {
-          "id": 21,
-          "word": "K",
-          "explanation": "Kantong Ajaib: Kantong ajaib yang berisi bermacam-macam keperluan.",
-          "story_id": 1
-        },
-        {
-          "id": 22,
-          "word": "L",
-          "explanation": "Lauk Pauk: Makanan yang dimakan bersama nasi.",
-          "story_id": 1
-        },
-        {
-          "id": 23,
-          "word": "M",
-          "explanation": "Mbok Rondo: Sebutan untuk seorang janda.",
-          "story_id": 1
-        },
-        {
-          "id": 24,
-          "word": "P",
-          "explanation": "Perjanjian: Kesepakatan yang dibuat antara dua pihak atau lebih.",
-          "story_id": 1
-        },
-        {
-          "id": 25,
-          "word": "P",
-          "explanation": "Pinang: Buah yang dipakai dalam upacara pernikahan adat.",
-          "story_id": 1
-        },
-        {
-          "id": 26,
-          "word": "T",
-          "explanation": "Timun Emas: Biji ajaib yang tumbuh menjadi anak perempuan, tokoh protagonis.",
-          "story_id": 1
-        },
-        {
-          "id": 27,
-          "word": "U",
-          "explanation": "Utang Budi: Hutang budi kepada seseorang karena telah ditolong.",
-          "story_id": 1
-        },
-        {
-          "id": 28,
-          "word": "W",
-          "explanation": "Warisan: Harta benda yang diwariskan.",
-          "story_id": 1
-        }
-      ]
+      "created_at": "2024-06-05T04:31:16.012Z",
+      "updated_at": "2024-06-05T04:31:16.012Z"
     },
     {
       "id": 2,
       "title": "BAWANG MERAH & BAWANG PUTIH",
-      "synopsis": "Alur cerita Bawang Merah dan Bawang Putih dimulai dengan mengisahkan kehidupan seorang janda yang memiliki dua putri cantik bernama Bawang Merah dan Bawang Putih. Diceritakan bahwa ibu kandung Bawang Putih telah lama meninggal dunia.",
-      "thumbnail_url": "https://porto.sman1tjbarat.sch.id/img/banner_BawangMP_1000px.svg",
+      "synopsis": "\r\nDalam balutan kisah \"Bawang Merah Bawang Putih,\" terjalin cerita tentang dua saudara perempuan yang memiliki sifat kontras. Bawang Merah, si kakak, digambarkan sebagai sosok yang malas, pemalas, dan iri hati. Sebaliknya, Bawang Putih, sang adik, dikenal dengan sifatnya yang baik hati, pekerja keras, dan selalu ceria.\r\n\r\nKisah dimulai dengan kehidupan mereka bersama sang ayah setelah kepergian ibu kandung Bawang Putih. Tak lama kemudian, ayah mereka menikah lagi dengan seorang janda yang memiliki anak perempuan bernama Bawang Merah.\r\n\r\nSejak saat itu, kehidupan Bawang Putih berubah drastis. Ibu tiri dan Bawang Merah kerap berlaku semena-mena. Bawang Putih dibebani dengan segala pekerjaan rumah tangga, sementara Bawang Merah dimanja dan dibela.\r\n\r\nSuatu hari, ketika Bawang Putih sedang mencuci pakaian di sungai, sarung kesayangan ibu tiri hanyut terbawa arus. Bawang Putih pun sedih dan ketakutan karena ia pasti dimarahi. Tiba-tiba, muncul seekor ikan lele yang menawarkan bantuan.\r\n\r\nIkan lele tersebut meminta Bawang Putih untuk menenun kain sutra yang indah sebagai gantinya. Bawang Putih dengan senang hati menyanggupi permintaan itu. Ia pun bersungguh-sungguh menenun kain sutra yang luar biasa indahnya.\r\n\r\nSetelah kain sutra selesai, ikan lele memberikan Bawang Putih sebuah biji labu ajaib. Ia berpesan agar Bawang Putih menanam biji tersebut dan kelakuar akan tumbuh pohon labu yang berisi emas dan permata.\r\n\r\nDi sisi lain, Bawang Merah yang mengetahui kisah tersebut menjadi iri hati. Ia pun pergi ke sungai dan berbohong kepada ikan lele. Ia berpura-pura kehilangan sesuatu dan meminta ikan lele memberinya ganti berupa kain sutra.\r\n\r\nNamun, Bawang Merah yang malas dan tidak terampil menenun, hanya bisa menghasilkan kain sutra yang kasar dan jelek. Ikan lele pun kecewa dan tidak memberikan Bawang Merah apapun.\r\n\r\nBawang Merah yang kesal nekat mencuri biji labu milik Bawang Putih. Ia menanamnya dan berharap mendapatkan emas dan permata. Namun, saat labu tersebut dibuka, isinya hanyalah terasi dan bawang merah, sesuai dengan sifat buruknya.\r\n\r\nSementara itu, pohon labu milik Bawang Putih tumbuh subur dan berbuah labu yang berisi emas dan permata. Kehidupan Bawang Putih pun berubah menjadi lebih bahagia dan sejahtera.",
+      "thumbnail_url": "https://porto.sman1tjbarat.sch.id/img/bawang/banner_HOME_bawang_fix%202.png",
+      "prolog_image_url": "https://porto.sman1tjbarat.sch.id/img/bawang/banner_prolog_BawangMBP_1000px%201.png",
       "city": "Riau",
       "conversation_count": 0,
-      "created_at": "2024-06-04T12:50:39.893Z",
-      "updated_at": "2024-06-04T12:50:39.893Z",
-      "Glosarium": [
-        {
-          "id": 1,
-          "word": "A",
-          "explanation": "Anak Tiri: Anak dari pasangan suami istri yang bukan berasal dari mereka berdua (anak dari pernikahan sebelumnya).",
-          "story_id": 2
-        },
-        {
-          "id": 2,
-          "word": "B",
-          "explanation": "Bawang Merah: Tokoh antagonis cerita, saudara tiri bawang putih.",
-          "story_id": 2
-        },
-        {
-          "id": 3,
-          "word": "B",
-          "explanation": "Bencana: Kejadian yang membawa penderitaan atau kerugian.",
-          "story_id": 2
-        },
-        {
-          "id": 4,
-          "word": "C",
-          "explanation": "Cantik: Rupawan, menarik.",
-          "story_id": 2
-        },
-        {
-          "id": 5,
-          "word": "D",
-          "explanation": "Derita: Penderitaan, kesusahan.",
-          "story_id": 2
-        },
-        {
-          "id": 6,
-          "word": "F",
-          "explanation": "Fitnah: Menuduh sesuatu yang buruk kepada orang lain padahal tidak benar.",
-          "story_id": 2
-        },
-        {
-          "id": 7,
-          "word": "H",
-          "explanation": "Hutan: Lahan yang luas yang ditumbuhi pepohonan dan tanaman lebat.",
-          "story_id": 2
-        },
-        {
-          "id": 8,
-          "word": "I",
-          "explanation": "Istana: Tempat tinggal raja dan keluarga kerajaan.",
-          "story_id": 2
-        },
-        {
-          "id": 9,
-          "word": "K",
-          "explanation": "Kaya: Memiliki banyak harta benda.",
-          "story_id": 2
-        },
-        {
-          "id": 10,
-          "word": "K",
-          "explanation": "Kesombongan: Sifat yang merasa lebih tinggi dari orang lain.",
-          "story_id": 2
-        },
-        {
-          "id": 11,
-          "word": "M",
-          "explanation": "Mahkota: Hiasan kepala yang dikenakan oleh raja atau ratu.",
-          "story_id": 2
-        },
-        {
-          "id": 12,
-          "word": "P",
-          "explanation": "Pangeran: Anak laki-laki raja atau bangsawan.",
-          "story_id": 2
-        },
-        {
-          "id": 13,
-          "word": "U",
-          "explanation": "Uang: Alat tukar resmi yang digunakan untuk membeli barang atau jasa.",
-          "story_id": 2
-        },
-        {
-          "id": 14,
-          "word": "W",
-          "explanation": "Warisan: Harta benda yang diwariskan dari orang tua kepada anaknya.",
-          "story_id": 2
-        },
-        {
-          "id": 15,
-          "word": "Z",
-          "explanation": "Zalim: Sifat yang suka berbuat sewenang-wenang dan tidak adil.",
-          "story_id": 2
-        }
-      ]
+      "created_at": "2024-06-05T04:47:31.310Z",
+      "updated_at": "2024-06-05T04:47:31.310Z"
     }
   ]
 }

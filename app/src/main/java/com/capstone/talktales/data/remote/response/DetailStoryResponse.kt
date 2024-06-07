@@ -1,11 +1,11 @@
 package com.capstone.talktales.data.remote.response
 
-data class DetailStoryResponse (
-    // Todo: match API spec
+import com.capstone.talktales.data.model.Story
+import com.google.gson.annotations.SerializedName
 
-    val scenes : Scene
+data class DetailStoryResponse(
+
+    @field:SerializedName("data")
+    val story: Story
 )
 
-data class Scene(
-    val id : String
-)

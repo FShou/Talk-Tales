@@ -33,6 +33,7 @@ abstract class BaseRepository {
         try {
             val response = apiCall()
             emit(ResponseResult.Success(response))
+            // Todo: Http Exception
         } catch (e: Exception) {
             Log.e("REPO", e.toString())
             e.message

@@ -14,6 +14,17 @@
     <string name="username">Username</string>
     <string name="user">User</string>
 
+<!--    Story Detail-->
+    <string name="glossary">Glossary</string>
+    <string name="indonesia">Indonesia</string>
+    <string name="error_message">Error Message</string>
+    <string name="retry">Retry</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="start">Start</string>
+    <string name="word">Word</string>
+    <string name="explanation">Explanation</string>
+    <string name="province">Province</string>
+
     <!--  login & register bar  -->
     <string name="logo">TalkTales</string>
     <string name="Login">Login</string>
