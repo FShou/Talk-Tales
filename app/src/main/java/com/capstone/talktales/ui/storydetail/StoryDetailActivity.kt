@@ -38,7 +38,7 @@ class StoryDetailActivity : AppCompatActivity() {
         storyId = intent.getStringExtra(EXTRA_STORY_ID).toString()
 
         getStoryDetail()
-
+        binding.btnBack.setOnClickListener { finish() }
 
         viewModel.pageTitle.observe(this) {
             binding.pageTitle.text = it
