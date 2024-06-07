@@ -15,6 +15,9 @@
         android:theme="@style/Theme.TalkTales"
         tools:targetApi="31">
         <activity
+            android:name=".ui.conversation.ConversationActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.userdetail.UserDetailActivity"
             android:exported="false" />
         <activity
