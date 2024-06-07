@@ -38,11 +38,9 @@ interface ApiService {
     ): RegisterResponse
 
     @GET("/story")
-    @Mock
     suspend fun getStories(): StoriesResponse
 
     @GET("/story/{id}")
-    @Mock
     suspend fun getStoryDetail(
         @Path("id") id: String
     ): DetailStoryResponse

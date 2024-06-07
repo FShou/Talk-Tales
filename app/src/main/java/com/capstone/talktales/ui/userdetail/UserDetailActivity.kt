@@ -1,5 +1,6 @@
 package com.capstone.talktales.ui.userdetail
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -11,6 +12,7 @@ import coil.load
 import com.capstone.talktales.R
 import com.capstone.talktales.databinding.ActivityUserDetailBinding
 import com.capstone.talktales.factory.UserViewModelFactory
+import com.capstone.talktales.ui.login.LoginActivity
 import com.capstone.talktales.ui.utils.BorderedCircleCropTransformation
 import com.capstone.talktales.ui.utils.dpToPx
 
@@ -40,7 +42,11 @@ class UserDetailActivity : AppCompatActivity() {
 
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
-            // Todo: Intent to Login
+            startActivity(
+                Intent(this, LoginActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+            )
         }
 
 

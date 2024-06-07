@@ -24,7 +24,7 @@ class UserViewModelFactory private constructor(
                 userRepository
             ) as T
 
-            modelClass.isAssignableFrom(UserDetailActivity::class.java) -> return UserDetailViewModel(
+            modelClass.isAssignableFrom(UserDetailViewModel::class.java) -> return UserDetailViewModel(
                 userRepository
             ) as T
 
