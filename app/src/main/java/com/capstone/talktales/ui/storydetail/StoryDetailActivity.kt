@@ -44,6 +44,8 @@ class StoryDetailActivity : AppCompatActivity() {
             binding.pageTitle.text = it
         }
 
+
+
     }
 
     private fun getStoryDetail(){
@@ -65,10 +67,12 @@ class StoryDetailActivity : AppCompatActivity() {
             }
 
             is ResponseResult.Success -> {
+                viewModel.setStory(result.data.story)
                 showLoading(false)
-                showGlossary(result.data.story)
-                showTitleAndThumbnail(result.data.story)
-
+                viewModel.story.observe(this) {
+                    showTitleAndThumbnail(it)
+                    showGlossary()
+                }
             }
         }
     }
@@ -126,8 +130,8 @@ class StoryDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun showGlossary(story: Story) {
-        val glossaryFragment = GlossaryFragment.newInstance(story)
+    private fun showGlossary() {
+        val glossaryFragment = GlossaryFragment.newInstance()
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.content, glossaryFragment)
