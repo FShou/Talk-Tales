@@ -1,7 +1,6 @@
 package com.capstone.talktales.ui.conversation
 
-import android.annotation.SuppressLint
-import android.content.Context
+
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,14 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.activityViewModels
+import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
+import androidx.media3.exoplayer.ExoPlayer
 import coil.load
 import com.capstone.talktales.R
 import com.capstone.talktales.data.model.Conversation
 import com.capstone.talktales.databinding.FragmentSceneBinding
 import com.capstone.talktales.ui.utils.dpToPx
+import com.github.squti.androidwaverecorder.RecorderState
+import com.github.squti.androidwaverecorder.WaveRecorder
 import com.google.android.material.shape.ShapeAppearanceModel
 
 
@@ -31,7 +34,15 @@ class SceneFragment : Fragment() {
     private var _binding: FragmentSceneBinding? = null
     private val binding get() = _binding!!
 
-    private val bubbleRoundSize by lazy {   dpToPx(requireActivity(), 32) }
+    private val bubbleRoundSize by lazy { dpToPx(requireActivity(), 32) }
+
+    private val audioPrefix get() = "${conversation2.id}" // TOdo: add StoryId
+
+    private val filePath get() = context?.externalCacheDir?.absolutePath + "/${audioPrefix}_audio.wav"
+
+    private val exoPlayer by lazy { ExoPlayer.Builder(requireContext()).build() }
+
+    private val waveRecorder by lazy { WaveRecorder(filePath) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,8 +57,7 @@ class SceneFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSceneBinding.inflate(inflater, container, false)
         return binding.root
@@ -55,11 +65,12 @@ class SceneFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         showConversation1()
         showProlog1()
         showProlog2()
         showConversation2()
+        prepareAudioPlayback()
+        prepareAudioRecord()
 
         if (conversation1.isSpeechByUser) {
             changeConversation1Layout()
@@ -69,12 +80,54 @@ class SceneFragment : Fragment() {
             changeConversation2Layout()
         }
 
-        binding.btnPlay.setOnClickListener {
-            binding.btnPlay.icon = ContextCompat.getDrawable(requireContext(),R.drawable.ic_audio_off)
-            //TOdo: play audio
 
+        binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
+
+    }
+
+    private fun prepareAudioRecord() {
+        with(waveRecorder) {
+            noiseSuppressorActive = true
+            onStateChangeListener = {
+                when (it) {
+                    RecorderState.RECORDING -> {
+                        binding.btnRecord.icon =
+                            ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic_off)
+                        binding.btnRecord.setOnClickListener { waveRecorder.stopRecording() }
+                    }
+
+                    RecorderState.PAUSE -> {}
+                    RecorderState.STOP -> {
+                        binding.btnRecord.icon =
+                            ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic_on)
+                        binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
+                    }
+                }
+            }
         }
 
+    }
+
+    private fun prepareAudioPlayback() {
+        if (!conversation1.voiceUrl.isNullOrBlank()) {
+            exoPlayer.apply {
+                setMediaItem(MediaItem.fromUri(conversation1.voiceUrl.toString()))
+                repeatMode = Player.REPEAT_MODE_ONE
+                prepare()
+            }
+            with(binding.btnPlay) {
+                setOnClickListener {
+                    if (exoPlayer.isPlaying) {
+                        icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_on)
+                        exoPlayer.pause()
+
+                    } else {
+                        icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_off)
+                        exoPlayer.play()
+                    }
+                }
+            }
+        }
     }
 
     private fun changeConversation2Layout() {
@@ -87,12 +140,10 @@ class SceneFragment : Fragment() {
             startToStart = ConstraintLayout.LayoutParams.PARENT_ID
             endToStart = binding.imgChar2.id
         }
-        binding.convoBubble2.shapeAppearanceModel = ShapeAppearanceModel.builder()
-            .setTopLeftCornerSize(0f)
-            .setBottomRightCornerSize(0f)
-            .setTopRightCornerSize(bubbleRoundSize)
-            .setBottomLeftCornerSize(bubbleRoundSize)
-            .build()
+        binding.convoBubble2.shapeAppearanceModel =
+            ShapeAppearanceModel.builder().setTopLeftCornerSize(0f).setBottomRightCornerSize(0f)
+                .setTopRightCornerSize(bubbleRoundSize).setBottomLeftCornerSize(bubbleRoundSize)
+                .build()
     }
 
     private fun changeConversation1Layout() {
@@ -106,12 +157,10 @@ class SceneFragment : Fragment() {
             endToStart = binding.imgChar1.id
         }
 
-        binding.convoBubble2.shapeAppearanceModel = ShapeAppearanceModel.builder()
-            .setTopLeftCornerSize(0f)
-            .setBottomRightCornerSize(0f)
-            .setTopRightCornerSize(bubbleRoundSize)
-            .setBottomLeftCornerSize(bubbleRoundSize)
-            .build()
+        binding.convoBubble2.shapeAppearanceModel =
+            ShapeAppearanceModel.builder().setTopLeftCornerSize(0f).setBottomRightCornerSize(0f)
+                .setTopRightCornerSize(bubbleRoundSize).setBottomLeftCornerSize(bubbleRoundSize)
+                .build()
     }
 
     private fun showConversation2() {
@@ -123,7 +172,6 @@ class SceneFragment : Fragment() {
             binding.imgChar2.load(conversation2.characterImg)
             binding.tvChar2Name.text = conversation2.characterName
             binding.tvChar2Convo.text = conversation2.convText
-            // Todo: Load Audio
         } else {
             binding.imgChar2.visibility = View.GONE
             binding.tvChar2Name.visibility = View.GONE
@@ -155,7 +203,6 @@ class SceneFragment : Fragment() {
             binding.imgChar1.load(conversation1.characterImg)
             binding.tvChar1Name.text = conversation1.characterName
             binding.tvChar1Convo.text = conversation1.convText
-            // Todo: Load Audio
         } else {
             binding.imgChar1.visibility = View.GONE
             binding.tvChar1Name.visibility = View.GONE
@@ -172,14 +219,12 @@ class SceneFragment : Fragment() {
 
 
         @JvmStatic
-        fun newInstance(conversationScene: List<Conversation>) =
-            SceneFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelableArrayList(
-                        ARG_CONVERSATION_SCENE,
-                        conversationScene as ArrayList<Conversation>
-                    )
-                }
+        fun newInstance(conversationScene: List<Conversation>) = SceneFragment().apply {
+            arguments = Bundle().apply {
+                putParcelableArrayList(
+                    ARG_CONVERSATION_SCENE, conversationScene as ArrayList<Conversation>
+                )
             }
+        }
     }
 }

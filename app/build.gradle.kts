@@ -20,7 +20,11 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "BASE_URL", "\"https://backend-service-bch64czzyq-et.a.run.app/\"")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://backend-service-bch64czzyq-et.a.run.app/\""
+            )
 
         }
 
@@ -30,7 +34,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("String", "BASE_URL", "\"https://backend-service-bch64czzyq-et.a.run.app/\"")
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://backend-service-bch64czzyq-et.a.run.app/\""
+            )
         }
     }
     compileOptions {
@@ -73,6 +81,8 @@ dependencies {
 
     implementation(libs.androidx.media3.exoplayer)
     implementation(libs.androidx.media3.exoplayer.dash)
+    implementation(libs.android.wave.recorder)
+
 
     implementation(libs.coil)
 
