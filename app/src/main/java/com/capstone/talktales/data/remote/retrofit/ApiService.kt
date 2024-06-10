@@ -54,5 +54,11 @@ interface ApiService {
         // Todo: add additional parameter
     ): CheckAudioResponse
 
+    @GET("/conversation/{storyId}")
+    @Mock
+    suspend fun getConversationByStoryId(
+        @Path("storyId") storyId : String
+    ): ConversationResponse
+
 
 }

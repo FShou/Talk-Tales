@@ -22,6 +22,8 @@ class UserRepository(
 
     fun checkSceneAudio(audioFile: MultipartBody.Part) = callApiWrapped { apiService.checkUserAudio(audioFile) }
 
+    fun getConversation(storyId: String) = callApiWrapped { apiService.getConversationByStoryId(storyId) }
+
     companion object {
         @Volatile
         private var instance: UserRepository? = null
