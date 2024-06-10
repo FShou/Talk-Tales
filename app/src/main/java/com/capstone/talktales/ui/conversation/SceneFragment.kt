@@ -1,5 +1,7 @@
 package com.capstone.talktales.ui.conversation
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +9,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.activityViewModels
 import coil.load
+import com.capstone.talktales.R
 import com.capstone.talktales.data.model.Conversation
 import com.capstone.talktales.databinding.FragmentSceneBinding
+import com.capstone.talktales.ui.utils.dpToPx
+import com.google.android.material.shape.ShapeAppearanceModel
 
 
 class SceneFragment : Fragment() {
@@ -23,6 +30,8 @@ class SceneFragment : Fragment() {
 
     private var _binding: FragmentSceneBinding? = null
     private val binding get() = _binding!!
+
+    private val bubbleRoundSize by lazy {   dpToPx(requireActivity(), 32) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +69,12 @@ class SceneFragment : Fragment() {
             changeConversation2Layout()
         }
 
+        binding.btnPlay.setOnClickListener {
+            binding.btnPlay.icon = ContextCompat.getDrawable(requireContext(),R.drawable.ic_audio_off)
+            //TOdo: play audio
+
+        }
+
     }
 
     private fun changeConversation2Layout() {
@@ -72,6 +87,12 @@ class SceneFragment : Fragment() {
             startToStart = ConstraintLayout.LayoutParams.PARENT_ID
             endToStart = binding.imgChar2.id
         }
+        binding.convoBubble2.shapeAppearanceModel = ShapeAppearanceModel.builder()
+            .setTopLeftCornerSize(0f)
+            .setBottomRightCornerSize(0f)
+            .setTopRightCornerSize(bubbleRoundSize)
+            .setBottomLeftCornerSize(bubbleRoundSize)
+            .build()
     }
 
     private fun changeConversation1Layout() {
@@ -83,7 +104,15 @@ class SceneFragment : Fragment() {
             endToEnd = ConstraintLayout.LayoutParams.UNSET
             startToStart = ConstraintLayout.LayoutParams.PARENT_ID
             endToStart = binding.imgChar1.id
-        }    }
+        }
+
+        binding.convoBubble2.shapeAppearanceModel = ShapeAppearanceModel.builder()
+            .setTopLeftCornerSize(0f)
+            .setBottomRightCornerSize(0f)
+            .setTopRightCornerSize(bubbleRoundSize)
+            .setBottomLeftCornerSize(bubbleRoundSize)
+            .build()
+    }
 
     private fun showConversation2() {
         if (!conversation2.convText.isNullOrBlank()) {
