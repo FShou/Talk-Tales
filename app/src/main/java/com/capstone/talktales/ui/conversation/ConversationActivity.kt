@@ -80,6 +80,7 @@ class ConversationActivity : AppCompatActivity() {
                     override fun createFragment(position: Int): Fragment = SceneFragment.newInstance(conversation[position])
 
                 }
+                viewModel.setStoryLogId(result.data.data.storyLogId)
                 showConversation()
             }
         }

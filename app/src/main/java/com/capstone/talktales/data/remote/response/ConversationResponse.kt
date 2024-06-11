@@ -18,7 +18,7 @@ data class ConversationResponse(
 data class ConversationData(
 
 	@field:SerializedName("storyLogId")
-	val storyLogId: Int? = null,
+	val storyLogId: Int,
 
 	@field:SerializedName("conversations")
 	val conversations: List<Conversation>

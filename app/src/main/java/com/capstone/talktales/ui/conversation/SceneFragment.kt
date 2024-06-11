@@ -17,11 +17,17 @@ import androidx.media3.exoplayer.ExoPlayer
 import coil.load
 import com.capstone.talktales.R
 import com.capstone.talktales.data.model.Conversation
+import com.capstone.talktales.data.remote.response.CheckAudioResponse
+import com.capstone.talktales.data.remote.response.ResponseResult
 import com.capstone.talktales.databinding.FragmentSceneBinding
 import com.capstone.talktales.ui.utils.dpToPx
 import com.github.squti.androidwaverecorder.RecorderState
 import com.github.squti.androidwaverecorder.WaveRecorder
 import com.google.android.material.shape.ShapeAppearanceModel
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 
 class SceneFragment : Fragment() {
@@ -36,7 +42,11 @@ class SceneFragment : Fragment() {
 
     private val bubbleRoundSize by lazy { dpToPx(requireActivity(), 32) }
 
-    private val audioPrefix get() = "${conversation2.id}" // TOdo: add StoryId
+    private val storyLogId by lazy {
+        viewModel.getStoryLogId()!!
+    }
+
+    private val audioPrefix get() = "${storyLogId}_${conversation2.id}" // TOdo: add StoryId
 
     private val filePath get() = context?.externalCacheDir?.absolutePath + "/${audioPrefix}_audio.wav"
 
@@ -82,10 +92,44 @@ class SceneFragment : Fragment() {
 
 
         binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
+        if (conversation1.isSpeechByUser or conversation2.isSpeechByUser){
+            binding.btnSend.setOnClickListener { sendUserAudio() }
+        }
+
+    }
+
+    private fun sendUserAudio() {
+        val userAudio = File(filePath)
+        if (!userAudio.exists()) {
+            // Todo Toast
+            return
+        }
+        val storyConvId = if (conversation1.isSpeechByUser) conversation1.id else conversation2.id
+        val requestFile = userAudio.asRequestBody("audio/wav".toMediaTypeOrNull())
+        val multipart = MultipartBody.Part.createFormData("user_voice", userAudio.name, requestFile)
+        viewModel.predictUserAudio(storyLogId,storyConvId!!, multipart).observe(viewLifecycleOwner){
+            handlePredictResponse(it)
+        }
+    }
+
+    private fun handlePredictResponse(result: ResponseResult<CheckAudioResponse>) {
+        when(result){
+            is ResponseResult.Error -> {}
+            is ResponseResult.Loading -> {
+//                TODO()
+            }
+            is ResponseResult.Success -> {
+                println(result.data)
+            }
+        }
 
     }
 
     private fun prepareAudioRecord() {
+        val prevFile = File(filePath)
+        if (prevFile.exists()) {
+            prevFile.delete()
+        }
         with(waveRecorder) {
             noiseSuppressorActive = true
             onStateChangeListener = {
