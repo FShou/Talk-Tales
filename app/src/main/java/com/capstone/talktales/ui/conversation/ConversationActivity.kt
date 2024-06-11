@@ -2,6 +2,7 @@ package com.capstone.talktales.ui.conversation
 
 import android.Manifest
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.children
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -20,7 +22,9 @@ import com.capstone.talktales.data.remote.response.PredictionData
 import com.capstone.talktales.data.remote.response.ResponseResult
 import com.capstone.talktales.databinding.ActivityConversationBinding
 import com.capstone.talktales.factory.UserViewModelFactory
+import com.capstone.talktales.ui.storydetail.StoryDetailActivity.Companion.EXTRA_STORY_ID
 import com.capstone.talktales.ui.utils.setCurrentItemWithSmoothScroll
+import com.capstone.talktales.ui.utils.startShimmer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class ConversationActivity : AppCompatActivity() {
@@ -109,14 +113,15 @@ class ConversationActivity : AppCompatActivity() {
     private fun handleConversationResponse(result: ResponseResult<ConversationResponse>) {
         when (result) {
             is ResponseResult.Error -> {
-//                TODO()
+                showLoading(false)
             }
 
             is ResponseResult.Loading -> {
-//                TODO()
+                showLoading(true)
             }
 
             is ResponseResult.Success -> {
+                showLoading(false)
                 conversation = result.data.data!!.conversations.chunked(2)
                 sceneAdapter = object : FragmentStateAdapter(this) {
                     override fun getItemCount(): Int = conversation.size
@@ -130,6 +135,20 @@ class ConversationActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.loadingSkeleton.visibility = View.VISIBLE
+            binding.loadingSkeleton.children.forEach {
+                it.startShimmer()
+            }
+        } else {
+            binding.loadingSkeleton.children.forEach {
+                it.clearAnimation()
+            }
+            binding.loadingSkeleton.visibility = View.GONE
+        }
     }
 
     private fun showConversation() {

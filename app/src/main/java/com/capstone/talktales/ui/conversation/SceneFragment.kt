@@ -107,8 +107,7 @@ class SceneFragment : Fragment() {
         val storyConvId = if (conversation1.isSpeechByUser) conversation1.id else conversation2.id
         val requestFile = userAudio.asRequestBody("audio/wav".toMediaTypeOrNull())
         val multipart = MultipartBody.Part.createFormData("user_voice", userAudio.name, requestFile)
-        viewModel
-            .predictUserAudio(storyLogId, storyConvId!!, multipart)
+        viewModel.predictUserAudio(storyLogId, storyConvId!!, multipart)
             .observe(viewLifecycleOwner) {
                 handlePredictResponse(it)
             }
@@ -116,16 +115,28 @@ class SceneFragment : Fragment() {
 
     private fun handlePredictResponse(result: ResponseResult<CheckAudioResponse>) {
         when (result) {
-            is ResponseResult.Error -> {}
-            is ResponseResult.Loading -> {
-//                TODO()
+            is ResponseResult.Error -> {
+                showLoading(false)
             }
 
+            is ResponseResult.Loading -> { showLoading(true) }
+
             is ResponseResult.Success -> {
+                showLoading(false)
                 viewModel.setFeedback(result.data.data!!)
             }
         }
 
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            binding.root.alpha = 0.3f
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.root.alpha = 1f
+            binding.progressBar.visibility = View.GONE
+        }
     }
 
     private fun prepareAudioRecord() {
