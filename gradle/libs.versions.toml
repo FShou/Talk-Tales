@@ -19,6 +19,8 @@ mockresponseinterceptor = "1.0.0"
 retrofit = "2.11.0"
 coil = "2.6.0"
 androidWaveRecorder = "1.7.0"
+legacySupportV4 = "1.0.0"
+recyclerview = "1.3.0"
 
 [libraries]
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
@@ -44,6 +46,8 @@ mockresponseinterceptor = { module = "com.github.mustafayigitt:MockResponseInter
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 android-wave-recorder = { module = "com.github.squti:Android-Wave-Recorder", version.ref = "androidWaveRecorder" }
+androidx-legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
+androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

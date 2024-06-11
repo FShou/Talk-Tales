@@ -6,7 +6,7 @@
     "idLogConversation": 1,
     "prediction": "test test test",
     "target": "Tolong, beri kami sedikit waktu lagi.",
-    "feedback": "Incorrect",
+    "feedback": "Correct",
     "scores": 80
   }
 }

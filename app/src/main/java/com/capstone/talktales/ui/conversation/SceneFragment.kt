@@ -42,11 +42,9 @@ class SceneFragment : Fragment() {
 
     private val bubbleRoundSize by lazy { dpToPx(requireActivity(), 32) }
 
-    private val storyLogId by lazy {
-        viewModel.getStoryLogId()!!
-    }
+    private val storyLogId by lazy { viewModel.getStoryLogId() }
 
-    private val audioPrefix get() = "${storyLogId}_${conversation2.id}" // TOdo: add StoryId
+    private val audioPrefix get() = "${storyLogId}_${conversation2.id}"
 
     private val filePath get() = context?.externalCacheDir?.absolutePath + "/${audioPrefix}_audio.wav"
 
@@ -92,7 +90,7 @@ class SceneFragment : Fragment() {
 
 
         binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
-        if (conversation1.isSpeechByUser or conversation2.isSpeechByUser){
+        if (conversation1.isSpeechByUser or conversation2.isSpeechByUser) {
             binding.btnSend.setOnClickListener { sendUserAudio() }
         }
 
@@ -107,19 +105,22 @@ class SceneFragment : Fragment() {
         val storyConvId = if (conversation1.isSpeechByUser) conversation1.id else conversation2.id
         val requestFile = userAudio.asRequestBody("audio/wav".toMediaTypeOrNull())
         val multipart = MultipartBody.Part.createFormData("user_voice", userAudio.name, requestFile)
-        viewModel.predictUserAudio(storyLogId,storyConvId!!, multipart).observe(viewLifecycleOwner){
-            handlePredictResponse(it)
-        }
+        viewModel
+            .predictUserAudio(storyLogId, storyConvId!!, multipart)
+            .observe(viewLifecycleOwner) {
+                handlePredictResponse(it)
+            }
     }
 
     private fun handlePredictResponse(result: ResponseResult<CheckAudioResponse>) {
-        when(result){
+        when (result) {
             is ResponseResult.Error -> {}
             is ResponseResult.Loading -> {
 //                TODO()
             }
+
             is ResponseResult.Success -> {
-                println(result.data)
+                viewModel.setFeedback(result.data.data!!)
             }
         }
 
@@ -130,27 +131,30 @@ class SceneFragment : Fragment() {
         if (prevFile.exists()) {
             prevFile.delete()
         }
-        with(waveRecorder) {
+        waveRecorder.apply {
             noiseSuppressorActive = true
-            onStateChangeListener = {
-                when (it) {
-                    RecorderState.RECORDING -> {
-                        binding.btnRecord.icon =
-                            ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic_off)
-                        binding.btnRecord.setOnClickListener { waveRecorder.stopRecording() }
-                    }
-
-                    RecorderState.PAUSE -> {}
-                    RecorderState.STOP -> {
-                        binding.btnRecord.icon =
-                            ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic_on)
-                        binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
-                    }
-                }
-            }
+            onStateChangeListener = { handleRecorderStateChange(it) }
         }
 
     }
+
+    private fun handleRecorderStateChange(recorderState: RecorderState) {
+        when (recorderState) {
+            RecorderState.RECORDING -> {
+                binding.btnRecord.icon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic_off)
+                binding.btnRecord.setOnClickListener { waveRecorder.stopRecording() }
+            }
+
+            RecorderState.PAUSE -> {}
+            RecorderState.STOP -> {
+                binding.btnRecord.icon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic_on)
+                binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
+            }
+        }
+    }
+
 
     private fun prepareAudioPlayback() {
         if (!conversation1.voiceUrl.isNullOrBlank()) {
@@ -254,6 +258,12 @@ class SceneFragment : Fragment() {
             binding.convoBubble1.visibility = View.GONE
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+        exoPlayer.release()
     }
 
 
