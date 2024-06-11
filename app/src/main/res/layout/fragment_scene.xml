@@ -29,7 +29,7 @@
 
         <ImageView
             android:id="@+id/imgChar1"
-            android:layout_width="65dp"
+            android:layout_width="wrap_content"
             android:layout_height="120dp"
             app:layout_constraintBottom_toBottomOf="@id/convoBubble1"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +95,7 @@
 
         <ImageView
             android:id="@+id/imgChar2"
-            android:layout_width="65dp"
+            android:layout_width="wrap_content"
             android:layout_height="120dp"
             app:layout_constraintBottom_toBottomOf="@id/convoBubble2"
             app:layout_constraintStart_toStartOf="parent"
