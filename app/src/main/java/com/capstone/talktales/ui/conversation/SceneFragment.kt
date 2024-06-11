@@ -34,23 +34,20 @@ class SceneFragment : Fragment() {
     private var conversationScene: List<Conversation>? = null
     private val viewModel by activityViewModels<ConversationViewModel>()
 
-    private val conversation1 get() = conversationScene!![0]
-    private val conversation2 get() = conversationScene!![1]
-
-    private var _binding: FragmentSceneBinding? = null
-    private val binding get() = _binding!!
+    private val conversation1 by lazy { conversationScene!![0] }
+    private val conversation2 by lazy { conversationScene!![1] }
 
     private val bubbleRoundSize by lazy { dpToPx(requireActivity(), 32) }
 
     private val storyLogId by lazy { viewModel.getStoryLogId() }
-
-    private val audioPrefix get() = "${storyLogId}_${conversation2.id}"
-
-    private val filePath get() = context?.externalCacheDir?.absolutePath + "/${audioPrefix}_audio.wav"
+    private val audioPrefix by lazy { "${storyLogId}_${conversation2.id}" }
+    private val filePath by lazy { context?.externalCacheDir?.absolutePath + "/${audioPrefix}_audio.wav" }
 
     private val exoPlayer by lazy { ExoPlayer.Builder(requireContext()).build() }
-
     private val waveRecorder by lazy { WaveRecorder(filePath) }
+
+    private var _binding: FragmentSceneBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,16 +80,21 @@ class SceneFragment : Fragment() {
         if (conversation1.isSpeechByUser) {
             changeConversation1Layout()
         }
-
         if (conversation2.isSpeechByUser) {
             changeConversation2Layout()
         }
 
-
-        binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
         if (conversation1.isSpeechByUser or conversation2.isSpeechByUser) {
             binding.btnSend.setOnClickListener { sendUserAudio() }
         }
+
+        if (!conversation1.isSpeechByUser and !conversation2.isSpeechByUser) {
+            binding.btnMainAction.text = "Next"
+            binding.btnMainAction.setOnClickListener { viewModel.nextPage() }
+        }
+
+
+        binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
 
     }
 
