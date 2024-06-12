@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.updateLayoutParams
@@ -97,6 +98,8 @@ class ConversationSceneFragment : Fragment() {
         if (!conversation1.isSpeechByUser and !conversation2.isSpeechByUser) {
             binding.btnMainAction.text = "Next"
             binding.btnMainAction.setOnClickListener { viewModel.nextPage() }
+            binding.btnSend.visibility = View.GONE
+            binding.btnRecord.visibility = View.GONE
         }
 
 
@@ -132,7 +135,7 @@ class ConversationSceneFragment : Fragment() {
     private fun sendUserAudio() {
         val userAudio = File(filePath)
         if (!userAudio.exists()) {
-            // Todo Toast
+            Toast.makeText(context, "Record first", Toast.LENGTH_SHORT).show()
             return
         }
         val storyConvId = if (conversation1.isSpeechByUser) conversation1.id else conversation2.id
@@ -190,6 +193,7 @@ class ConversationSceneFragment : Fragment() {
                 binding.btnRecord.icon =
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic_off)
                 binding.btnRecord.setOnClickListener { waveRecorder.stopRecording() }
+                binding.btnSend.isEnabled = false
             }
 
             RecorderState.PAUSE -> {}
@@ -197,6 +201,7 @@ class ConversationSceneFragment : Fragment() {
                 binding.btnRecord.icon =
                     ContextCompat.getDrawable(requireContext(), R.drawable.ic_mic_on)
                 binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
+                binding.btnSend.isEnabled = true
             }
         }
     }

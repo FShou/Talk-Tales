@@ -64,7 +64,7 @@ class ConversationActivity : AppCompatActivity() {
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
@@ -112,9 +112,7 @@ class ConversationActivity : AppCompatActivity() {
         }
         binding.apply {
             tvFeedback.text = predictionData!!.feedback
-            tvPrediction.text = predictionData.prediction
             tvTarget.text = predictionData.target
-            tvScore.text = predictionData.scores.toString()
         }
 
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
@@ -196,7 +194,7 @@ class ConversationActivity : AppCompatActivity() {
 
     private fun showConversation() {
         with(binding.viewPager) {
-//            isUserInputEnabled = false
+            isUserInputEnabled = false
             adapter = sceneAdapter
 
         }
