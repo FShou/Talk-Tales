@@ -17,12 +17,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.capstone.talktales.R
 import com.capstone.talktales.data.model.Conversation
+import com.capstone.talktales.data.model.Scene
 import com.capstone.talktales.data.remote.response.ConversationResponse
 import com.capstone.talktales.data.remote.response.PredictionData
 import com.capstone.talktales.data.remote.response.ResponseResult
 import com.capstone.talktales.databinding.ActivityConversationBinding
 import com.capstone.talktales.factory.UserViewModelFactory
-import com.capstone.talktales.ui.storydetail.StoryDetailActivity.Companion.EXTRA_STORY_ID
 import com.capstone.talktales.ui.utils.setCurrentItemWithSmoothScroll
 import com.capstone.talktales.ui.utils.startShimmer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -49,7 +49,7 @@ class ConversationActivity : AppCompatActivity() {
         }
     }
 
-    private lateinit var conversation: List<List<Conversation>>
+    private lateinit var conversation: List<Conversation>
 
     private lateinit var sceneAdapter: RecyclerView.Adapter<*>
 
@@ -89,7 +89,12 @@ class ConversationActivity : AppCompatActivity() {
                     viewModel.setFeedback(null)
                 }
                 binding.btnFeedbackAction.text = "Next"
-                binding.tvFeedback.setTextColor(ContextCompat.getColor(this@ConversationActivity, R.color.green))
+                binding.tvFeedback.setTextColor(
+                    ContextCompat.getColor(
+                        this@ConversationActivity,
+                        R.color.green
+                    )
+                )
             }
 
             predictionData.feedback == "Incorrect" -> {
@@ -97,7 +102,12 @@ class ConversationActivity : AppCompatActivity() {
                     viewModel.setFeedback(null)
                 }
                 binding.btnFeedbackAction.text = "Retry"
-                binding.tvFeedback.setTextColor(ContextCompat.getColor(this@ConversationActivity, R.color.red))
+                binding.tvFeedback.setTextColor(
+                    ContextCompat.getColor(
+                        this@ConversationActivity,
+                        R.color.red
+                    )
+                )
             }
         }
         binding.apply {
@@ -122,19 +132,52 @@ class ConversationActivity : AppCompatActivity() {
 
             is ResponseResult.Success -> {
                 showLoading(false)
-                conversation = result.data.data!!.conversations.chunked(2)
-                sceneAdapter = object : FragmentStateAdapter(this) {
-                    override fun getItemCount(): Int = conversation.size
-
-                    override fun createFragment(position: Int): Fragment =
-                        SceneFragment.newInstance(conversation[position])
-
-                }
+                conversation = result.data.data!!.conversations
                 viewModel.setStoryLogId(result.data.data.storyLogId)
+                createScenes()
                 showConversation()
             }
         }
 
+    }
+
+    private fun createScenes() {
+        val midConversation = conversation.find { it.isMid }
+        if (midConversation == null) {
+            val chunkedConversation = conversation.chunked(2)
+            val scenes = mutableListOf<Scene>()
+            chunkedConversation.forEach {
+                scenes.add(Scene(data = it, isMid = false))
+            }
+            sceneAdapter = object : FragmentStateAdapter(this) {
+                override fun getItemCount(): Int = scenes.size
+
+                override fun createFragment(position: Int): Fragment =
+                    ConversationSceneFragment.newInstance(scenes[position].data)
+
+            }
+        } else {
+            val firstHalfScenes = conversation.takeWhile { !it.isMid }.chunked(2)
+            val secondHalfScenes = conversation.takeLastWhile { !it.isMid }.chunked(2)
+            val scenes = mutableListOf<Scene>()
+            firstHalfScenes.forEach {
+                scenes.add(Scene(isMid = false, data = it))
+            }
+            scenes.add(Scene(isMid = true, data = listOf(midConversation)))
+            secondHalfScenes.forEach {
+                scenes.add(Scene(isMid = false, data = it))
+            }
+            sceneAdapter = object : FragmentStateAdapter(this) {
+                override fun getItemCount(): Int = scenes.size
+
+                override fun createFragment(position: Int): Fragment {
+                    val scene = scenes[position]
+                    return if (scene.isMid) MidSceneFragment.newInstance(scene.data[0])
+                    else ConversationSceneFragment.newInstance(scene.data)
+                }
+
+            }
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -153,7 +196,7 @@ class ConversationActivity : AppCompatActivity() {
 
     private fun showConversation() {
         with(binding.viewPager) {
-            isUserInputEnabled = false
+//            isUserInputEnabled = false
             adapter = sceneAdapter
 
         }

@@ -33,5 +33,10 @@ data class Conversation(
 	val convText: String? = null,
 
 	@field:SerializedName("is_speech_by_user")
-	val isSpeechByUser: Boolean
+	val isSpeechByUser: Boolean,
+
+	@field:SerializedName("is_mid")
+	val isMid: Boolean,
+	@field:SerializedName("is_postlog")
+	val isPostLog: Boolean
 ): Parcelable

@@ -19,7 +19,7 @@ import com.capstone.talktales.R
 import com.capstone.talktales.data.model.Conversation
 import com.capstone.talktales.data.remote.response.CheckAudioResponse
 import com.capstone.talktales.data.remote.response.ResponseResult
-import com.capstone.talktales.databinding.FragmentSceneBinding
+import com.capstone.talktales.databinding.FragmentConversationSceneBinding
 import com.capstone.talktales.ui.utils.dpToPx
 import com.github.squti.androidwaverecorder.RecorderState
 import com.github.squti.androidwaverecorder.WaveRecorder
@@ -30,7 +30,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 
-class SceneFragment : Fragment() {
+class ConversationSceneFragment : Fragment() {
     private var conversationScene: List<Conversation>? = null
     private val viewModel by activityViewModels<ConversationViewModel>()
 
@@ -46,7 +46,7 @@ class SceneFragment : Fragment() {
     private val exoPlayer by lazy { ExoPlayer.Builder(requireContext()).build() }
     private val waveRecorder by lazy { WaveRecorder(filePath) }
 
-    private var _binding: FragmentSceneBinding? = null
+    private var _binding: FragmentConversationSceneBinding? = null
     private val binding get() = _binding!!
 
 
@@ -64,7 +64,7 @@ class SceneFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSceneBinding.inflate(inflater, container, false)
+        _binding = FragmentConversationSceneBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -79,6 +79,12 @@ class SceneFragment : Fragment() {
 
         if (conversation1.isSpeechByUser) {
             changeConversation1Layout()
+        }
+        if (conversation1.isPostLog) {
+            changeProlog1Layout()
+        }
+        if (conversation2.isPostLog) {
+            changeProlog2Layout()
         }
         if (conversation2.isSpeechByUser) {
             changeConversation2Layout()
@@ -95,6 +101,31 @@ class SceneFragment : Fragment() {
 
 
         binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
+
+    }
+
+    private fun changeProlog1Layout() {
+        binding.convoBubble1.updateLayoutParams<ConstraintLayout.LayoutParams> {
+            topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+            topToBottom = ConstraintLayout.LayoutParams.UNSET
+        }
+
+        binding.tvProlog1.updateLayoutParams<ConstraintLayout.LayoutParams> {
+            topToTop = ConstraintLayout.LayoutParams.UNSET
+            topToBottom = binding.convoBubble1.id
+        }
+
+    }
+    private fun changeProlog2Layout() {
+        binding.convoBubble2.updateLayoutParams<ConstraintLayout.LayoutParams> {
+            topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+            topToBottom = ConstraintLayout.LayoutParams.UNSET
+        }
+
+        binding.tvProlog2.updateLayoutParams<ConstraintLayout.LayoutParams> {
+            topToTop = ConstraintLayout.LayoutParams.UNSET
+            topToBottom = binding.convoBubble2.id
+        }
 
     }
 
@@ -119,7 +150,9 @@ class SceneFragment : Fragment() {
                 showLoading(false)
             }
 
-            is ResponseResult.Loading -> { showLoading(true) }
+            is ResponseResult.Loading -> {
+                showLoading(true)
+            }
 
             is ResponseResult.Success -> {
                 showLoading(false)
@@ -218,7 +251,7 @@ class SceneFragment : Fragment() {
             endToStart = binding.imgChar1.id
         }
 
-        binding.convoBubble2.shapeAppearanceModel =
+        binding.convoBubble1.shapeAppearanceModel =
             ShapeAppearanceModel.builder().setTopLeftCornerSize(0f).setBottomRightCornerSize(0f)
                 .setTopRightCornerSize(bubbleRoundSize).setBottomLeftCornerSize(bubbleRoundSize)
                 .build()
@@ -286,7 +319,7 @@ class SceneFragment : Fragment() {
 
 
         @JvmStatic
-        fun newInstance(conversationScene: List<Conversation>) = SceneFragment().apply {
+        fun newInstance(conversationScene: List<Conversation>) = ConversationSceneFragment().apply {
             arguments = Bundle().apply {
                 putParcelableArrayList(
                     ARG_CONVERSATION_SCENE, conversationScene as ArrayList<Conversation>

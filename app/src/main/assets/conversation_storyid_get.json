@@ -2,7 +2,7 @@
   "success": true,
   "message": "Berhasil mendapatkan conversation ID",
   "data": {
-    "storyLogId": 1,
+    "storyLogId": 6,
     "conversations": [
       {
         "id": 1,
@@ -12,10 +12,12 @@
         "conv_text": "Mbok Sirni, aku datang untuk mengambil Timun Mas. Janji adalah janji!",
         "character_img": "https://storage.googleapis.com/bucket-assets-talk-tales/assets-timun/buto%20ijo.png",
         "characer_name": "Raksasa",
-        "voice_url": "https://cdn.pixabay.com/download/audio/2023/08/26/audio_a6ee15a317.mp3?filename=sunflower-street-drumloop-85bpm-163900.mp3",
+        "voice_url": "",
         "is_speech_by_user": false,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
+        "is_mid": false,
+        "is_postlog": true,
+        "created_at": "2024-06-11T14:52:33.203Z",
+        "updated_at": "2024-06-11T14:52:33.203Z"
       },
       {
         "id": 2,
@@ -23,12 +25,14 @@
         "prolog_text": null,
         "conv_sequence": 1,
         "conv_text": "Tolong, beri kami sedikit waktu lagi.",
-        "character_img": "https://storage.googleapis.com/bucket-assets-talk-tales/assets-timun/ibu.png",
+        "character_img": "https://storage.googleapis.com/bucket-assets-talk-tales/assets-timun/mbok_sirni_kiri.png",
         "characer_name": "Mbok Sirni",
         "voice_url": "",
         "is_speech_by_user": true,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
+        "is_mid": false,
+        "is_postlog": false,
+        "created_at": "2024-06-11T14:52:33.203Z",
+        "updated_at": "2024-06-11T14:52:33.203Z"
       },
       {
         "id": 3,
@@ -38,10 +42,12 @@
         "conv_text": "Tidak ada waktu lagi! Serahkan Timun Mas sekarang!",
         "character_img": "https://storage.googleapis.com/bucket-assets-talk-tales/assets-timun/buto%20ijo.png",
         "characer_name": "Raksasa",
-        "voice_url": "https://cdn.pixabay.com/download/audio/2023/01/09/audio_baaa3cfec7.mp3?filename=acoustic-guitar-loop-f-91bpm-132687.mp3",
+        "voice_url": "",
         "is_speech_by_user": false,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
+        "is_mid": false,
+        "is_postlog": false,
+        "created_at": "2024-06-11T14:52:33.203Z",
+        "updated_at": "2024-06-11T14:52:33.203Z"
       },
       {
         "id": 4,
@@ -53,112 +59,55 @@
         "characer_name": "Mbok Sirni",
         "voice_url": "",
         "is_speech_by_user": true,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
+        "is_mid": false,
+        "is_postlog": false,
+        "created_at": "2024-06-11T14:52:33.203Z",
+        "updated_at": "2024-06-11T14:52:33.203Z"
       },
       {
         "id": 5,
         "storyId": 1,
-        "prolog_text": "Timun Mas menerima bungkusan itu dan segera berlari ke hutan. Raksasa mengejarnya dengan langkah besar dan cepat. Saat raksasa hampir menangkapnya, Timun Mas membuka bungkusan dan melemparkan satu persatu benda di dalamnya",
+        "prolog_text": "Timun Mas menerima bungkusan itu dan segera berlari ke hutan. Raksasa mengejarnya dengan langkah besar dan cepat. Saat raksasa hampir menangkapnya, Timun Mas membuka bungkusan dan melemparkan satu persatu benda di dalamnya\n            \n Pertama, ia melemparkan biji mentimun. Biji itu segera berubah menjadi ladang mentimun yang sangat lebat. Raksasa terhambat, tapi akhirnya ia berhasil melewati ladang mentimun itu.\n            \n Kemudian, Timun Mas melemparkan jarum. Jarum itu berubah menjadi pohon-pohon bambu yang sangat tinggi dan tajam. Raksasa kesulitan melewatinya, tapi akhirnya ia berhasil juga.\n            \n Lalu, Timun Mas melemparkan garam. Garam itu berubah menjadi lautan luas yang asin. Raksasa nyaris tenggelam, tapi dengan kekuatannya, ia berhasil melewati laut itu.\n            \n Akhirnya, Timun Mas melemparkan terasi. Terasi itu berubah menjadi danau lumpur yang mendidih. Raksasa terjebak di dalamnya dan tidak bisa keluar. Ia berteriak kesakitan dan akhirnya tenggelam dalam lumpur itu.\n            ",
         "conv_sequence": 4,
         "conv_text": null,
         "character_img": "",
         "characer_name": null,
         "voice_url": "",
         "is_speech_by_user": false,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
+        "is_mid": true,
+        "is_postlog": false,
+        "created_at": "2024-06-11T14:52:33.203Z",
+        "updated_at": "2024-06-11T14:52:33.203Z"
       },
       {
         "id": 6,
         "storyId": 1,
-        "prolog_text": "Pertama, ia melemparkan biji mentimun. Biji itu segera berubah menjadi ladang mentimun yang sangat lebat. Raksasa terhambat, tapi akhirnya ia berhasil melewati ladang mentimun itu.",
-        "conv_sequence": 5,
-        "conv_text": null,
-        "character_img": "",
-        "characer_name": null,
-        "voice_url": "",
-        "is_speech_by_user": false,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
-      },
-      {
-        "id": 7,
-        "storyId": 1,
-        "prolog_text": "Kemudian, Timun Mas melemparkan jarum. Jarum itu berubah menjadi pohon-pohon bambu yang sangat tinggi dan tajam. Raksasa kesulitan melewatinya, tapi akhirnya ia berhasil juga.",
-        "conv_sequence": 6,
-        "conv_text": null,
-        "character_img": "",
-        "characer_name": null,
-        "voice_url": "",
-        "is_speech_by_user": false,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
-      },
-      {
-        "id": 8,
-        "storyId": 1,
-        "prolog_text": "Lalu, Timun Mas melemparkan garam. Garam itu berubah menjadi lautan luas yang asin. Raksasa nyaris tenggelam, tapi dengan kekuatannya, ia berhasil melewati laut itu.",
-        "conv_sequence": 7,
-        "conv_text": null,
-        "character_img": "",
-        "characer_name": null,
-        "voice_url": "",
-        "is_speech_by_user": false,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
-      },
-      {
-        "id": 9,
-        "storyId": 1,
-        "prolog_text": "Akhirnya, Timun Mas melemparkan terasi. Terasi itu berubah menjadi danau lumpur yang mendidih. Raksasa terjebak di dalamnya dan tidak bisa keluar. Ia berteriak kesakitan dan akhirnya tenggelam dalam lumpur itu.",
-        "conv_sequence": 8,
-        "conv_text": null,
-        "character_img": "",
-        "characer_name": null,
-        "voice_url": "",
-        "is_speech_by_user": false,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
-      },
-      {
-        "id": 10,
-        "storyId": 1,
         "prolog_text": "Timun Mas selamat dan kembali ke rumahnya. Ia memeluk Mbok Sirni dengan erat.",
-        "conv_sequence": 9,
+        "conv_sequence": 5,
         "conv_text": "Ibu, aku selamat!",
         "character_img": "https://storage.googleapis.com/bucket-assets-talk-tales/assets-timun/timun%20mas.png",
         "characer_name": "Timun Mas",
         "voice_url": "",
         "is_speech_by_user": false,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
+        "is_mid": false,
+        "is_postlog": false,
+        "created_at": "2024-06-11T14:52:33.203Z",
+        "updated_at": "2024-06-11T14:52:33.203Z"
       },
       {
-        "id": 11,
+        "id": 7,
         "storyId": 1,
-        "prolog_text": null,
-        "conv_sequence": 10,
+        "prolog_text": "Timun Mas dan Mbok Sirni pun hidup bahagia tanpa gangguan raksasa lagi.",
+        "conv_sequence": 6,
         "conv_text": "Syukurlah kau selamat, Timun Mas. Sekarang kita bisa hidup dengan tenang.",
         "character_img": "https://storage.googleapis.com/bucket-assets-talk-tales/assets-timun/ibu.png",
         "characer_name": "Mbok Sirni",
         "voice_url": "",
         "is_speech_by_user": true,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
-      },
-      {
-        "id": 12,
-        "storyId": 1,
-        "prolog_text": "Timun Mas dan Mbok Sirni pun hidup bahagia tanpa gangguan raksasa lagi.",
-        "conv_sequence": 11,
-        "conv_text": null,
-        "character_img": "",
-        "characer_name": null,
-        "voice_url": "",
-        "is_speech_by_user": false,
-        "created_at": "2024-06-09T13:58:47.545Z",
-        "updated_at": "2024-06-09T13:58:47.545Z"
+        "is_mid": false,
+        "is_postlog": true,
+        "created_at": "2024-06-11T14:52:33.203Z",
+        "updated_at": "2024-06-11T14:52:33.203Z"
       }
     ]
   }
