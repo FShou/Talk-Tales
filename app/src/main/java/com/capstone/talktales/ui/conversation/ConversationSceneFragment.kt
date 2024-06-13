@@ -94,12 +94,20 @@ class ConversationSceneFragment : Fragment() {
         }
 
         if (conversation1.isSpeechByUser or conversation2.isSpeechByUser) {
-            binding.btnSend.setOnClickListener { sendUserAudio() }
+            binding.btnSend.setOnClickListener {
+                sendUserAudio()
+                exoPlayer2.pause()
+                exoPlayer.pause()
+            }
         }
 
         if (!conversation1.isSpeechByUser and !conversation2.isSpeechByUser) {
             binding.btnSend.text = "Next"
-            binding.btnSend.setOnClickListener { viewModel.nextPage() }
+            binding.btnSend.setOnClickListener {
+                viewModel.nextPage()
+                exoPlayer2.pause()
+                exoPlayer.pause()
+            }
             binding.btnRecord.visibility = View.GONE
         }
 
@@ -349,10 +357,17 @@ class ConversationSceneFragment : Fragment() {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        exoPlayer.pause()
+        exoPlayer2.pause()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
         exoPlayer.release()
+        exoPlayer2.release()
     }
 
 
