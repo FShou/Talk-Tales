@@ -116,7 +116,7 @@ class ConversationSceneFragment : Fragment() {
 
         binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
         viewModel.feedback.observe(viewLifecycleOwner) {
-            if(it?.feedback == "Incorrect") {
+            if (it?.feedback == "Incorrect") {
                 val prevFile = File(filePath)
                 if (prevFile.exists()) prevFile.delete()
                 binding.btnSend.isEnabled = true
@@ -170,6 +170,11 @@ class ConversationSceneFragment : Fragment() {
         when (result) {
             is ResponseResult.Error -> {
                 showLoading(false)
+                Toast.makeText(
+                    requireContext(),
+                    "Something when wrong, please try again",
+                    Toast.LENGTH_LONG
+                ).show()
             }
 
             is ResponseResult.Loading -> {
