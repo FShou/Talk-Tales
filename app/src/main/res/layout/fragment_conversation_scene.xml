@@ -232,6 +232,7 @@
                 style="@style/Widget.Material3.Button.IconButton"
                 app:icon="@drawable/ic_mic_on"
                 app:iconTint="@color/white"
+                app:iconSize="30dp"
                 android:backgroundTint="@color/orange"
                 />
 
