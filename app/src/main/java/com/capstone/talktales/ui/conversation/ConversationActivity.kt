@@ -1,8 +1,7 @@
 package com.capstone.talktales.ui.conversation
 
 import android.Manifest
-import android.content.ContentResolver
-import android.net.Uri
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -51,9 +50,14 @@ class ConversationActivity : AppCompatActivity() {
                 handleConversationResponse(res)
             }
         } else {
-            // Todo
+            Toast.makeText(this, "Please, accept the permission", Toast.LENGTH_LONG).show()
         }
     }
+    private fun allPermissionsGranted() =
+        ContextCompat.checkSelfPermission(
+            this,
+            REQUIRED_PERMISSION
+        ) == PackageManager.PERMISSION_GRANTED
 
     private val exoPlayer by lazy { ExoPlayer.Builder(this).build() }
 
@@ -77,8 +81,11 @@ class ConversationActivity : AppCompatActivity() {
             insets
         }
 
-        requestPermission.launch(Manifest.permission.RECORD_AUDIO)
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+        if (!allPermissionsGranted()){
+            requestPermission.launch(Manifest.permission.RECORD_AUDIO)
+            return
+        }
+        viewModel.getConversation(storyId).observe(this) { handleConversationResponse(it) }
 
         viewModel.feedback.observe(this) { handleFeedback(it) }
         viewModel.page.observe(this) { binding.viewPager.setCurrentItemWithSmoothScroll(it, 100) }
@@ -88,6 +95,8 @@ class ConversationActivity : AppCompatActivity() {
             pauseAtEndOfMediaItems = true
             prepare()
         }
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+
 
     }
 
@@ -220,5 +229,6 @@ class ConversationActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_STORY_ID = "story-id"
+        const val REQUIRED_PERMISSION = Manifest.permission.RECORD_AUDIO
     }
 }
