@@ -45,6 +45,8 @@ class ConversationSceneFragment : Fragment() {
     private val filePath by lazy { context?.externalCacheDir?.absolutePath + "/${audioPrefix}_audio.wav" }
 
     private val exoPlayer by lazy { ExoPlayer.Builder(requireContext()).build() }
+    private val exoPlayer2 by lazy { ExoPlayer.Builder(requireContext()).build() }
+
     private val waveRecorder by lazy { WaveRecorder(filePath) }
 
     private var _binding: FragmentConversationSceneBinding? = null
@@ -96,9 +98,8 @@ class ConversationSceneFragment : Fragment() {
         }
 
         if (!conversation1.isSpeechByUser and !conversation2.isSpeechByUser) {
-            binding.btnMainAction.text = "Next"
-            binding.btnMainAction.setOnClickListener { viewModel.nextPage() }
-            binding.btnSend.visibility = View.GONE
+            binding.btnSend.text = "Next"
+            binding.btnSend.setOnClickListener { viewModel.nextPage() }
             binding.btnRecord.visibility = View.GONE
         }
 
@@ -119,6 +120,7 @@ class ConversationSceneFragment : Fragment() {
         }
 
     }
+
     private fun changeProlog2Layout() {
         binding.convoBubble2.updateLayoutParams<ConstraintLayout.LayoutParams> {
             topToTop = ConstraintLayout.LayoutParams.PARENT_ID
@@ -215,15 +217,51 @@ class ConversationSceneFragment : Fragment() {
                 prepare()
             }
             with(binding.btnPlay) {
+                visibility = View.VISIBLE
                 setOnClickListener {
+                    exoPlayer2.pause()
+                    binding.btnPlay2.icon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_on)
                     if (exoPlayer.isPlaying) {
-                        icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_on)
+                        icon =
+                            ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_on)
                         exoPlayer.pause()
 
                     } else {
-                        icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_off)
-                        exoPlayer.play()
+                        icon =
+                            ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_off)
+
+                        exoPlayer.apply {
+                            seekTo(0)
+                            play()
+                        }
                     }
+
+                }
+            }
+        }
+        if (!conversation2.voiceUrl.isNullOrBlank()) {
+            exoPlayer2.apply {
+                setMediaItem(MediaItem.fromUri(conversation2.voiceUrl.toString()))
+                repeatMode = Player.REPEAT_MODE_ONE
+                prepare()
+            }
+            with(binding.btnPlay2) {
+                visibility = View.VISIBLE
+                setOnClickListener {
+                    exoPlayer.pause()
+                    binding.btnPlay.icon =
+                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_on)
+                    if (exoPlayer2.isPlaying) {
+                        icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_on)
+                        exoPlayer2.pause()
+
+                    } else {
+                        icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_off)
+                        exoPlayer2.apply {
+                            seekTo(0)
+                            play()
+                        }                    }
                 }
             }
         }

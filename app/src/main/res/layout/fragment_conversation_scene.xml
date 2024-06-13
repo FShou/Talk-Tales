@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         app:layout_constraintBottom_toTopOf="@id/actions"
+        app:layout_constraintVertical_bias="0.7"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,13 +48,13 @@
                 tools:layout_width="65dp"
                 />
 
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/convoBubble1"
                 style="@style/CardViewBubble"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
-                android:minHeight="120dp"
                 app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imgChar1"
@@ -63,7 +64,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="32dp">
+                    android:padding="32dp"
+                    >
 
                     <TextView
                         android:id="@+id/tvChar1Name"
@@ -90,6 +92,20 @@
 
 
             </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.Material3.Button.IconButton"
+                app:icon="@drawable/ic_audio_on"
+                app:iconTint="@color/white"
+                android:backgroundTint="@color/orange"
+                android:layout_marginBottom="-16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/convoBubble1"
+                app:layout_constraintEnd_toEndOf="@id/convoBubble1"
+                android:visibility="gone"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -168,6 +184,21 @@
 
     </com.google.android.material.card.MaterialCardView>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPlay2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Material3.Button.IconButton"
+        app:icon="@drawable/ic_audio_on"
+        app:iconTint="@color/white"
+        android:backgroundTint="@color/orange"
+        android:layout_marginBottom="-16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/convoBubble2"
+        app:layout_constraintEnd_toEndOf="@id/convoBubble2"
+        android:visibility="gone"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -191,18 +222,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btnMainAction"
+            app:layout_constraintBottom_toTopOf="@id/btnSend"
             >
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnPlay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Widget.Material3.Button.IconButton"
-                app:icon="@drawable/ic_audio_on"
-                app:iconTint="@color/white"
-                android:backgroundTint="@color/orange"
 
-                />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRecord"
                 android:layout_width="wrap_content"
@@ -211,17 +233,6 @@
                 app:icon="@drawable/ic_mic_on"
                 app:iconTint="@color/white"
                 android:backgroundTint="@color/orange"
-                android:layout_marginHorizontal="24dp"
-                />
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSend"
-                style="@style/Widget.Material3.Button.IconButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/orange"
-                app:icon="@drawable/ic_send"
-                app:iconTint="@color/white"
-
                 />
 
         </LinearLayout>
@@ -231,13 +242,13 @@
 
 
         <Button
-            android:id="@+id/btnMainAction"
+            android:id="@+id/btnSend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
             android:backgroundTint="@color/orange"
             android:fontFamily="@font/poppins_semibold"
-            android:text="@string/start"
+            android:text="Send"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp"
