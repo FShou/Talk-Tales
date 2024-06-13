@@ -53,11 +53,10 @@ class ConversationActivity : AppCompatActivity() {
             Toast.makeText(this, "Please, accept the permission", Toast.LENGTH_LONG).show()
         }
     }
-    private fun allPermissionsGranted() =
-        ContextCompat.checkSelfPermission(
-            this,
-            REQUIRED_PERMISSION
-        ) == PackageManager.PERMISSION_GRANTED
+
+    private fun allPermissionsGranted() = ContextCompat.checkSelfPermission(
+        this, REQUIRED_PERMISSION
+    ) == PackageManager.PERMISSION_GRANTED
 
     private val exoPlayer by lazy { ExoPlayer.Builder(this).build() }
 
@@ -81,7 +80,7 @@ class ConversationActivity : AppCompatActivity() {
             insets
         }
 
-        if (!allPermissionsGranted()){
+        if (!allPermissionsGranted()) {
             requestPermission.launch(Manifest.permission.RECORD_AUDIO)
             return
         }
@@ -96,7 +95,6 @@ class ConversationActivity : AppCompatActivity() {
             prepare()
         }
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
-
 
     }
 
@@ -122,8 +120,7 @@ class ConversationActivity : AppCompatActivity() {
                 binding.btnFeedbackAction.text = resources.getString(R.string.next)
                 binding.tvFeedback.setTextColor(
                     ContextCompat.getColor(
-                        this@ConversationActivity,
-                        R.color.green
+                        this@ConversationActivity, R.color.green
                     )
                 )
             }
@@ -140,8 +137,7 @@ class ConversationActivity : AppCompatActivity() {
                 binding.btnFeedbackAction.text = resources.getString(R.string.retry)
                 binding.tvFeedback.setTextColor(
                     ContextCompat.getColor(
-                        this@ConversationActivity,
-                        R.color.red
+                        this@ConversationActivity, R.color.red
                     )
                 )
             }
@@ -158,9 +154,11 @@ class ConversationActivity : AppCompatActivity() {
         when (result) {
             is ResponseResult.Error -> {
                 showLoading(false)
+                showError(true, result.msg)
             }
 
             is ResponseResult.Loading -> {
+                showError(false)
                 showLoading(true)
             }
 
@@ -173,6 +171,21 @@ class ConversationActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    private fun showError(isError: Boolean, message: String = "") {
+        with(binding) {
+            if (isError) {
+                errorLayout.tvError.text = message
+                errorLayout.btnRetry.setOnClickListener {
+                    viewModel.getConversation(storyId).observe(this@ConversationActivity) {
+                        handleConversationResponse(it)
+                    }
+                }
+                errorLayout.root.visibility = View.VISIBLE
+
+            } else errorLayout.root.visibility = View.GONE
+        }
     }
 
     private fun createScenes() {

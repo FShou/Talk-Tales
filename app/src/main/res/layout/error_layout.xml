@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:visibility="gone"
+    android:translationZ="999dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imgError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_error"
+        />
+
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/error_message"
+        android:gravity="center"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        />
+
+    <Button
+        android:id="@+id/btnRetry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/retry"
+        android:backgroundTint="@color/orange"
+        android:fontFamily="@font/poppins_semibold"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+</LinearLayout>

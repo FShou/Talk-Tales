@@ -77,18 +77,15 @@ class StoryDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun showError(isError: Boolean, msg: String? = null) {
-        if (isError)
-            with(binding) {
-                errorLayout.visibility = View.VISIBLE
-                tvError.text = msg
-                btnRetry.setOnClickListener { getStoryDetail() }
-            }
-        else{
-            binding.errorLayout.visibility = View.GONE
-            binding.tvError.text = getString(R.string.error_message)
-        }
+    private fun showError(isError: Boolean, message: String = "") {
+        with(binding) {
+            if (isError) {
+                errorLayout.tvError.text = message
+                errorLayout.btnRetry.setOnClickListener { getStoryDetail() }
+                errorLayout.root.visibility = View.VISIBLE
 
+            } else errorLayout.root.visibility = View.GONE
+        }
     }
 
 
