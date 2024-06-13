@@ -163,40 +163,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <include
         android:id="@+id/errorLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="24dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:visibility="gone"
-        android:translationZ="999dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/error_layout"
         app:layout_constraintTop_toTopOf="parent"
-        >
-        <TextView
-            android:id="@+id/tvError"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins_regular"
-            android:text="@string/error_message"
-            android:gravity="center"
-            android:paddingVertical="10dp"
-            />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.40"
+        />
 
-        <Button
-            android:id="@+id/btnRetry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/retry"
-            android:backgroundTint="@color/orange"
-            android:fontFamily="@font/poppins_semibold"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.capstone.talktales.ui.utils
 
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.view.View
 import android.view.animation.AlphaAnimation
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.animation.AnimatorSetCompat.playTogether
 import kotlin.math.abs
 
 fun View.startShimmer() {
@@ -23,6 +26,23 @@ fun View.startShimmer() {
     val animationSet = AnimationSet(true)
     animationSet.addAnimation(shimmerAnimation)
     startAnimation(animationSet)
+}
+
+fun View.zoomInFromZero(duration: Long = 300L) {
+    this.apply {
+        scaleX = 0f
+        scaleY = 0f
+        val scaleXAnimator = ObjectAnimator.ofFloat(this, "scaleX", 0f, 1f).apply {
+            this.duration = duration
+        }
+        val scaleYAnimator = ObjectAnimator.ofFloat(this, "scaleY", 0f, 1f).apply {
+            this.duration = duration
+        }
+        AnimatorSet().apply {
+            playTogether(scaleXAnimator, scaleYAnimator)
+            start()
+        }
+    }
 }
 
 inline fun ViewPager2.onPageSelected(crossinline action: (Int) -> Unit) {

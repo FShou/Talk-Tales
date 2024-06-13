@@ -4,6 +4,8 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_50">#F8F8F8</color>
+    <color name="white_100">#F6F6F6</color>
+    <color name="white_150">#eeeeee</color>
     <color name="orange">#FF7300</color>
     <color name="orange_50">#EAB88F</color>
     <color name="gray">#666666</color>
@@ -13,5 +15,9 @@
     <color name="red">#DA0000</color>
     <color name="grey">#F3F3F3</color>
     <color name="grey_hint">#94A3B8</color>
+
+
+    <color name="green">#1A9F04</color>
+    <color name="red_50">#CF0000</color>
 
 </resources>

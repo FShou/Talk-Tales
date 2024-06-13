@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "message": "Berhasil predict model conversation",
+  "data": {
+    "file_name": "1_2_audio.wav",
+    "idLogConversation": 1,
+    "prediction": "test test test",
+    "target": "Tolong, beri kami sedikit waktu lagi.",
+    "feedback": "Correct",
+    "scores": 80
+  }
+}

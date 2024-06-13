@@ -20,7 +20,9 @@ class UserRepository(
 
     fun getStoryDetail(id: String) = callApiWrapped { apiService.getStoryDetail(id) }
 
-    fun checkSceneAudio(audioFile: MultipartBody.Part) = callApiWrapped { apiService.checkUserAudio(audioFile) }
+    fun predictUserAudio(storyLogId: Int, storyConvId: Int, file: MultipartBody.Part) = callApiWrapped { apiService.predictUserAudio(storyLogId, storyConvId, file) }
+
+    fun getConversation(storyId: String) = callApiWrapped { apiService.getConversationByStoryId(storyId) }
 
     companion object {
         @Volatile

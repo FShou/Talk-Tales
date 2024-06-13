@@ -47,7 +47,6 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var profilePicture: ImageView
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupView()
@@ -69,8 +68,20 @@ class HomeActivity : AppCompatActivity() {
     private fun handleStoriesResponse(responseResult: ResponseResult<StoriesResponse>) {
         when (responseResult) {
             is ResponseResult.Error -> handleStoryError(responseResult.msg)
-            is ResponseResult.Loading -> handleStoryLoading()
-            is ResponseResult.Success -> { handleStorySuccess(responseResult.data) }
+            is ResponseResult.Loading -> {
+                showStorySkeleton(true)
+                showCarouselSkeleton(true)
+            }
+
+            is ResponseResult.Success -> {
+                val data = responseResult.data.listStoryItem
+                val carouselContent: ArrayList<Any> =
+                    arrayListOf(*data.toTypedArray(), Tutorial.IMG_URI)
+                showStorySkeleton(false)
+                showCarouselSkeleton(false)
+                showStories(data)
+                showCarousel(carouselContent)
+            }
         }
     }
 
@@ -144,21 +155,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
-    private fun handleStorySuccess(data: StoriesResponse) {
-        showStorySkeleton(false)
-        showCarouselSkeleton(false)
-        // Todo: hide error
-
-        showStories(data.listStoryItem)
-
-        val carouselContent: ArrayList<Any> = arrayListOf(
-            *data.listStoryItem.toTypedArray(),
-            Tutorial.IMG_URI
-        )
-        // Todo: move this to proper API call
-        showCarousel(carouselContent)
-    }
-
     private fun showCarouselSkeleton(isShow: Boolean) {
         if (isShow) {
             binding.carouselSkeleton.startShimmer()
@@ -199,13 +195,8 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun handleStoryLoading() {
-        showStorySkeleton(true)
-        showCarouselSkeleton(true)
-    }
 
     private fun handleStoryError(msg: String) {
-//        TODO("Not yet implemented")
         Toast.makeText(this@HomeActivity, msg, Toast.LENGTH_LONG).show()
     }
 

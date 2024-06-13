@@ -38,6 +38,13 @@
         <item name="cardBackgroundColor">@color/white_50</item>
     </style>
 
+    <style name="CardViewBubble" parent="Widget.Material3.CardView.Elevated">
+        <item name="shapeAppearanceOverlay">@style/BubbleShape</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="cardBackgroundColor">@color/white_100</item>
+    </style>
+
+
     <style name="Widget.App.Chip" parent="Widget.Material3.Chip.Suggestion">
         <item name="chipBackgroundColor">@color/orange_50</item>
         <item name="chipStrokeWidth">0dp</item>
@@ -58,6 +65,14 @@
         <item name="cornerSizeTopRight">32dp</item>
         <item name="cornerSizeTopLeft">32dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="BubbleShape" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">32dp</item>
+        <item name="cornerSizeBottomRight">32dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
     </style>
 

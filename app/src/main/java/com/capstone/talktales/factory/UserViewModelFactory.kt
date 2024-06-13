@@ -7,6 +7,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstone.talktales.data.repo.UserRepository
+import com.capstone.talktales.ui.conversation.ConversationViewModel
 import com.capstone.talktales.ui.home.HomeViewModel
 import com.capstone.talktales.ui.storydetail.StoryDetailViewModel
 import com.capstone.talktales.ui.userdetail.UserDetailActivity
@@ -31,6 +32,12 @@ class UserViewModelFactory private constructor(
             modelClass.isAssignableFrom(StoryDetailViewModel::class.java) -> return StoryDetailViewModel(
                 userRepository
             ) as T
+
+            modelClass.isAssignableFrom(ConversationViewModel::class.java) -> return ConversationViewModel(
+                userRepository
+            ) as T
+
+
         }
 
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
