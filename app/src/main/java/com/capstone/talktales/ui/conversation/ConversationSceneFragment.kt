@@ -102,11 +102,12 @@ class ConversationSceneFragment : Fragment() {
         }
 
         if (!conversation1.isSpeechByUser and !conversation2.isSpeechByUser) {
-            binding.btnSend.text = "Next"
+            binding.btnSend.text = activity?.resources?.getString(R.string.next)
             binding.btnSend.setOnClickListener {
                 viewModel.nextPage()
                 exoPlayer2.pause()
                 exoPlayer.pause()
+                it.isEnabled = false
             }
             binding.btnRecord.visibility = View.GONE
         }
@@ -269,7 +270,8 @@ class ConversationSceneFragment : Fragment() {
                         exoPlayer2.apply {
                             seekTo(0)
                             play()
-                        }                    }
+                        }
+                    }
                 }
             }
         }

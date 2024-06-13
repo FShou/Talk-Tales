@@ -35,7 +35,7 @@ class MidSceneFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentMidSceneBinding.inflate(layoutInflater,container,false)
         return binding.root
@@ -45,7 +45,10 @@ class MidSceneFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvProlog.text = conversation!!.prologText
-        binding.btnNext.setOnClickListener { viewModel.nextPage() }
+        binding.btnNext.setOnClickListener {
+            viewModel.nextPage()
+            it.isEnabled = false
+        }
         binding.storyBanner.load(conversation!!.characterImg)
     }
 

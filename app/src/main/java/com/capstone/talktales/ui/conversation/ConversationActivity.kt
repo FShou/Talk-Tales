@@ -77,6 +77,7 @@ class ConversationActivity : AppCompatActivity() {
     }
 
     private fun handleFeedback(predictionData: PredictionData?) {
+        binding.btnFeedbackAction.isEnabled = true
         when {
             predictionData == null -> {
                 bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
@@ -87,6 +88,7 @@ class ConversationActivity : AppCompatActivity() {
                 binding.btnFeedbackAction.setOnClickListener {
                     viewModel.nextPage()
                     viewModel.setFeedback(null)
+                    it.isEnabled = false
                 }
                 binding.btnFeedbackAction.text = resources.getString(R.string.next)
                 binding.tvFeedback.setTextColor(
@@ -100,6 +102,7 @@ class ConversationActivity : AppCompatActivity() {
             predictionData.feedback == "Incorrect" -> {
                 binding.btnFeedbackAction.setOnClickListener {
                     viewModel.setFeedback(null)
+                    it.isEnabled = false
                 }
                 binding.btnFeedbackAction.text = resources.getString(R.string.retry)
                 binding.tvFeedback.setTextColor(
