@@ -118,37 +118,23 @@
             />
 
         <TextView
-            android:id="@+id/tvPrediction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Prediction"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins_regular"
-
-            />
-
-        <TextView
             android:id="@+id/tvTarget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Target"
+            android:gravity="center"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/poppins_medium"
             />
 
-        <TextView
-            android:id="@+id/tvScore"
-            android:textColor="@color/black"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Score"/>
+
 
         <Button
             android:id="@+id/btnFeedbackAction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginVertical="20dp"
             android:backgroundTint="@color/orange"
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/start"

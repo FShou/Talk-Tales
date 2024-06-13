@@ -83,6 +83,9 @@ dependencies {
     implementation(libs.androidx.media3.exoplayer.dash)
     implementation(libs.android.wave.recorder)
 
+    implementation(libs.lottie)
+
+
 
     implementation(libs.coil)
     implementation(libs.androidx.legacy.support.v4)

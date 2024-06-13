@@ -88,7 +88,7 @@ class ConversationActivity : AppCompatActivity() {
                     viewModel.nextPage()
                     viewModel.setFeedback(null)
                 }
-                binding.btnFeedbackAction.text = "Next"
+                binding.btnFeedbackAction.text = resources.getString(R.string.next)
                 binding.tvFeedback.setTextColor(
                     ContextCompat.getColor(
                         this@ConversationActivity,
@@ -101,7 +101,7 @@ class ConversationActivity : AppCompatActivity() {
                 binding.btnFeedbackAction.setOnClickListener {
                     viewModel.setFeedback(null)
                 }
-                binding.btnFeedbackAction.text = "Retry"
+                binding.btnFeedbackAction.text = resources.getString(R.string.retry)
                 binding.tvFeedback.setTextColor(
                     ContextCompat.getColor(
                         this@ConversationActivity,
@@ -141,40 +141,31 @@ class ConversationActivity : AppCompatActivity() {
 
     private fun createScenes() {
         val midConversation = conversation.find { it.isMid }
+        val scenes = mutableListOf<Scene>()
         if (midConversation == null) {
             val chunkedConversation = conversation.chunked(2)
-            val scenes = mutableListOf<Scene>()
-            chunkedConversation.forEach {
-                scenes.add(Scene(data = it, isMid = false))
-            }
-            sceneAdapter = object : FragmentStateAdapter(this) {
-                override fun getItemCount(): Int = scenes.size
 
-                override fun createFragment(position: Int): Fragment =
-                    ConversationSceneFragment.newInstance(scenes[position].data)
-
-            }
+            chunkedConversation.forEach { scenes.add(Scene(data = it, isMid = false)) }
         } else {
+
             val firstHalfScenes = conversation.takeWhile { !it.isMid }.chunked(2)
             val secondHalfScenes = conversation.takeLastWhile { !it.isMid }.chunked(2)
-            val scenes = mutableListOf<Scene>()
-            firstHalfScenes.forEach {
-                scenes.add(Scene(isMid = false, data = it))
-            }
+            firstHalfScenes.forEach { scenes.add(Scene(isMid = false, data = it)) }
             scenes.add(Scene(isMid = true, data = listOf(midConversation)))
-            secondHalfScenes.forEach {
-                scenes.add(Scene(isMid = false, data = it))
-            }
-            sceneAdapter = object : FragmentStateAdapter(this) {
-                override fun getItemCount(): Int = scenes.size
+            secondHalfScenes.forEach { scenes.add(Scene(isMid = false, data = it)) }
+        }
+        sceneAdapter = object : FragmentStateAdapter(this) {
+            override fun getItemCount(): Int = scenes.size + 1
 
-                override fun createFragment(position: Int): Fragment {
-                    val scene = scenes[position]
-                    return if (scene.isMid) MidSceneFragment.newInstance(scene.data[0])
-                    else ConversationSceneFragment.newInstance(scene.data)
+            override fun createFragment(position: Int): Fragment {
+                if (itemCount-1 == position) {
+                    return FinishSceneFragment.newInstance()
                 }
-
+                val scene = scenes[position]
+                return if (scene.isMid) MidSceneFragment.newInstance(scene.data[0])
+                else ConversationSceneFragment.newInstance(scene.data)
             }
+
         }
     }
 
