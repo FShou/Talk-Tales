@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.media3.common.MediaItem
+import androidx.media3.exoplayer.ExoPlayer
 import com.capstone.talktales.R
-import com.capstone.talktales.databinding.FragmentConversationSceneBinding
 import com.capstone.talktales.databinding.FragmentFinishSceneBinding
 import com.capstone.talktales.ui.home.HomeActivity
+import com.capstone.talktales.ui.utils.zoomInFromZero
 
 
 class FinishSceneFragment : Fragment() {
@@ -17,6 +19,8 @@ class FinishSceneFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var animationDone = false
+    private val exoPlayer by lazy { ExoPlayer.Builder(requireContext()).build() }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +33,21 @@ class FinishSceneFragment : Fragment() {
             activity?.startActivity(Intent(requireActivity(), HomeActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             })
+        }
+        binding.rewardAnimation.addAnimatorUpdateListener {
+            val progress = (it.animatedValue as Float * 100).toInt()
+            if ( progress == 30) {
+                binding.tvFinished.apply {
+                    visibility = View.VISIBLE
+                    zoomInFromZero(1000L)
+                    exoPlayer.play()
+                }
+            }
+        }
+
+        exoPlayer.apply {
+            setMediaItem(MediaItem.fromUri("android.resource://" + activity?.packageName + "/" + R.raw.finished))
+            prepare()
         }
 
         return binding.root
@@ -43,6 +62,10 @@ class FinishSceneFragment : Fragment() {
         animationDone = true
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        exoPlayer.release()
+    }
 
     companion object {
         @JvmStatic

@@ -25,13 +25,15 @@
            />
 
         <TextView
+            android:id="@+id/tvFinished"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Finnished"
+            android:text="Finished"
             android:textColor="@color/orange"
             android:textSize="40sp"
             android:fontFamily="@font/poppins_semibold"
             android:textAlignment="center"
+            android:visibility="invisible"
             />
 
     </LinearLayout>
