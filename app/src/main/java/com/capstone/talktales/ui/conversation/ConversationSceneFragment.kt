@@ -98,6 +98,7 @@ class ConversationSceneFragment : Fragment() {
                 sendUserAudio()
                 exoPlayer2.pause()
                 exoPlayer.pause()
+                it.isEnabled = false
             }
         }
 
@@ -114,6 +115,13 @@ class ConversationSceneFragment : Fragment() {
 
 
         binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
+        viewModel.feedback.observe(viewLifecycleOwner) {
+            if(it?.feedback == "Incorrect") {
+                val prevFile = File(filePath)
+                if (prevFile.exists()) prevFile.delete()
+                binding.btnSend.isEnabled = true
+            }
+        }
 
     }
 
