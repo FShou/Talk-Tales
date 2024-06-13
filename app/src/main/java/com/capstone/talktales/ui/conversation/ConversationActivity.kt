@@ -1,6 +1,8 @@
 package com.capstone.talktales.ui.conversation
 
 import android.Manifest
+import android.content.ContentResolver
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -13,6 +15,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
+import androidx.media3.common.MediaItem
+import androidx.media3.exoplayer.ExoPlayer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.capstone.talktales.R
@@ -26,6 +30,7 @@ import com.capstone.talktales.factory.UserViewModelFactory
 import com.capstone.talktales.ui.utils.setCurrentItemWithSmoothScroll
 import com.capstone.talktales.ui.utils.startShimmer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import java.io.File
 
 class ConversationActivity : AppCompatActivity() {
 
@@ -48,6 +53,8 @@ class ConversationActivity : AppCompatActivity() {
             // Todo
         }
     }
+
+    private val exoPlayer by lazy { ExoPlayer.Builder(this).build() }
 
     private lateinit var conversation: List<Conversation>
 
@@ -73,6 +80,12 @@ class ConversationActivity : AppCompatActivity() {
 
         viewModel.feedback.observe(this) { handleFeedback(it) }
         viewModel.page.observe(this) { binding.viewPager.setCurrentItemWithSmoothScroll(it, 100) }
+        exoPlayer.apply {
+            addMediaItem(MediaItem.fromUri("android.resource://" + packageName + "/" + R.raw.correct))
+            addMediaItem(MediaItem.fromUri("android.resource://" + packageName + "/" + R.raw.incorrect))
+            pauseAtEndOfMediaItems = true
+            prepare()
+        }
 
     }
 
@@ -85,9 +98,14 @@ class ConversationActivity : AppCompatActivity() {
             }
 
             predictionData.feedback == "Correct" -> {
+                exoPlayer.apply {
+                    seekTo(0, 0)
+                    play()
+                }
                 binding.btnFeedbackAction.setOnClickListener {
                     viewModel.nextPage()
                     viewModel.setFeedback(null)
+
                     it.isEnabled = false
                 }
                 binding.btnFeedbackAction.text = resources.getString(R.string.next)
@@ -100,6 +118,10 @@ class ConversationActivity : AppCompatActivity() {
             }
 
             predictionData.feedback == "Incorrect" -> {
+                exoPlayer.apply {
+                    seekTo(1, 0)
+                    play()
+                }
                 binding.btnFeedbackAction.setOnClickListener {
                     viewModel.setFeedback(null)
                     it.isEnabled = false
@@ -161,7 +183,7 @@ class ConversationActivity : AppCompatActivity() {
             override fun getItemCount(): Int = scenes.size + 1
 
             override fun createFragment(position: Int): Fragment {
-                if (itemCount-1 == position) {
+                if (itemCount - 1 == position) {
                     return FinishSceneFragment.newInstance()
                 }
                 val scene = scenes[position]
