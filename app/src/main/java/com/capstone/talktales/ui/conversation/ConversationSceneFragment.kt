@@ -3,10 +3,12 @@ package com.capstone.talktales.ui.conversation
 
 import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -93,28 +95,30 @@ class ConversationSceneFragment : Fragment() {
             changeConversation2Layout()
         }
 
-        if (conversation1.isSpeechByUser or conversation2.isSpeechByUser) {
-            binding.btnSend.setOnClickListener {
-                sendUserAudio()
-                exoPlayer2.pause()
-                exoPlayer.pause()
-                it.isEnabled = false
+        with(binding) {
+            if (conversation1.isSpeechByUser or conversation2.isSpeechByUser) {
+                btnSend.setOnClickListener {
+                    sendUserAudio()
+                    exoPlayer2.pause()
+                    exoPlayer.pause()
+                    it.isEnabled = false
+                }
             }
+            if (!conversation1.isSpeechByUser and !conversation2.isSpeechByUser) {
+                btnSend.text = activity?.resources?.getString(R.string.next)
+                btnSend.setOnClickListener {
+                    viewModel.nextPage()
+                    exoPlayer2.pause()
+                    exoPlayer.pause()
+                    it.isEnabled = false
+                }
+                btnRecord.visibility = View.GONE
+            }
+            btnRecord.setOnClickListener { waveRecorder.startRecording() }
+
         }
 
-        if (!conversation1.isSpeechByUser and !conversation2.isSpeechByUser) {
-            binding.btnSend.text = activity?.resources?.getString(R.string.next)
-            binding.btnSend.setOnClickListener {
-                viewModel.nextPage()
-                exoPlayer2.pause()
-                exoPlayer.pause()
-                it.isEnabled = false
-            }
-            binding.btnRecord.visibility = View.GONE
-        }
 
-
-        binding.btnRecord.setOnClickListener { waveRecorder.startRecording() }
         viewModel.feedback.observe(viewLifecycleOwner) {
             if (it?.feedback == "Incorrect") {
                 val prevFile = File(filePath)
@@ -126,29 +130,31 @@ class ConversationSceneFragment : Fragment() {
     }
 
     private fun changeProlog1Layout() {
-        binding.convoBubble1.updateLayoutParams<ConstraintLayout.LayoutParams> {
-            topToTop = ConstraintLayout.LayoutParams.PARENT_ID
-            topToBottom = ConstraintLayout.LayoutParams.UNSET
-        }
+        with(binding) {
+            convoBubble1.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+                topToBottom = ConstraintLayout.LayoutParams.UNSET
+            }
 
-        binding.tvProlog1.updateLayoutParams<ConstraintLayout.LayoutParams> {
-            topToTop = ConstraintLayout.LayoutParams.UNSET
-            topToBottom = binding.convoBubble1.id
+            tvProlog1.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                topToTop = ConstraintLayout.LayoutParams.UNSET
+                topToBottom = binding.convoBubble2.id
+            }
         }
-
     }
 
     private fun changeProlog2Layout() {
-        binding.convoBubble2.updateLayoutParams<ConstraintLayout.LayoutParams> {
-            topToTop = ConstraintLayout.LayoutParams.PARENT_ID
-            topToBottom = ConstraintLayout.LayoutParams.UNSET
-        }
+        with(binding) {
+            convoBubble2.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+                topToBottom = ConstraintLayout.LayoutParams.UNSET
+            }
 
-        binding.tvProlog2.updateLayoutParams<ConstraintLayout.LayoutParams> {
-            topToTop = ConstraintLayout.LayoutParams.UNSET
-            topToBottom = binding.convoBubble2.id
+            tvProlog2.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                topToTop = ConstraintLayout.LayoutParams.UNSET
+                topToBottom = binding.convoBubble2.id
+            }
         }
-
     }
 
     private fun sendUserAudio() {
@@ -171,9 +177,7 @@ class ConversationSceneFragment : Fragment() {
             is ResponseResult.Error -> {
                 showLoading(false)
                 Toast.makeText(
-                    requireContext(),
-                    "Something when wrong, please try again",
-                    Toast.LENGTH_LONG
+                    requireContext(), "Something when wrong, please try again", Toast.LENGTH_LONG
                 ).show()
             }
 
@@ -245,13 +249,11 @@ class ConversationSceneFragment : Fragment() {
                     binding.btnPlay2.icon =
                         ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_on)
                     if (exoPlayer.isPlaying) {
-                        icon =
-                            ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_on)
+                        icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_on)
                         exoPlayer.pause()
 
                     } else {
-                        icon =
-                            ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_off)
+                        icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_audio_off)
 
                         exoPlayer.apply {
                             seekTo(0)
@@ -291,85 +293,80 @@ class ConversationSceneFragment : Fragment() {
     }
 
     private fun changeConversation2Layout() {
-        binding.imgChar2.updateLayoutParams<ConstraintLayout.LayoutParams> {
-            startToStart = ConstraintLayout.LayoutParams.UNSET
-            endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
+        with(binding) {
+            imgChar2.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                startToStart = ConstraintLayout.LayoutParams.UNSET
+                endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
+            }
+            convoBubble2.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                endToEnd = ConstraintLayout.LayoutParams.UNSET
+                startToStart = ConstraintLayout.LayoutParams.PARENT_ID
+                endToStart = binding.imgChar2.id
+            }
+            convoBubble2.shapeAppearanceModel =
+                ShapeAppearanceModel.builder().setTopLeftCornerSize(0f).setBottomRightCornerSize(0f)
+                    .setTopRightCornerSize(bubbleRoundSize).setBottomLeftCornerSize(bubbleRoundSize)
+                    .build()
+
+            (tvChar2Name.layoutParams as LinearLayout.LayoutParams).gravity = Gravity.END
         }
-        binding.convoBubble2.updateLayoutParams<ConstraintLayout.LayoutParams> {
-            endToEnd = ConstraintLayout.LayoutParams.UNSET
-            startToStart = ConstraintLayout.LayoutParams.PARENT_ID
-            endToStart = binding.imgChar2.id
-        }
-        binding.convoBubble2.shapeAppearanceModel =
-            ShapeAppearanceModel.builder().setTopLeftCornerSize(0f).setBottomRightCornerSize(0f)
-                .setTopRightCornerSize(bubbleRoundSize).setBottomLeftCornerSize(bubbleRoundSize)
-                .build()
     }
 
     private fun changeConversation1Layout() {
-        binding.imgChar1.updateLayoutParams<ConstraintLayout.LayoutParams> {
-            startToStart = ConstraintLayout.LayoutParams.UNSET
-            endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
-        }
-        binding.convoBubble1.updateLayoutParams<ConstraintLayout.LayoutParams> {
-            endToEnd = ConstraintLayout.LayoutParams.UNSET
-            startToStart = ConstraintLayout.LayoutParams.PARENT_ID
-            endToStart = binding.imgChar1.id
-        }
+        with(binding) {
+            imgChar1.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                startToStart = ConstraintLayout.LayoutParams.UNSET
+                endToEnd = ConstraintLayout.LayoutParams.PARENT_ID
+            }
+            convoBubble1.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                endToEnd = ConstraintLayout.LayoutParams.UNSET
+                startToStart = ConstraintLayout.LayoutParams.PARENT_ID
+                endToStart = binding.imgChar1.id
+            }
+            convoBubble1.shapeAppearanceModel =
+                ShapeAppearanceModel.builder().setTopLeftCornerSize(0f).setBottomRightCornerSize(0f)
+                    .setTopRightCornerSize(bubbleRoundSize).setBottomLeftCornerSize(bubbleRoundSize)
+                    .build()
 
-        binding.convoBubble1.shapeAppearanceModel =
-            ShapeAppearanceModel.builder().setTopLeftCornerSize(0f).setBottomRightCornerSize(0f)
-                .setTopRightCornerSize(bubbleRoundSize).setBottomLeftCornerSize(bubbleRoundSize)
-                .build()
+            (tvChar1Name.layoutParams as LinearLayout.LayoutParams).gravity = Gravity.END
+        }
     }
 
     private fun showConversation2() {
-        if (!conversation2.convText.isNullOrBlank()) {
-            binding.imgChar2.visibility = View.VISIBLE
-            binding.tvChar2Name.visibility = View.VISIBLE
-            binding.tvChar2Convo.visibility = View.VISIBLE
+        with(binding) {
+            imgChar2.load(conversation2.characterImg)
+            tvChar2Name.text = conversation2.characterName
+            tvChar2Convo.text = conversation2.convText
 
-            binding.imgChar2.load(conversation2.characterImg)
-            binding.tvChar2Name.text = conversation2.characterName
-            binding.tvChar2Convo.text = conversation2.convText
-        } else {
-            binding.imgChar2.visibility = View.GONE
-            binding.tvChar2Name.visibility = View.GONE
-            binding.tvChar2Convo.visibility = View.GONE
-            binding.convoBubble2.visibility = View.GONE
         }
     }
 
     private fun showProlog1() {
         if (!conversation1.prologText.isNullOrBlank()) {
-            binding.tvProlog1.visibility = View.VISIBLE
-            binding.tvProlog1.text = conversation1.prologText
+            with(binding) {
+                tvProlog1.visibility = View.VISIBLE
+                tvProlog1.text = conversation1.prologText
+            }
         }
     }
 
     private fun showProlog2() {
         if (!conversation2.prologText.isNullOrBlank()) {
-            binding.tvProlog2.visibility = View.VISIBLE
-            binding.tvProlog2.text = conversation2.prologText
+            with(binding) {
+                tvProlog2.visibility = View.VISIBLE
+                tvProlog2.text = conversation2.prologText
+            }
+
         }
     }
 
     private fun showConversation1() {
-        if (!conversation1.convText.isNullOrBlank()) {
-            binding.imgChar1.visibility = View.VISIBLE
-            binding.tvChar1Name.visibility = View.VISIBLE
-            binding.tvChar1Convo.visibility = View.VISIBLE
+        with(binding) {
+            imgChar1.load(conversation1.characterImg)
+            tvChar1Name.text = conversation1.characterName
+            tvChar1Convo.text = conversation1.convText
 
-            binding.imgChar1.load(conversation1.characterImg)
-            binding.tvChar1Name.text = conversation1.characterName
-            binding.tvChar1Convo.text = conversation1.convText
-        } else {
-            binding.imgChar1.visibility = View.GONE
-            binding.tvChar1Name.visibility = View.GONE
-            binding.tvChar1Convo.visibility = View.GONE
-            binding.convoBubble1.visibility = View.GONE
         }
-
     }
 
     override fun onPause() {
