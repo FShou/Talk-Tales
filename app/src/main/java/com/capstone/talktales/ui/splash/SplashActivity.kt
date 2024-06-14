@@ -12,8 +12,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.capstone.talktales.R
+import com.capstone.talktales.data.model.User
 import com.capstone.talktales.factory.AuthViewModelFactory
 import com.capstone.talktales.ui.home.HomeActivity
 import com.capstone.talktales.ui.login.LoginActivity
@@ -34,8 +34,8 @@ class SplashActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.getLoginUser().observe(this) { token ->
-                if (token != null) {
+            viewModel.getLoginUser().observe(this) { user ->
+                if ((user as User).token.isNotBlank()) {
                     val intent = Intent(this, HomeActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                     startActivity(intent)

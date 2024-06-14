@@ -15,9 +15,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.capstone.talktales.R
+import com.capstone.talktales.data.model.User
 import com.capstone.talktales.data.remote.response.LoginResponse
 import com.capstone.talktales.data.remote.response.ResponseResult
 import com.capstone.talktales.databinding.ActivityLoginBinding
@@ -95,8 +93,12 @@ class LoginActivity : AppCompatActivity() {
             }
 
             is ResponseResult.Success -> {
-                val token = result.data.data.token
-                viewModel.saveLoginUser(token)
+                val user = User(
+                    name = result.data.data.userItem.name,
+                    email = result.data.data.userItem.email,
+                    token = result.data.data.token
+                )
+                viewModel.saveLoginUser(user)
                 hideLoginForm()
                 showSuccessAnimation()
             }

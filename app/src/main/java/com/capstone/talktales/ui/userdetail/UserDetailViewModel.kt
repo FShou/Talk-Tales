@@ -10,4 +10,7 @@ class UserDetailViewModel(private val userRepository: UserRepository) : ViewMode
     fun logout() = viewModelScope.launch {
         userRepository.clearLoginUser()
     }
+
+    fun getLoginUser() = userRepository.getLoginUser()
+
 }

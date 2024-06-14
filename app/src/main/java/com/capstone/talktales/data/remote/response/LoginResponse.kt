@@ -14,7 +14,7 @@ data class LoginResponse(
     val message: String
 )
 
-data class User(
+data class UserItem(
 
     @field:SerializedName("name")
     val name: String,
@@ -26,7 +26,7 @@ data class User(
 data class Data(
 
     @field:SerializedName("user")
-    val user: User,
+    val userItem: UserItem,
 
     @field:SerializedName("token")
     val token: String
