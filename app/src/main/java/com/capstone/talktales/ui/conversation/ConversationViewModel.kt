@@ -25,7 +25,7 @@ class ConversationViewModel(private val userRepository: UserRepository): ViewMod
         return _storyLogId
     }
 
-    private val _feedback = MutableLiveData<PredictionData?>()
+    private val _feedback = MutableLiveData<PredictionData?>(null)
     val feedback: LiveData<PredictionData?> get() = _feedback
 
     fun setFeedback(predictionData: PredictionData?) {

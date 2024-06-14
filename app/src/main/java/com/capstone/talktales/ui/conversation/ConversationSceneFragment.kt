@@ -138,7 +138,7 @@ class ConversationSceneFragment : Fragment() {
 
             tvProlog1.updateLayoutParams<ConstraintLayout.LayoutParams> {
                 topToTop = ConstraintLayout.LayoutParams.UNSET
-                topToBottom = binding.convoBubble2.id
+                topToBottom = binding.convoBubble1.id
             }
         }
     }

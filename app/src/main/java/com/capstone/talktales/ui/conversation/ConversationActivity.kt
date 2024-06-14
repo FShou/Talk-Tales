@@ -1,10 +1,12 @@
 package com.capstone.talktales.ui.conversation
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -27,9 +29,11 @@ import com.capstone.talktales.data.remote.response.PredictionData
 import com.capstone.talktales.data.remote.response.ResponseResult
 import com.capstone.talktales.databinding.ActivityConversationBinding
 import com.capstone.talktales.factory.UserViewModelFactory
+import com.capstone.talktales.ui.home.HomeActivity
 import com.capstone.talktales.ui.utils.setCurrentItemWithSmoothScroll
 import com.capstone.talktales.ui.utils.startShimmer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
 
 class ConversationActivity : AppCompatActivity() {
@@ -80,22 +84,50 @@ class ConversationActivity : AppCompatActivity() {
             insets
         }
 
-        if (!allPermissionsGranted()) {
-            requestPermission.launch(Manifest.permission.RECORD_AUDIO)
-            return
-        }
-        viewModel.getConversation(storyId).observe(this) { handleConversationResponse(it) }
+        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+
+
 
         viewModel.feedback.observe(this) { handleFeedback(it) }
         viewModel.page.observe(this) { binding.viewPager.setCurrentItemWithSmoothScroll(it, 100) }
+
         exoPlayer.apply {
             addMediaItem(MediaItem.fromUri("android.resource://" + packageName + "/" + R.raw.correct))
             addMediaItem(MediaItem.fromUri("android.resource://" + packageName + "/" + R.raw.incorrect))
             pauseAtEndOfMediaItems = true
             prepare()
         }
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_HIDDEN
 
+        onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                showBackAlert()
+            }
+        })
+
+        binding.btnBack.setOnClickListener { showBackAlert() }
+
+        if (!allPermissionsGranted()) {
+            requestPermission.launch(Manifest.permission.RECORD_AUDIO)
+            return
+        }
+
+        viewModel.getConversation(storyId).observe(this) { handleConversationResponse(it) }
+
+    }
+
+    private fun showBackAlert() {
+        MaterialAlertDialogBuilder(this, R.style.ThemeOverlay_App_MaterialAlertDialog)
+            .setTitle(getString(R.string.are_you_sure))
+            .setMessage(getString(R.string.this_will_not_be_saved))
+            .setPositiveButton(getString(R.string.continu)) { _, _ -> startIntentHome() }
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.dismiss() }
+            .show()
+    }
+
+    private fun startIntentHome() {
+        startActivity(Intent(this,HomeActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        })
     }
 
     private fun handleFeedback(predictionData: PredictionData?) {

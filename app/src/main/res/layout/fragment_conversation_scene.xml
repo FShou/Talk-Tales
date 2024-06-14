@@ -23,20 +23,22 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             >
+
             <TextView
                 android:id="@+id/tvProlog1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="10dp"
+                android:layout_marginTop="16dp"
                 android:alpha="0.65"
                 android:fontFamily="@font/poppins_regular"
                 android:text="Prolog 1"
                 android:textAlignment="center"
+                android:textSize="12sp"
                 android:textColor="@color/black"
                 android:visibility="gone"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="visible"
-                />
+                tools:visibility="visible" />
 
             <ImageView
                 android:id="@+id/imgChar1"
@@ -64,7 +66,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="32dp"
+                    android:paddingVertical="32dp"
+                    android:paddingHorizontal="16dp"
                     >
 
                     <TextView
@@ -126,6 +129,7 @@
         android:text="Prolog 2"
         android:textAlignment="center"
         android:textColor="@color/black"
+        android:textSize="12sp"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
@@ -156,7 +160,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="32dp">
+            android:paddingVertical="32dp"
+            android:paddingHorizontal="16dp"            >
 
             <TextView
                 android:id="@+id/tvChar2Name"

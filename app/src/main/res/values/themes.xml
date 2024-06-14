@@ -82,4 +82,42 @@
     </style>
 
     <style name="Theme.TalkTales" parent="Base.Theme.TalkTales" />
+
+<!--    Confirmation Alert-->
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.App.Body.Text</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.App.SmallComponent2</item> <!-- your custom shape appearance for your dialog. In my case, I am changing corner radius of dialog to rounded 20dp corners-->
+        <item name="colorSurface">@color/white</item>
+        <item name="colorPrimary">@color/orange</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.Button.Danger</item> <!-- your custom positive button style-->
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.App.Button</item> <!-- your custom negtive button style-->
+    </style>
+    <style name="MaterialAlertDialog.App.Title.Text" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+    <style name="MaterialAlertDialog.App.Body.Text" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent2" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="android:textAppearance">@style/MyTextAppearance</item>
+        <item name="android:textColor">@color/orange</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="Widget.App.Button.Danger" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="shapeAppearance">@style/ShapeAppearance.App.SmallComponent</item>
+        <item name="android:textAppearance">@style/MyTextAppearance</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="MyTextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
 </resources>
