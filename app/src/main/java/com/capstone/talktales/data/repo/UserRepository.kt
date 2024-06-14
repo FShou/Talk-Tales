@@ -26,14 +26,5 @@ class UserRepository(
 
     fun getConversation(storyId: String) = callApiWrapped { apiService.getConversationByStoryId(storyId) }
 
-    companion object {
-        @Volatile
-        private var instance: UserRepository? = null
 
-        fun getInstance(apiService: ApiService, userPref: UserPreference): UserRepository =
-            instance ?: synchronized(this) {
-                instance ?: UserRepository(apiService, userPref)
-            }.also { instance = it }
-
-    }
 }

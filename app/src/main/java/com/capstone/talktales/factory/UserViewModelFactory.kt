@@ -44,11 +44,12 @@ class UserViewModelFactory private constructor(
     }
 
     companion object {
-        @Volatile
         private var instance: UserViewModelFactory? = null
         fun getInstance(context: Context): UserViewModelFactory =
-            instance ?: synchronized(this) {
-                instance ?: UserViewModelFactory(Injection.provideUserRepository(context))
-            }.also { instance = it }
+                instance ?: UserViewModelFactory(Injection.provideUserRepository(context)).also { instance = it }
+
+        fun destroy(){
+            instance = null
+        }
     }
 }

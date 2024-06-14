@@ -27,6 +27,6 @@ object Injection {
 
         val apiService = ApiConfig.getApiService(context, token)
 
-        return UserRepository.getInstance(apiService, pref)
+        return UserRepository(apiService, pref)
     }
 }
