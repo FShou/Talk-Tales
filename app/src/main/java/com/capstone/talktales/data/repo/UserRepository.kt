@@ -16,6 +16,8 @@ class UserRepository(
 
     suspend fun clearLoginUser() = userPref.clearLoginUser()
 
+    fun getLoginUser() = userPref.getLoginUser().asLiveData()
+
     fun getStories() = callApiWrapped { apiService.getStories() }
 
     fun getStoryDetail(id: String) = callApiWrapped { apiService.getStoryDetail(id) }

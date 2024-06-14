@@ -9,7 +9,7 @@ class AuthRepository private constructor(
     private val userPref: UserPreference
 ) : BaseRepository() {
     fun getLoginUser() = userPref.getLoginUser().asLiveData()
-    suspend fun saveLoginUser(token: String) = userPref.saveLoginUser(token)
+    suspend fun saveLoginUser(name:String, email:String, token: String) = userPref.saveLoginUser(name, email, token)
 
     fun login(email: String, password: String) =
         callApiWrapped { apiService.login(email, password) }

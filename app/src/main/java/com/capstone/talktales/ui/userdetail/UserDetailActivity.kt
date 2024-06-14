@@ -40,6 +40,13 @@ class UserDetailActivity : AppCompatActivity() {
 
         loadProfilePicture(imgUri) // Todo: load from API or Pref
 
+        viewModel.getLoginUser().observe(this) {
+            with(binding) {
+                tvUsername.text = it.name
+                tvUserEmail.text = it.email
+            }
+        }
+
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
             startActivity(
