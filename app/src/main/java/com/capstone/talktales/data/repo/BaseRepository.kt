@@ -2,8 +2,10 @@ package com.capstone.talktales.data.repo
 
 import android.util.Log
 import androidx.lifecycle.liveData
+import com.capstone.talktales.data.remote.response.ErrorResponse
 import com.capstone.talktales.data.remote.response.ResponseResult
-import kotlinx.coroutines.delay
+import com.google.gson.Gson
+import retrofit2.HttpException
 
 abstract class BaseRepository {
 
@@ -33,8 +35,14 @@ abstract class BaseRepository {
         try {
             val response = apiCall()
             emit(ResponseResult.Success(response))
-            // Todo: Http Exception
-        } catch (e: Exception) {
+        } catch (e: HttpException) {
+            val jsonBody = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonBody, ErrorResponse::class.java)
+            errorBody?.let {
+                emit(ResponseResult.Error(it.message))
+            }
+        }
+        catch (e: Exception) {
             Log.e("REPO", e.toString())
             e.message
                 ?.let { ResponseResult.Error(it) }
