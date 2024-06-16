@@ -24,8 +24,8 @@ class UserDetailActivity : AppCompatActivity() {
         UserViewModelFactory.getInstance(this)
     }
 
-    val imgUri =
-        Uri.parse("android.resource://com.capstone.talktales/drawable/banner_timun") // Todo: Get from api
+    private val imgUri: Uri =
+        Uri.parse("android.resource://com.capstone.talktales/drawable/account") // Todo: Get from api
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

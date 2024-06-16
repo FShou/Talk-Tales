@@ -21,6 +21,7 @@ import com.capstone.talktales.data.model.StoryItem
 import com.capstone.talktales.data.model.Tutorial
 import com.capstone.talktales.databinding.ActivityHomeBinding
 import com.capstone.talktales.factory.UserViewModelFactory
+import com.capstone.talktales.ui.tutorial.TutorialActivity
 import com.capstone.talktales.ui.userdetail.UserDetailActivity
 import com.capstone.talktales.ui.utils.BorderedCircleCropTransformation
 import com.capstone.talktales.ui.utils.applyMarginAndScalePageTransformer
@@ -56,13 +57,27 @@ class HomeActivity : AppCompatActivity() {
             .getStories()
             .observe(this) { handleStoriesResponse(it) }
 
-        binding.tutorialBanner
-            .load(Tutorial.IMG_URI) {
+        showTutorial()
+
+
+    }
+
+    private fun showTutorial() {
+        with(binding.tutorialBanner) {
+            load(Tutorial.BANNER) {
                 transformations(
                     RoundedCornersTransformation(16f)
                 )
             }
-
+            setOnClickListener {
+                startActivity(
+                    Intent(
+                        this@HomeActivity,
+                        TutorialActivity::class.java
+                    )
+                )
+            }
+        }
     }
 
     private fun handleStoriesResponse(responseResult: ResponseResult<StoriesResponse>) {
@@ -76,7 +91,7 @@ class HomeActivity : AppCompatActivity() {
             is ResponseResult.Success -> {
                 val data = responseResult.data.listStoryItem
                 val carouselContent: ArrayList<Any> =
-                    arrayListOf(*data.toTypedArray(), Tutorial.IMG_URI)
+                    arrayListOf(*data.toTypedArray(), Tutorial.BANNER)
                 showStorySkeleton(false)
                 showCarouselSkeleton(false)
                 showStories(data)
@@ -91,7 +106,7 @@ class HomeActivity : AppCompatActivity() {
         val menuItem = menu.findItem(R.id.profilePic)
 
         profilePicture = menuItem.actionView as ImageView
-        profilePicture.load(Tutorial.IMG_URI) {// TOdo: Get User Avatar
+        profilePicture.load(profilePic) {
             transformations(
                 BorderedCircleCropTransformation(
                     dpToPx(this@HomeActivity, 2),
@@ -202,5 +217,7 @@ class HomeActivity : AppCompatActivity() {
 
     companion object {
         private const val SLIDE_DELAY = 2000L
+        private val profilePic = "android.resource://com.capstone.talktales/drawable/account"
+
     }
 }

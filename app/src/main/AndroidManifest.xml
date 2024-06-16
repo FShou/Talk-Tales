@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -17,9 +17,13 @@
         android:theme="@style/Theme.TalkTales"
         tools:targetApi="31">
         <activity
+            android:name=".ui.tutorial.TutorialActivity"
+            android:exported="false"
+            android:theme="@style/Theme.TalkTales" />
+        <activity
             android:name=".ui.conversation.ConversationActivity"
             android:exported="false" />
-       <activity
+        <activity
             android:name=".ui.register.RegisterActivity"
             android:exported="false" />
         <activity
@@ -30,7 +34,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,7 +46,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.home.HomeActivity"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>

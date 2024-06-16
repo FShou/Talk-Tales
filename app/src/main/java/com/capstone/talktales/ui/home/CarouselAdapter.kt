@@ -7,17 +7,18 @@ import coil.load
 import androidx.recyclerview.widget.RecyclerView
 import coil.transform.RoundedCornersTransformation
 import com.capstone.talktales.data.model.StoryItem
-import com.capstone.talktales.databinding.CarouselItemBinding
+import com.capstone.talktales.databinding.ImageItemBinding
 import com.capstone.talktales.ui.storydetail.StoryDetailActivity
+import com.capstone.talktales.ui.tutorial.TutorialActivity
 
 class CarouselAdapter(private val items: List<Any>) :
     RecyclerView.Adapter<CarouselAdapter.ViewHolder>() {
-    class ViewHolder(private val binding: CarouselItemBinding) :
+    class ViewHolder(private val binding: ImageItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(carouselContent: Any) {
             when (carouselContent) {
                 is StoryItem -> {
-                    binding.carouselImageView.load(carouselContent.imgUrl) {
+                    binding.imgItem.load(carouselContent.imgUrl) {
                         transformations(RoundedCornersTransformation(16f))
                     }
                     binding.root.setOnClickListener {
@@ -29,11 +30,15 @@ class CarouselAdapter(private val items: List<Any>) :
                 }
 
                 is String -> {
-                    binding.carouselImageView.load(carouselContent) {
+                    binding.imgItem.load(carouselContent) {
                         transformations(RoundedCornersTransformation(16f))
                     }
 
-                    // Todo Intent to tutorial
+                    binding.root.setOnClickListener {
+                        binding.root.context.startActivity(
+                            Intent(binding.root.context, TutorialActivity::class.java)
+                        )
+                    }
                 }
             }
 
@@ -42,7 +47,7 @@ class CarouselAdapter(private val items: List<Any>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            CarouselItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ImageItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(binding)
     }

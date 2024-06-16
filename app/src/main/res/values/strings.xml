@@ -54,4 +54,5 @@
     <string name="this_will_not_be_saved">Your progress is not be saved</string>
     <string name="continu">Continue</string>
     <string name="cancel">Cancel</string>
+    <string name="prev">Prev</string>
 </resources>

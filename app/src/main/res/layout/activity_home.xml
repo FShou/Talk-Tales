@@ -234,27 +234,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginBottom="8dp"
-                tools:src="@drawable/banner_bawang" />
+                tools:src="@drawable/tutorial_banner" />
 
             <TextView
                 android:id="@+id/storyTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Story Title"
+                android:text="@string/tutorial"
                 android:fontFamily="@font/poppins_medium"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 />
-            <TextView
-                android:id="@+id/storyCity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Kota, Negara"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/gray"
-                android:textSize="12sp"
-                />
+
 
         </LinearLayout>
 
