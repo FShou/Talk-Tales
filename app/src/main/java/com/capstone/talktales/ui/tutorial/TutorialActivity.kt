@@ -1,6 +1,7 @@
 package com.capstone.talktales.ui.tutorial
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.capstone.talktales.data.model.Tutorial
 import com.capstone.talktales.databinding.ActivityTutorialBinding
@@ -16,6 +17,7 @@ class TutorialActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(binding.root)
+        enableEdgeToEdge()
         showTutorial()
         with(binding) {
             btnBack.setOnClickListener { finish() }
