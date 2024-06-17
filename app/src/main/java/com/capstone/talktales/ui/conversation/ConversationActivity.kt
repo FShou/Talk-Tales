@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -28,7 +29,7 @@ import com.capstone.talktales.data.remote.response.ConversationResponse
 import com.capstone.talktales.data.remote.response.PredictionData
 import com.capstone.talktales.data.remote.response.ResponseResult
 import com.capstone.talktales.databinding.ActivityConversationBinding
-import com.capstone.talktales.factory.UserViewModelFactory
+import com.capstone.talktales.factory.ConversationViemModelFactory
 import com.capstone.talktales.ui.home.HomeActivity
 import com.capstone.talktales.ui.utils.setCurrentItemWithSmoothScroll
 import com.capstone.talktales.ui.utils.startShimmer
@@ -40,7 +41,7 @@ class ConversationActivity : AppCompatActivity() {
 
     private val storyId by lazy { intent.getStringExtra(EXTRA_STORY_ID).toString() }
     private val viewModel by viewModels<ConversationViewModel> {
-        UserViewModelFactory.getInstance(
+        ConversationViemModelFactory.getInstance(
             this
         )
     }
@@ -176,7 +177,7 @@ class ConversationActivity : AppCompatActivity() {
         }
         binding.apply {
             tvFeedback.text = predictionData!!.feedback
-            tvTarget.text = predictionData.target
+            tvTarget.text = Html.fromHtml(predictionData.html) // TODO: Check More
         }
 
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED

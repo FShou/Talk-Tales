@@ -2,6 +2,7 @@ package com.capstone.talktales.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.view.Menu
 import android.view.View
 import android.widget.ImageView

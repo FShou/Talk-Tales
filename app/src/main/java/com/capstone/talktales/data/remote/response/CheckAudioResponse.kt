@@ -19,18 +19,7 @@ data class PredictionData(
     @field:SerializedName("feedback")
     val feedback: String,
 
-    @field:SerializedName("scores")
-    val scores: Int,
+    @field:SerializedName("markup_html")
+    val html: String,
 
-    @field:SerializedName("file_name")
-    val fileName: String? = null,
-
-    @field:SerializedName("prediction")
-    val prediction: String? = null,
-
-    @field:SerializedName("idLogConversation")
-    val idLogConversation: Int? = null,
-
-    @field:SerializedName("target")
-    val target: String? = null
-)
+    )

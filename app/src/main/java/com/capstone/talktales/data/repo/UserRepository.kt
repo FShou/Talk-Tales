@@ -1,16 +1,12 @@
 package com.capstone.talktales.data.repo
 
-import android.util.Log
 import androidx.lifecycle.asLiveData
-import androidx.lifecycle.liveData
 import com.capstone.talktales.data.local.preference.UserPreference
-import com.capstone.talktales.data.remote.response.ResponseResult
-import com.capstone.talktales.data.remote.retrofit.ApiService
-import kotlinx.coroutines.delay
+import com.capstone.talktales.data.remote.retrofit.UserApiService
 import okhttp3.MultipartBody
 
 class UserRepository(
-    private val apiService: ApiService,
+    private val userApiService: UserApiService,
     private val userPref: UserPreference
 ): BaseRepository() {
 
@@ -18,13 +14,13 @@ class UserRepository(
 
     fun getLoginUser() = userPref.getLoginUser().asLiveData()
 
-    fun getStories() = callApiWrapped { apiService.getStories() }
+    fun getStories() = callApiWrapped { userApiService.getStories() }
 
-    fun getStoryDetail(id: String) = callApiWrapped { apiService.getStoryDetail(id) }
+    fun getStoryDetail(id: String) = callApiWrapped { userApiService.getStoryDetail(id) }
 
-    fun predictUserAudio(storyLogId: Int, storyConvId: Int, file: MultipartBody.Part) = callApiWrapped { apiService.predictUserAudio(storyLogId, storyConvId, file) }
+    fun predictUserAudio(storyLogId: Int, storyConvId: Int, file: MultipartBody.Part) = callApiWrapped { userApiService.predictUserAudio(storyLogId, storyConvId, file) }
 
-    fun getConversation(storyId: String) = callApiWrapped { apiService.getConversationByStoryId(storyId) }
+    fun getConversation(storyId: String) = callApiWrapped { userApiService.getConversationByStoryId(storyId) }
 
 
 }

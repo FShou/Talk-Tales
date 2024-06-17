@@ -4,10 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.capstone.talktales.data.remote.response.PredictionData
+import com.capstone.talktales.data.repo.ModelRepository
 import com.capstone.talktales.data.repo.UserRepository
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
 
-class ConversationViewModel(private val userRepository: UserRepository): ViewModel() {
+class ConversationViewModel(private val userRepository: UserRepository, private val modelRepository: ModelRepository): ViewModel() {
 
     private var _storyLogId: Int = 0
     fun setStoryLogId(id: Int) {
@@ -33,6 +36,9 @@ class ConversationViewModel(private val userRepository: UserRepository): ViewMod
     }
 
     fun predictUserAudio(storyLogId: Int, storyConvId: Int, file: MultipartBody.Part) = userRepository.predictUserAudio(storyLogId,storyConvId, file)
+
+    fun predictUserAudio(file: MultipartBody.Part, target: RequestBody)  = modelRepository.predictUserAudio(file, target)
+
 
     fun getConversation(storyId: String) = userRepository.getConversation(storyId)
 }

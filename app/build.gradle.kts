@@ -25,6 +25,11 @@ android {
                 "BASE_URL",
                 "\"https://backend-service-bch64czzyq-et.a.run.app/\""
             )
+            buildConfigField(
+                "String",
+                "MODEL_URL",
+                "\"https://talktales-django-eresbajlya-uc.a.run.app/\""
+            )
 
         }
 
@@ -38,6 +43,11 @@ android {
                 "String",
                 "BASE_URL",
                 "\"https://backend-service-bch64czzyq-et.a.run.app/\""
+            )
+            buildConfigField(
+                "String",
+                "MODEL_URL",
+                "\"https://talktales-django-eresbajlya-uc.a.run.app/\""
             )
         }
     }

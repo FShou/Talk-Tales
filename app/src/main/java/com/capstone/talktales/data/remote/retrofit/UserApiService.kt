@@ -6,7 +6,6 @@ import com.capstone.talktales.data.remote.response.DetailStoryResponse
 import com.capstone.talktales.data.remote.response.LoginResponse
 import com.capstone.talktales.data.remote.response.RegisterResponse
 import com.capstone.talktales.data.remote.response.StoriesResponse
-import com.mustafayigit.mockresponseinterceptor.Mock
 import okhttp3.MultipartBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -17,7 +16,7 @@ import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface ApiService {
+interface UserApiService {
 
 
     @FormUrlEncoded

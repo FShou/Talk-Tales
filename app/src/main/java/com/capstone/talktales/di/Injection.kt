@@ -6,6 +6,7 @@ import com.capstone.talktales.data.local.preference.UserPreference
 import com.capstone.talktales.data.local.preference.dataStore
 import com.capstone.talktales.data.remote.retrofit.ApiConfig
 import com.capstone.talktales.data.repo.AuthRepository
+import com.capstone.talktales.data.repo.ModelRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 
@@ -13,11 +14,9 @@ object Injection {
     fun provideAuthRepository(context: Context): AuthRepository {
         val pref = UserPreference.getInstance(context.dataStore)
 
-        val token: String = runBlocking { pref.getLoginUser().first().token}
+        val authApiService = ApiConfig.getAuthApiService()
 
-        val apiService = ApiConfig.getApiService(context, token)
-
-        return AuthRepository.getInstance(apiService, pref)
+        return AuthRepository.getInstance(authApiService, pref)
     }
 
     fun provideUserRepository(context: Context): UserRepository {
@@ -25,8 +24,14 @@ object Injection {
 
         val token: String = runBlocking { pref.getLoginUser().first().token }
 
-        val apiService = ApiConfig.getApiService(context, token)
+        val userApiService = ApiConfig.getUserApiService(context, token)
 
-        return UserRepository(apiService, pref)
+        return UserRepository(userApiService, pref)
+    }
+
+    fun provideModelRepository(): ModelRepository {
+        val modelApiService = ApiConfig.getModelApiService()
+
+        return  ModelRepository.getInstance(modelApiService)
     }
 }

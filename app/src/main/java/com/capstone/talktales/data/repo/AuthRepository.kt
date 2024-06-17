@@ -2,10 +2,10 @@ package com.capstone.talktales.data.repo
 
 import androidx.lifecycle.asLiveData
 import com.capstone.talktales.data.local.preference.UserPreference
-import com.capstone.talktales.data.remote.retrofit.ApiService
+import com.capstone.talktales.data.remote.retrofit.AuthApiService
 
 class AuthRepository private constructor(
-    private val apiService: ApiService,
+    private val apiService: AuthApiService,
     private val userPref: UserPreference
 ) : BaseRepository() {
     fun getLoginUser() = userPref.getLoginUser().asLiveData()
@@ -22,9 +22,9 @@ class AuthRepository private constructor(
         @Volatile
         private var instance: AuthRepository? = null
 
-        fun getInstance(apiService: ApiService, userPref: UserPreference): AuthRepository =
+        fun getInstance(authApiService: AuthApiService, userPref: UserPreference): AuthRepository =
             instance ?: synchronized(this) {
-                instance ?: AuthRepository(apiService, userPref)
+                instance ?: AuthRepository(authApiService, userPref)
             }.also { instance = it }
 
     }

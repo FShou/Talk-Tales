@@ -30,6 +30,7 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 
@@ -163,10 +164,13 @@ class ConversationSceneFragment : Fragment() {
             Toast.makeText(context, "Record first", Toast.LENGTH_SHORT).show()
             return
         }
-        val storyConvId = if (conversation1.isSpeechByUser) conversation1.id else conversation2.id
+
         val requestFile = userAudio.asRequestBody("audio/wav".toMediaTypeOrNull())
-        val multipart = MultipartBody.Part.createFormData("user_voice", userAudio.name, requestFile)
-        viewModel.predictUserAudio(storyLogId, storyConvId!!, multipart)
+
+        val multipart = MultipartBody.Part.createFormData("file", userAudio.name, requestFile)
+
+        val target = conversation2.convText.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+        viewModel.predictUserAudio(multipart,target)
             .observe(viewLifecycleOwner) {
                 handlePredictResponse(it)
             }

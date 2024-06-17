@@ -33,10 +33,6 @@ class UserViewModelFactory private constructor(
                 userRepository
             ) as T
 
-            modelClass.isAssignableFrom(ConversationViewModel::class.java) -> return ConversationViewModel(
-                userRepository
-            ) as T
-
 
         }
 
@@ -46,9 +42,11 @@ class UserViewModelFactory private constructor(
     companion object {
         private var instance: UserViewModelFactory? = null
         fun getInstance(context: Context): UserViewModelFactory =
-                instance ?: UserViewModelFactory(Injection.provideUserRepository(context)).also { instance = it }
+            instance ?: UserViewModelFactory(Injection.provideUserRepository(context)).also {
+                instance = it
+            }
 
-        fun destroy(){
+        fun destroy() {
             instance = null
         }
     }

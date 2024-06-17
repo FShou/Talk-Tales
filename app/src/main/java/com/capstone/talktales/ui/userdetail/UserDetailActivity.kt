@@ -25,7 +25,7 @@ class UserDetailActivity : AppCompatActivity() {
     }
 
     private val imgUri: Uri =
-        Uri.parse("android.resource://com.capstone.talktales/drawable/account") // Todo: Get from api
+        Uri.parse("android.resource://com.capstone.talktales/drawable/account")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class UserDetailActivity : AppCompatActivity() {
             insets
         }
 
-        loadProfilePicture(imgUri) // Todo: load from API or Pref
+        loadProfilePicture(imgUri)
 
         viewModel.getLoginUser().observe(this) {
             with(binding) {
