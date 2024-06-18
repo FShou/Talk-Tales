@@ -3,7 +3,6 @@ package com.capstone.talktales.ui.home
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.text.Html
 import android.view.Menu
 import android.view.View
 import android.view.WindowInsets
@@ -13,16 +12,14 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.capstone.talktales.R
-import com.capstone.talktales.data.remote.response.ResponseResult
-import com.capstone.talktales.data.remote.response.StoriesResponse
 import com.capstone.talktales.data.model.StoryItem
 import com.capstone.talktales.data.model.Tutorial
+import com.capstone.talktales.data.remote.response.ResponseResult
+import com.capstone.talktales.data.remote.response.StoriesResponse
 import com.capstone.talktales.databinding.ActivityHomeBinding
 import com.capstone.talktales.factory.UserViewModelFactory
 import com.capstone.talktales.ui.tutorial.TutorialActivity

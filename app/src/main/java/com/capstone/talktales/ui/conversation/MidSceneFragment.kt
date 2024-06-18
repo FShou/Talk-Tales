@@ -2,16 +2,13 @@ package com.capstone.talktales.ui.conversation
 
 import android.os.Build
 import android.os.Bundle
-import android.os.Parcelable
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import coil.load
-import com.capstone.talktales.R
 import com.capstone.talktales.data.model.Conversation
-import com.capstone.talktales.databinding.FragmentConversationSceneBinding
 import com.capstone.talktales.databinding.FragmentMidSceneBinding
 
 class MidSceneFragment : Fragment() {

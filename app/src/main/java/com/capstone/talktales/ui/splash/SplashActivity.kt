@@ -8,10 +8,8 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowInsets
 import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import com.capstone.talktales.R
 import com.capstone.talktales.data.model.User
 import com.capstone.talktales.factory.AuthViewModelFactory

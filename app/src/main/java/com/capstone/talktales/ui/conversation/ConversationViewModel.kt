@@ -8,7 +8,6 @@ import com.capstone.talktales.data.repo.ModelRepository
 import com.capstone.talktales.data.repo.UserRepository
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.io.File
 
 class ConversationViewModel(private val userRepository: UserRepository, private val modelRepository: ModelRepository): ViewModel() {
 

@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.animation.AnimatorSetCompat.playTogether
 import kotlin.math.abs
 
 fun View.startShimmer() {

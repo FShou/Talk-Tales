@@ -35,7 +35,6 @@ import com.capstone.talktales.ui.utils.setCurrentItemWithSmoothScroll
 import com.capstone.talktales.ui.utils.startShimmer
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import java.io.File
 
 class ConversationActivity : AppCompatActivity() {
 

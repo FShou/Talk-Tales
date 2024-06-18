@@ -1,7 +1,5 @@
 package com.capstone.talktales.data.repo
 
-import com.capstone.talktales.data.local.preference.UserPreference
-import com.capstone.talktales.data.remote.retrofit.AuthApiService
 import com.capstone.talktales.data.remote.retrofit.ModelApiService
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

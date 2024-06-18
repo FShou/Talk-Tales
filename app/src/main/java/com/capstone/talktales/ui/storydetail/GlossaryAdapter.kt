@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.talktales.data.model.Glossary
 import com.capstone.talktales.databinding.GlossaryItemLayoutBinding
-import com.capstone.talktales.databinding.StoryItemLayoutBinding
 
 class GlossaryAdapter(private val data: List<Glossary>) :
     RecyclerView.Adapter<GlossaryAdapter.ViewHolder>() {
