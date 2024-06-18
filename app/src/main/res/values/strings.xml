@@ -55,4 +55,18 @@
     <string name="continu">Continue</string>
     <string name="cancel">Cancel</string>
     <string name="prev">Prev</string>
+
+<!--    Conversation-->
+    <string name="prolog_1">Prolog 1</string>
+    <string name="character_1">Character 1</string>
+    <string name="story_banner">Story Banner</string>
+    <string name="profile">Profile</string>
+    <string name="character_1_name">Character 1 Name</string>
+    <string name="character_conversation">Character Conversation</string>
+    <string name="prolog_2">Prolog 2</string>
+    <string name="character_2">Character 2</string>
+    <string name="character_2_name">Character 2 Name</string>
+    <string name="send">Send</string>
+    <string name="target">Target</string>
+    <string name="feedback">Feedback</string>
 </resources>

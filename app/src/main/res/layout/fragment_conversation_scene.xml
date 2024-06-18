@@ -32,7 +32,7 @@
                 android:layout_marginTop="16dp"
                 android:alpha="0.65"
                 android:fontFamily="@font/poppins_regular"
-                android:text="Prolog 1"
+                android:text="@string/prolog_1"
                 android:textAlignment="center"
                 android:textSize="12sp"
                 android:textColor="@color/black"
@@ -42,6 +42,7 @@
 
             <ImageView
                 android:id="@+id/imgChar1"
+                android:contentDescription="@string/character_1"
                 android:layout_width="wrap_content"
                 android:layout_height="120dp"
                 app:layout_constraintBottom_toBottomOf="@id/convoBubble1"
@@ -75,7 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Character 1 Name"
+                        android:text="@string/character_1_name"
                         android:textColor="@color/black" />
 
                     <TextView
@@ -85,7 +86,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/poppins_regular"
                         android:justificationMode="inter_word"
-                        android:text="Character Conversation"
+                        android:text="@string/character_conversation"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         tools:targetApi="o" />
@@ -126,7 +127,7 @@
         android:layout_marginVertical="10dp"
         android:alpha="0.65"
         android:fontFamily="@font/poppins_regular"
-        android:text="Prolog 2"
+        android:text="@string/prolog_2"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="12sp"
@@ -136,6 +137,7 @@
 
     <ImageView
         android:id="@+id/imgChar2"
+        android:contentDescription="@string/character_2"
         android:layout_width="wrap_content"
         android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="@id/convoBubble2"
@@ -168,7 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Character 2 Name"
+                android:text="@string/character_2_name"
                 android:textColor="@color/black" />
 
             <TextView
@@ -178,7 +180,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/poppins_regular"
                 android:justificationMode="inter_word"
-                android:text="Character Conversation"
+                android:text="@string/character_conversation"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 tools:targetApi="o" />
@@ -254,7 +256,7 @@
             android:layout_marginBottom="40dp"
             android:backgroundTint="@color/orange"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Send"
+            android:text="@string/send"
             android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp"

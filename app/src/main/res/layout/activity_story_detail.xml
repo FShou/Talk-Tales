@@ -10,6 +10,7 @@
 
     <ImageView
         android:id="@+id/storyBanner"
+        android:contentDescription="@string/story_banner"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="1:1"
