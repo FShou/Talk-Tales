@@ -82,7 +82,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/carousel"
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="165dp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -91,7 +91,7 @@
         <View
             android:id="@+id/carouselSkeleton"
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="165dp"
             android:background="@drawable/bg_skeleton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
