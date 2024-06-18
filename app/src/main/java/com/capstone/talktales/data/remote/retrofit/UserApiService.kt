@@ -1,20 +1,15 @@
 package com.capstone.talktales.data.remote.retrofit
 
-import com.capstone.talktales.data.remote.response.CheckAudioResponse
 import com.capstone.talktales.data.remote.response.ConversationResponse
 import com.capstone.talktales.data.remote.response.DetailStoryResponse
 import com.capstone.talktales.data.remote.response.LoginResponse
 import com.capstone.talktales.data.remote.response.RegisterResponse
 import com.capstone.talktales.data.remote.response.StoriesResponse
-import okhttp3.MultipartBody
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
-import retrofit2.http.Multipart
 import retrofit2.http.POST
-import retrofit2.http.Part
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface UserApiService {
 
@@ -41,14 +36,6 @@ interface UserApiService {
     suspend fun getStoryDetail(
         @Path("id") id: String
     ): DetailStoryResponse
-
-    @Multipart
-    @POST("/conversation/predict")
-    suspend fun predictUserAudio(
-        @Query("storyLogId") storyLogId: Int,
-        @Query("storyConvId") storyConvId: Int,
-        @Part file: MultipartBody.Part,
-    ): CheckAudioResponse
 
     @GET("/conversation/{storyId}")
     suspend fun getConversationByStoryId(

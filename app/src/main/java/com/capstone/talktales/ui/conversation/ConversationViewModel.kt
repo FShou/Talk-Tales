@@ -34,7 +34,6 @@ class ConversationViewModel(private val userRepository: UserRepository, private 
         _feedback.value = predictionData
     }
 
-    fun predictUserAudio(storyLogId: Int, storyConvId: Int, file: MultipartBody.Part) = userRepository.predictUserAudio(storyLogId,storyConvId, file)
 
     fun predictUserAudio(file: MultipartBody.Part, target: RequestBody)  = modelRepository.predictUserAudio(file, target)
 
